@@ -12,7 +12,7 @@ License: This plugin is dual-licensed under the GNU General Public License and t
 function my_admin_scripts() {
 wp_enqueue_script('media-upload');
 wp_enqueue_script('thickbox');
-wp_register_script('uploadimagebutton', WP_PLUGIN_URL.'/easing-slider/js/uploadimagebutton.js', array('jquery','media-upload','thickbox'));
+wp_register_script('uploadimagebutton', WP_PLUGIN_URL.'/easingslider/js/uploadimagebutton.js', array('jquery','media-upload','thickbox'));
 wp_enqueue_script('uploadimagebutton');
 }
 
@@ -20,7 +20,7 @@ function my_admin_styles() {
 wp_enqueue_style('thickbox');
 }
 
-if (isset($_GET['page']) && $_GET['page'] == 'easing-slider/easingslider.php') {
+if (isset($_GET['page']) && $_GET['page'] == 'easingslider/easingslider.php') {
 add_action('admin_print_scripts', 'my_admin_scripts');
 add_action('admin_print_styles', 'my_admin_styles');
 }
@@ -38,7 +38,7 @@ function easing_head() {
 ?>
 
 <!-- Start of Easing Slider -->
-<style type="text/css">ul.lof-navigator li{background: url(<?php if($paginationoff=='') echo WP_PLUGIN_URL.'/easing-slider/images/pagination.png'; if($paginationoff!='') echo $paginationoff; ?>) 0 0 no-repeat;} ul.lof-navigator li.active{background: url(<?php if($paginationon=='') echo WP_PLUGIN_URL.'/easing-slider/images/pagination_current.png'; if($paginationon!='') echo $paginationon; ?>) 0 0 no-repeat;}</style>
+<style type="text/css">ul.lof-navigator li{background: url(<?php if($paginationoff=='') echo WP_PLUGIN_URL.'/easingslider/images/pagination.png'; if($paginationoff!='') echo $paginationoff; ?>) 0 0 no-repeat;} ul.lof-navigator li.active{background: url(<?php if($paginationon=='') echo WP_PLUGIN_URL.'/easingslider/images/pagination_current.png'; if($paginationon!='') echo $paginationon; ?>) 0 0 no-repeat;}</style>
 
 <script type="text/javascript">
 $(document).ready( function(){	
@@ -74,7 +74,7 @@ mainWidth:<?php echo $width; ?>} );
 <?php }
 
 function add_scripts() {
-$scripturl = WP_PLUGIN_URL .'/easing-slider/js/';
+$scripturl = WP_PLUGIN_URL .'/easingslider/js/';
 
 if ( !is_admin() ) {
 wp_deregister_script('jquery');
@@ -91,7 +91,7 @@ wp_enqueue_script('script');
 }
 
 function add_styles() {
-$sliderstyle = WP_PLUGIN_URL .'/easing-slider/css/slider.css';
+$sliderstyle = WP_PLUGIN_URL .'/easingslider/css/slider.css';
 
 wp_register_style('slider', $sliderstyle, '', '1.0');
 wp_enqueue_style('slider');
@@ -102,7 +102,7 @@ add_action('wp_print_styles','add_styles');
 add_action('wp_print_scripts','add_scripts');
 
 function admin_files() {
-	?><link rel="stylesheet" href="<?php echo WP_PLUGIN_URL .'/easing-slider/css/tabs.css'; ?>" />
+	?><link rel="stylesheet" href="<?php echo WP_PLUGIN_URL .'/easingslider/css/tabs.css'; ?>" />
 	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
 	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.0/build/element/element-beta-min.js"></script>
 	<script type="text/javascript" src="http://yui.yahooapis.com/2.5.0/build/connection/connection-min.js"></script>
@@ -164,7 +164,7 @@ function easing_slider() {
     <div class="lof-container" style="height:<?php echo $height; ?>px;padding-left:<?php echo $padleft;?>px;padding-bottom:<?php echo $imgpadding;?>px;">
       <div class="lof-slidecontent" id="lofslidecontent45" style="border:<?php echo $bwidth;?>px solid #<?php echo $bcolour; ?>;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
         <div class="preload" style="background:#<?php if($bgcolour=='') echo 'fff'; else echo $bgcolour; ?>;">
-           <div style="background:transparent url(<?php echo WP_PLUGIN_URL; ?>/easing-slider/images/<?php if($preload=='indicator') echo 'indicator'; if($preload=='none') echo ''; if($preload=='arrows') echo 'arrows';  if($preload=='bar') echo 'bar'; if($preload=='bigflower') echo 'bigflower'; if($preload=='bounceball') echo 'bounceball'; if($preload=='indicatorlight') echo 'indicatorlight'; if($preload=='pik') echo 'pik'; if($preload=='snake') echo 'snake'; ?>.gif) no-repeat scroll 50% 50%;">
+           <div style="background:transparent url(<?php echo WP_PLUGIN_URL; ?>/easingslider/images/<?php if($preload=='indicator') echo 'indicator'; if($preload=='none') echo ''; if($preload=='arrows') echo 'arrows';  if($preload=='bar') echo 'bar'; if($preload=='bigflower') echo 'bigflower'; if($preload=='bounceball') echo 'bounceball'; if($preload=='indicatorlight') echo 'indicatorlight'; if($preload=='pik') echo 'pik'; if($preload=='snake') echo 'snake'; ?>.gif) no-repeat scroll 50% 50%;">
           </div>
         </div>
             <div class="lof-main-outer" style="background: #<?php echo $bgcolour; ?>;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
@@ -227,9 +227,9 @@ function easing_slider() {
 	if ($buttons=='');
 	else { ?>
               <div onclick="return false" class="lof-previous" style="
-	background:url(<?php if($prev=='') echo WP_PLUGIN_URL.'/easing-slider/images/b_prev.png'; if($prev!='') echo $prev; ?>) no-repeat left center;"></div>
+	background:url(<?php if($prev=='') echo WP_PLUGIN_URL.'/easingslider/images/b_prev.png'; if($prev!='') echo $prev; ?>) no-repeat left center;"></div>
               <div onclick="return false" class="lof-next" style="
-	background:url(<?php if($next=='') echo WP_PLUGIN_URL.'/easing-slider/images/b_next.png'; if($next!='') echo $next; ?>) no-repeat right center;"></div> <?php }
+	background:url(<?php if($next=='') echo WP_PLUGIN_URL.'/easingslider/images/b_next.png'; if($next!='') echo $next; ?>) no-repeat right center;"></div> <?php }
 
 	?></div><?php
 
@@ -290,7 +290,7 @@ function easing_slider() {
           </div><?php
 
 	if ($shadow=='')   
-	echo '<img src="'.WP_PLUGIN_URL.'/easing-slider/images/shadow_'.$shadowstyle.'.png" style="width:'.$width.'px; padding-left:'.$padleft.'px;padding-bottom:'.$padding.'px;padding-top:'.$padtop.'px;margin-left:'.$bwidth.'px;" alt="" />'; ?><!-- End of Easing Slider --><?php
+	echo '<img src="'.WP_PLUGIN_URL.'/easingslider/images/shadow_'.$shadowstyle.'.png" style="width:'.$width.'px; padding-left:'.$padleft.'px;padding-bottom:'.$padding.'px;padding-top:'.$padtop.'px;margin-left:'.$bwidth.'px;" alt="" />'; ?><!-- End of Easing Slider --><?php
 
 }
 }
@@ -514,7 +514,7 @@ function modify_menu() {
 	'Easing Slider',
 	'Easing Slider',
 	'administrator',
-	'easing-slider/easingslider.php',
+	'easingslider/easingslider.php',
 	'admin_easing'
 	);
 	
