@@ -3,7 +3,7 @@ Homepage: http://easingslider.matthewruddy.com
 Tags: slider, easing, plugin, jquery, content, featured, images, wordpress
 Requires at least: 2.9.2
 Tested up to: 3.0.1
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 == Description ==
 
