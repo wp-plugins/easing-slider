@@ -105,3 +105,5 @@ This (most likely) is due to one of two potential problems:
 * Fixed: Issues with 'Thematic' theme.
 * Fixed: jQuery into noConflict mode to avoid conflictions with various other jQuery plugins.
 * Fixed: Parse errors in CSS file.
+* Fixed: jQuery version number.
+* Removed: Fade transition effect due to compatibility problems & issue with certain themes.

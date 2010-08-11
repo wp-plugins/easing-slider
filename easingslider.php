@@ -3,7 +3,7 @@
 Plugin Name: Easing Slider
 Plugin URI: http://easingslider.matthewruddy.com
 Description: Easing Slider is an image slider which uses the jQuery Easing Plugin. It comes with many different transition and styling settings so you'll never have to edit any of the CSS files directly. Images are got from custom fields or Easing Slider's own 'custom images' panel where you can specify particular images via their URL.
-Version: 1.0
+Version: 1.0.1
 Author: Matthew Ruddy
 Author URI: http://matthewruddy.com
 License: This plugin is dual-licensed under the GNU General Public License and the MIT License.
@@ -48,7 +48,6 @@ jQuery(document).ready( function($){
 	.lofJSidernews( { interval : <?php echo $interval; ?>,
 	<?php if($transition=='slide') echo "easing : 'easeInOutExpo'";
 		if($transition=='smooth') echo "easing : 'easeInOutQuad'";
-		if($transition=='fade') echo "direction : 'opacity'";
 		if($transition=='swipe') echo "easing : 'easeOutBack'";
 		if($transition=='bounce') echo "easing : 'easeOutBounce'"; ?>,
 	duration : <?php echo $transpeed; ?>,
@@ -78,7 +77,7 @@ $scripturl = WP_PLUGIN_URL .'/easing-slider/js/';
 
 if ( !is_admin() ) {
 wp_deregister_script('jquery');
-wp_register_script('jquery', $scripturl.'jquery.js');
+wp_register_script('jquery', $scripturl.'jquery.js', '', '1.4.2');
 wp_enqueue_script('jquery');
 
 }
@@ -164,11 +163,11 @@ function easing_slider() {
     <div class="lof-container" style="height:<?php echo $height; ?>px;padding-left:<?php echo $padleft;?>px;padding-bottom:<?php echo $imgpadding;?>px;">
       <div class="lof-slidecontent" id="lofslidecontent45" style="border:<?php echo $bwidth;?>px solid #<?php echo $bcolour; ?>;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
         <div class="preload" style="background:#<?php if($bgcolour=='') echo 'fff'; else echo $bgcolour; ?>;">
-           <div style="background:transparent url(<?php echo WP_PLUGIN_URL; ?>/easing-slider/images/<?php if($preload=='indicator') echo 'indicator'; if($preload=='none') echo ''; if($preload=='arrows') echo 'arrows';  if($preload=='bar') echo 'bar'; if($preload=='bigflower') echo 'bigflower'; if($preload=='bounceball') echo 'bounceball'; if($preload=='indicatorlight') echo 'indicatorlight'; if($preload=='pik') echo 'pik'; if($preload=='snake') echo 'snake'; ?>.gif) no-repeat scroll 50% 50%;">
+           <div style="background:transparent url(<?php echo WP_PLUGIN_URL; ?>/easing-slider/images/<?php if($preload=='indicator') echo 'indicator'; if($preload=='none') echo ''; if($preload=='arrows') echo 'arrows';  if($preload=='bar') echo 'bar'; if($preload=='bigflower') echo 'bigflower'; if($preload=='bounceball') echo 'bounceball'; if($preload=='indicatorlight') echo 'indicatorlight'; if($preload=='pik') echo 'pik'; if($preload=='snake') echo 'snake'; ?>.gif) no-repeat scroll 50% 50%;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
           </div>
         </div>
             <div class="lof-main-outer" style="background: #<?php echo $bgcolour; ?>;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
-              <ul class="lof-main-wapper">
+                <ul class="lof-main-wapper">
               <?php
   	
   	if(get_option('source') == 'featured') { ?>
@@ -580,19 +579,24 @@ function print_easing_form() {
   <div><!-- first div for content tabs -->
   <?php if($source!='custom') echo '<div id="message" style="padding:10px;margin:10px 0;border:1px solid #e6db55;background:#ffffe0;width:790px;"><strong>Custom Images are currently not enabled. To use them, change "Get Images From?" to "Custom Images" under the "Plugin Settings" tab.</strong></div>'; ?>
 	<div class="metabox-holder" style="width:402px;float:left;"><div class="postbox"><h3><span>Image #1 link:</span></h3>
-	<?php if($sImg1) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg1.'" style="margin:0 10px;width:380px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(empty($sImg1)) echo 'id="upload_image"'; ?> name="sImg1" value="<?php echo stripslashes($sImg1); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+	<?php if($sImg1) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg1.'" style="margin:0 10px;width:380px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(empty($sImg1)) echo 'id="upload_image"'; ?> name="sImg1" value="<?php echo stripslashes($sImg1); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/>
+	</div>
 	
 		<div class="postbox"><h3><span>Image #2 link:</span></h3>
-		<?php if($sImg2) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg2.'" style="width:380px;margin:0 10px;"  />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&empty($sImg2)) echo 'id="upload_image"'; ?> name="sImg2" value="<?php echo stripslashes($sImg2); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
+		<?php if($sImg2) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg2.'" style="width:380px;margin:0 10px;"  />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&empty($sImg2)) echo 'id="upload_image"'; ?> name="sImg2" value="<?php echo stripslashes($sImg2); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
+		</div>
 	
 		<div class="postbox"><h3><span>Image #3 link:</span></h3>
-		<?php if($sImg3) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg3.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&empty($sImg3)) echo 'id="upload_image"'; ?> id="sImg3" name="sImg3" value="<?php echo stripslashes($sImg3); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
+		<?php if($sImg3) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg3.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&empty($sImg3)) echo 'id="upload_image"'; ?> id="sImg3" name="sImg3" value="<?php echo stripslashes($sImg3); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
+		</div>
 	
 		<div class="postbox"><h3><span>Image #4 link:</span></h3>
-		<?php if($sImg4) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg4.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&empty($sImg4)) echo 'id="upload_image"'; ?> name="sImg4" value="<?php echo stripslashes($sImg4); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
+		<?php if($sImg4) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg4.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&empty($sImg4)) echo 'id="upload_image"'; ?> name="sImg4" value="<?php echo stripslashes($sImg4); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
+		</div>
 
 		<div class="postbox"><h3><span>Image #5 link:</span></h3>
-		<?php if($sImg5) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg5.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&empty($sImg5)) echo 'id="upload_image"'; ?> name="sImg5" value="<?php echo stripslashes($sImg5); ?>" style="width: 380px;margin:10px;margin-top:0px;" /></div></div>
+		<?php if($sImg5) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg5.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&empty($sImg5)) echo 'id="upload_image"'; ?> name="sImg5" value="<?php echo stripslashes($sImg5); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
+		</div></div>
 
 		<div class="metabox-holder" style="width:402px;float:left;margin-left:10px;"><div class="postbox"><h3><span>Image #6 link:</span></h3>
 		<?php if($sImg6) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg6.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&empty($sImg6)) echo 'id="upload_image"'; ?> name="sImg6" value="<?php echo stripslashes($sImg6); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
@@ -601,13 +605,15 @@ function print_easing_form() {
 		<?php if($sImg7) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg7.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&empty($sImg7)) echo 'id="upload_image"'; ?> name="sImg7" value="<?php echo stripslashes($sImg7); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 
 		<div class="postbox"><h3><span>Image #8 link:</span></h3>
-		<?php if($sImg8) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg8.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&empty($sImg8)) echo 'id="upload_image"'; ?> name="sImg8" value="<?php echo stripslashes($sImg8); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
+		<?php if($sImg8) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg8.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&empty($sImg8)) echo 'id="upload_image"'; ?> name="sImg8" value="<?php echo stripslashes($sImg8); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
+		</div>
 
 		<div class="postbox"><h3><span>Image #9 link:</span></h3>
 		<?php if($sImg9) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg9.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&isset($sImg8)&empty($sImg9)) echo 'id="upload_image"'; ?> name="sImg9" value="<?php echo stripslashes($sImg9); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 	
 		<div class="postbox"><h3><span>Image #10 link:</span></h3>
-		<?php if($sImg10) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg10.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&isset($sImg8)&isset($sImg9)&empty($sImg10)) echo 'id="upload_image"'; ?> name="sImg10" value="<?php echo stripslashes($sImg10); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div></div>
+		<?php if($sImg10) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg10.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&isset($sImg8)&isset($sImg9)&empty($sImg10)) echo 'id="upload_image"'; ?> name="sImg10" value="<?php echo stripslashes($sImg10); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
+		</div></div>
 		
 	</div>
 	<div><!-- second div for content tabs -->
@@ -679,7 +685,6 @@ function print_easing_form() {
 		<td style="padding:5px 0;margin-left:5px;"><select name="transition" style="width:110px;">
 			<option style="padding-right:10px;" value="slide" <?php selected('slide', get_option('transition')); ?>>slide</option>
 			<option style="padding-right:10px;" value="smooth" <?php selected('smooth', get_option('transition')); ?>>smooth</option>
-			<option style="padding-right:10px;" value="fade" <?php selected('fade', get_option('transition')); ?>>fade</option>
 			<option style="padding-right:10px;" value="swipe" <?php selected('swipe', get_option('transition')); ?>>swipe</option>
 			<option style="padding-right:10px;" value="bounce" <?php selected('bounce', get_option('transition')); ?>>bounce</option>
 		</select></td>

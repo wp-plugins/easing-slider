@@ -1,36 +1,26 @@
 .lof-slidecontent, .lof-slidecontent a {
 	color:#FFF;	
 }
-.lof-slidecontent a.readmore{
-	color:#58B1EA;
-	font-size:95%;
-	
-}
-
-.lof-container {
-}
-
 
 .lof-slidecontent{
 	position: relative;
 }
 
 .lof-slidecontent .preload{
-	height:100%;
-	width:100%;
 	position:absolute;
 	top:0;
 	left:0;
-	z-index:100000;
+	z-index:2;
 	text-align:center;
 }
+
 .lof-slidecontent .preload div{
 	height:100%;
 	width:100%;
 }
+
 .lof-main-outer{
-	position: absolute;
-	z-index:3;
+	position: relative;
 	overflow:hidden;
 }
 
@@ -41,9 +31,7 @@
 	cursor:pointer;
 	position:absolute;
 	height:100%;
-	z-index:3;
 	top:0;
-	text-indent:-999px;
 
 }
 .lof-main-outer .lof-next {
@@ -56,12 +44,10 @@
 /* main flash */
 ul.lof-main-wapper{
 	/* margin-right:auto; */
-	overflow:hidden;
 	background: transparent;
 	padding:0px;
 	margin:0;
-	position: absolute;
-	overflow: hidden;
+	position: relative;
 }
 
 ul.lof-main-wapper li{
@@ -79,6 +65,8 @@ ul.lof-main-wapper li{
 	position:absolute  !important;;
 	top:0;
 	left:0;
+	margin:0;
+	padding:0;
 	float:inherit  !important;
 }
 ul.lof-main-wapper li img{
@@ -88,11 +76,10 @@ ul.lof-main-wapper li img{
 /* item navigator */
 .lof-navigator-wapper {
 	position:absolute;
-	-moz-border-radius:5px 5px 5px 5px;
 }
 .lof-navigator-outer{
 	position:relative;
-	z-index:100;
+	z-index:1;
 	height:180px;
 	overflow:hidden;
 	color:#FFF;
@@ -103,11 +90,10 @@ ul.lof-navigator{
 	top:0;
 	padding:0;
 	margin:0;
-	position:absolute;
+	position:relative;
 	width:100%;
 }
 ul.lof-navigator li{
-	cursor:pointer; 
 	cursor:pointer;
 	list-style:none;
 	padding:0;
@@ -119,7 +105,7 @@ ul.lof-navigator li{
 	
 }
 ul.lof-navigator li span {
-	visibility: hidden;
+	display: none;
 }
 ul.lof-navigator li.active {
 		display:block;
