@@ -41,34 +41,34 @@ function easing_head() {
 <style type="text/css">ul.lof-navigator li{background: url(<?php if($paginationoff=='') echo WP_PLUGIN_URL.'/easing-slider/images/pagination.png'; if($paginationoff!='') echo $paginationoff; ?>) 0 0 no-repeat;} ul.lof-navigator li.active{background: url(<?php if($paginationon=='') echo WP_PLUGIN_URL.'/easing-slider/images/pagination_current.png'; if($paginationon!='') echo $paginationon; ?>) 0 0 no-repeat;}</style>
 
 <script type="text/javascript">
-jQuery.noConflict();
-jQuery(document).ready( function($){	
-	var buttons = { previous:$('#lofslidecontent45 .lof-previous') , next:$('#lofslidecontent45 .lof-next') };
-	$obj = $('#lofslidecontent45')
-	.lofJSidernews( { interval : <?php echo $interval; ?>,
-	<?php if($transition=='slide') echo "easing : 'easeInOutExpo'";
-		if($transition=='smooth') echo "easing : 'easeInOutQuad'";
-		if($transition=='fade') echo "direction : 'opacity'";
-		if($transition=='swipe') echo "easing : 'easeOutBack'";
-		if($transition=='bounce') echo "easing : 'easeOutBounce'"; ?>,
-	duration : <?php echo $transpeed; ?>,
-	auto : true,
-	maxItemDisplay : 10,
-	startItem:<?php if($start=='1') echo '0';
-	if($start=='2') echo '1'; 
-	if($start=='3') echo '2'; 
-	if($start=='4') echo '3'; 
-	if($start=='5') echo '4'; 
-	if($start=='6') echo '5'; 
-	if($start=='7') echo '6'; 
-	if($start=='8') echo '7'; 
-	if($start=='9') echo '8'; 
-	if($start=='10') echo '9'; ?>,
-	navPosition     : 'horizontal', // horizontal
-	navigatorHeight : 15,
-	navigatorWidth  : 25,
-	buttons : buttons,
-	mainWidth:<?php echo $width; ?>} );	
+$(document).ready( function(){	
+var buttons = { previous:$('#lofslidecontent45 .lof-previous') ,
+next:$('#lofslidecontent45 .lof-next') };
+$obj = $('#lofslidecontent45')
+.lofJSidernews( { interval : <?php echo $interval; ?>,
+<?php if($transition=='slide') echo "easing : 'easeInOutExpo'";
+if($transition=='smooth') echo "easing : 'easeInOutQuad'";
+if($transition=='fade') echo "direction : 'opacity'";
+if($transition=='swipe') echo "easing : 'easeOutBack'";
+if($transition=='bounce') echo "easing : 'easeOutBounce'"; ?>,
+duration : <?php echo $transpeed; ?>,
+auto : true,
+maxItemDisplay : 10,
+startItem:<?php if($start=='1') echo '0';
+if($start=='2') echo '1'; 
+if($start=='3') echo '2'; 
+if($start=='4') echo '3'; 
+if($start=='5') echo '4'; 
+if($start=='6') echo '5'; 
+if($start=='7') echo '6'; 
+if($start=='8') echo '7'; 
+if($start=='9') echo '8'; 
+if($start=='10') echo '9'; ?>,
+navPosition     : 'horizontal', // horizontal
+navigatorHeight : 15,
+navigatorWidth  : 25,
+buttons : buttons,
+mainWidth:<?php echo $width; ?>} );	
 });</script>
 <!-- End of Easing Slider -->
 <?php }
@@ -123,16 +123,6 @@ function easing_slider() {
 	$sImg8 = get_option('sImg8');
 	$sImg9 = get_option('sImg9');
 	$sImg10 = get_option('sImg10');
-	$sImglink1 = get_option('sImglink1');
-	$sImglink2 = get_option('sImglink2');
-	$sImglink3 = get_option('sImglink3');
-	$sImglink4 = get_option('sImglink4');
-	$sImglink5 = get_option('sImglink5');
-	$sImglink6 = get_option('sImglink6');
-	$sImglink7 = get_option('sImglink7');
-	$sImglink8 = get_option('sImglink8');
-	$sImglink9 = get_option('sImglink9');
-	$sImglink10 = get_option('sImglink10');
 	$sPagination = get_option('sPagination');
 	$activation = get_option('activation');
 	$width = get_option('width');
@@ -173,19 +163,19 @@ function easing_slider() {
   <!-- Easing Slider -->
     <div class="lof-container" style="height:<?php echo $height; ?>px;padding-left:<?php echo $padleft;?>px;padding-bottom:<?php echo $imgpadding;?>px;">
       <div class="lof-slidecontent" id="lofslidecontent45" style="border:<?php echo $bwidth;?>px solid #<?php echo $bcolour; ?>;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
-        <div class="preload" style="background:#<?php if($bgcolour=='') echo 'fff'; else echo $bgcolour; ?>;width:<?php echo $width;?>px;height:<?php echo $height;?>px;">
-           <div style="background:transparent url(<?php echo WP_PLUGIN_URL; ?>/easing-slider/images/<?php if($preload=='indicator') echo 'indicator'; if($preload=='none') echo ''; if($preload=='arrows') echo 'arrows';  if($preload=='bar') echo 'bar'; if($preload=='bigflower') echo 'bigflower'; if($preload=='bounceball') echo 'bounceball'; if($preload=='indicatorlight') echo 'indicatorlight'; if($preload=='pik') echo 'pik'; if($preload=='snake') echo 'snake'; ?>.gif) no-repeat scroll 50% 50%;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
+        <div class="preload" style="background:#<?php if($bgcolour=='') echo 'fff'; else echo $bgcolour; ?>;">
+           <div style="background:transparent url(<?php echo WP_PLUGIN_URL; ?>/easing-slider/images/<?php if($preload=='indicator') echo 'indicator'; if($preload=='none') echo ''; if($preload=='arrows') echo 'arrows';  if($preload=='bar') echo 'bar'; if($preload=='bigflower') echo 'bigflower'; if($preload=='bounceball') echo 'bounceball'; if($preload=='indicatorlight') echo 'indicatorlight'; if($preload=='pik') echo 'pik'; if($preload=='snake') echo 'snake'; ?>.gif) no-repeat scroll 50% 50%;">
           </div>
         </div>
             <div class="lof-main-outer" style="background: #<?php echo $bgcolour; ?>;width:<?php echo $width; ?>px;height:<?php echo $height; ?>px;">
-                <ul class="lof-main-wapper">
+              <ul class="lof-main-wapper">
               <?php
   	
   	if(get_option('source') == 'featured') { ?>
       <?php $recent = new WP_Query('cat='.$featcat.'&showposts='.$featpost.'');
         while($recent->have_posts()) : $recent->the_post(); global $post;
           $image = get_post_meta($post->ID, 'easing', true); if (!empty($image)) { ?>
-                  <li><a href="<?php the_permalink(); ?>"><img src="<?php echo $image; ?>" width="<?php echo $width; ?>" alt="<?php echo $images; ?>" /></a></li>
+                  <li><img src="<?php echo $image; ?>" width="<?php echo $width; ?>" alt="<?php echo $images; ?>" /></li>
                   
         <?php }endwhile; ?>
         
@@ -193,41 +183,41 @@ function easing_slider() {
       <?php $recent = new WP_Query('showposts='.$featpost.'');
         while($recent->have_posts()) : $recent->the_post(); global $post;
           $image = get_post_meta($post->ID, 'easing', true); if (!empty($image)) { ?>
-                   <li><a href="<?php the_permalink(); ?>"><img src="<?php echo $image; ?>" width="<?php echo $width; ?>" alt="<?php echo $images; ?>"/></a></li>
+                   <li><img src="<?php echo $image; ?>" width="<?php echo $width; ?>" alt="<?php echo $images; ?>"/></li>
                    
         <?php }endwhile; ?>
         
   <?php } else if(get_option('source') == 'custom') {
   
 	if ($sImg1) {
-		echo '<li><a href="'. $sImglink1 .'"><img src="'.$sImg1.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg1.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 
 	if ($sImg2) {
-		echo '<li><a href="'. $sImglink2 .'"><img src="'.$sImg2.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg2.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg3) {
-		echo '<li><a href="'. $sImglink3 .'"><img src="'.$sImg3.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg3.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg4) {
-		echo '<li><a href="'. $sImglink4 .'"><img src="'.$sImg4.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg4.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg5) {
-		echo '<li><a href="'. $sImglink5 .'"><img src="'.$sImg5.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg5.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg6) {
-		echo '<li><a href="'. $sImglink6 .'"><img src="'.$sImg6.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg6.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg7) {
-		echo '<li><a href="'. $sImglink7 .'"><img src="'.$sImg7.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg7.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg8) {
-		echo '<li><a href="'. $sImglink8 .'"><img src="'.$sImg8.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg8.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg9) {
-		echo '<li><a href="'. $sImglink9 .'"><img src="'.$sImg9.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg9.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 	if ($sImg10) {
-		echo '<li><a href="'. $sImglink10 .'"><img src="'.$sImg10.'" style="width:'. $width .'px;" alt="'. $images .'" /></a></li>'; }
+		echo '<li><img src="'.$sImg10.'" style="width:'. $width .'px;" alt="'. $images .'" /></li>'; }
 		
 		}
 		
@@ -318,16 +308,6 @@ function set_easing_options() {
 	add_option('sImg8','','');
 	add_option('sImg9','','');
 	add_option('sImg10','','');
-  add_option('sImglink1','','');
-	add_option('sImglink2','','');
-	add_option('sImglink3','','');
-	add_option('sImglink4','','');
-	add_option('sImglink5','','');
-	add_option('sImglink6','','');
-	add_option('sImglink7','','');
-	add_option('sImglink8','','');
-	add_option('sImglink9','','');
-	add_option('sImglink10','','');
 	add_option('sPagination','yes','');
 	add_option('activation','enable','');
 	add_option('width','480','');
@@ -367,16 +347,6 @@ function unset_easing_options() {
 	delete_option('sImg8');
 	delete_option('sImg9');
 	delete_option('sImg10');
-	delete_option('sImglink1');
-	delete_option('sImglink2');
-	delete_option('sImglink3');
-	delete_option('sImglink4');
-	delete_option('sImglink5');
-	delete_option('sImglink6');
-	delete_option('sImglink7');
-	delete_option('sImglink8');
-	delete_option('sImglink9');
-	delete_option('sImglink10');
 	delete_option('sPagination');
 	delete_option('activation');
 	delete_option('width');
@@ -420,16 +390,6 @@ function admin_easing() {
 	$sImg8 = get_option('sImg8');
 	$sImg9 = get_option('sImg9');
 	$sImg10 = get_option('sImg10');
-	$sImglink1 = get_option('sImglink1');
-	$sImglink2 = get_option('sImglink2');
-	$sImglink3 = get_option('sImglink3');
-	$sImglink4 = get_option('sImglink4');
-	$sImglink5 = get_option('sImglink5');
-	$sImglink6 = get_option('sImglink6');
-	$sImglink7 = get_option('sImglink7');
-	$sImglink8 = get_option('sImglink8');
-	$sImglink9 = get_option('sImglink9');
-	$sImglink10 = get_option('sImglink10');
 	$sPagination = get_option('sPagination');
 	$activation = get_option('activation');
 	$width = get_option('width');
@@ -468,16 +428,6 @@ if ('process' == $_POST['options']) {
 	update_option('sImg8',$_REQUEST['sImg8']);
 	update_option('sImg9',$_REQUEST['sImg9']);
 	update_option('sImg10',$_REQUEST['sImg10']);
-	update_option('sImglink1',$_REQUEST['sImglink1']);
-	update_option('sImglink2',$_REQUEST['sImglink2']);
-	update_option('sImglink3',$_REQUEST['sImglink3']);
-	update_option('sImglink4',$_REQUEST['sImglink4']);
-	update_option('sImglink5',$_REQUEST['sImglink5']);
-	update_option('sImglink6',$_REQUEST['sImglink6']);
-	update_option('sImglink7',$_REQUEST['sImglink7']);
-	update_option('sImglink8',$_REQUEST['sImglink8']);
-	update_option('sImglink9',$_REQUEST['sImglink9']);
-	update_option('sImglink10',$_REQUEST['sImglink10']);
 	update_option('sPagination',$_REQUEST['sPagination']);
 	update_option('activation',$_REQUEST['activation']);
 	update_option('width',$_REQUEST['width']);
@@ -514,16 +464,6 @@ if ('process' == $_POST['options']) {
 	$sImg8 = get_option('sImg8');
 	$sImg9 = get_option('sImg9');
 	$sImg10 = get_option('sImg10');
-	$sImglink1 = get_option('sImglink1');
-	$sImglink2 = get_option('sImglink2');
-	$sImglink3 = get_option('sImglink3');
-	$sImglink4 = get_option('sImglink4');
-	$sImglink5 = get_option('sImglink5');
-	$sImglink6 = get_option('sImglink6');
-	$sImglink7 = get_option('sImglink7');
-	$sImglink8 = get_option('sImglink8');
-	$sImglink9 = get_option('sImglink9');
-	$sImglink10 = get_option('sImglink10');
 	$sPagination = get_option('sPagination');
 	$activation = get_option('activation');
 	$width = get_option('width');
@@ -593,16 +533,6 @@ function print_easing_form() {
 	$sImg8 = get_option('sImg8');
 	$sImg9 = get_option('sImg9');
 	$sImg10 = get_option('sImg10');
-	$sImglink1 = get_option('sImglink1');
-	$sImglink2 = get_option('sImglink2');
-	$sImglink3 = get_option('sImglink3');
-	$sImglink4 = get_option('sImglink4');
-	$sImglink5 = get_option('sImglink5');
-	$sImglink6 = get_option('sImglink6');
-	$sImglink7 = get_option('sImglink7');
-	$sImglink8 = get_option('sImglink8');
-	$sImglink9 = get_option('sImglink9');
-	$sImglink10 = get_option('sImglink10');
 	$sPagination = get_option('sPagination');
 	$activation = get_option('activation');
 	$width = get_option('width');
@@ -650,41 +580,34 @@ function print_easing_form() {
   <div><!-- first div for content tabs -->
   <?php if($source!='custom') echo '<div id="message" style="padding:10px;margin:10px 0;border:1px solid #e6db55;background:#ffffe0;width:790px;"><strong>Custom Images are currently not enabled. To use them, change "Get Images From?" to "Custom Images" under the "Plugin Settings" tab.</strong></div>'; ?>
 	<div class="metabox-holder" style="width:402px;float:left;"><div class="postbox"><h3><span>Image #1 link:</span></h3>
-	<?php if($sImg1) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg1.'" style="margin:0 10px;width:380px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(empty($sImg1)) echo 'id="upload_image"'; ?> name="sImg1" value="<?php echo stripslashes($sImg1); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/>
-	<h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink1" value="<?php echo stripslashes($sImglink1); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+	<?php if($sImg1) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg1.'" style="margin:0 10px;width:380px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(empty($sImg1)) echo 'id="upload_image"'; ?> name="sImg1" value="<?php echo stripslashes($sImg1); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
 	
 		<div class="postbox"><h3><span>Image #2 link:</span></h3>
-		<?php if($sImg2) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg2.'" style="width:380px;margin:0 10px;"  />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&empty($sImg2)) echo 'id="upload_image"'; ?> name="sImg2" value="<?php echo stripslashes($sImg2); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
-		<h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink2" value="<?php echo stripslashes($sImglink2); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+		<?php if($sImg2) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg2.'" style="width:380px;margin:0 10px;"  />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&empty($sImg2)) echo 'id="upload_image"'; ?> name="sImg2" value="<?php echo stripslashes($sImg2); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 	
 		<div class="postbox"><h3><span>Image #3 link:</span></h3>
-		<?php if($sImg3) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg3.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&empty($sImg3)) echo 'id="upload_image"'; ?> id="sImg3" name="sImg3" value="<?php echo stripslashes($sImg3); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
-		<h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink3" value="<?php echo stripslashes($sImglink3); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0;"/></div>
+		<?php if($sImg3) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg3.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&empty($sImg3)) echo 'id="upload_image"'; ?> id="sImg3" name="sImg3" value="<?php echo stripslashes($sImg3); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 	
 		<div class="postbox"><h3><span>Image #4 link:</span></h3>
-		<?php if($sImg4) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg4.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&empty($sImg4)) echo 'id="upload_image"'; ?> name="sImg4" value="<?php echo stripslashes($sImg4); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
-		<h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink4" value="<?php echo stripslashes($sImglink4); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+		<?php if($sImg4) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg4.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&empty($sImg4)) echo 'id="upload_image"'; ?> name="sImg4" value="<?php echo stripslashes($sImg4); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 
 		<div class="postbox"><h3><span>Image #5 link:</span></h3>
-		<?php if($sImg5) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg5.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&empty($sImg5)) echo 'id="upload_image"'; ?> name="sImg5" value="<?php echo stripslashes($sImg5); ?>" style="width: 380px;margin:10px;margin-top:0px;" />
-		<h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink5" value="<?php echo stripslashes($sImglink5); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div></div>
+		<?php if($sImg5) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg5.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&empty($sImg5)) echo 'id="upload_image"'; ?> name="sImg5" value="<?php echo stripslashes($sImg5); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div></div>
 
 		<div class="metabox-holder" style="width:402px;float:left;margin-left:10px;"><div class="postbox"><h3><span>Image #6 link:</span></h3>
-		<?php if($sImg6) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg6.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&empty($sImg6)) echo 'id="upload_image"'; ?> name="sImg6" value="<?php echo stripslashes($sImg6); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /><h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink6" value="<?php echo stripslashes($sImglink6); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+		<?php if($sImg6) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg6.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&empty($sImg6)) echo 'id="upload_image"'; ?> name="sImg6" value="<?php echo stripslashes($sImg6); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 
 		<div class="postbox"><h3><span>Image #7 link:</span></h3>
-		<?php if($sImg7) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg7.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&empty($sImg7)) echo 'id="upload_image"'; ?> name="sImg7" value="<?php echo stripslashes($sImg7); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /><h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink7" value="<?php echo stripslashes($sImglink7); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+		<?php if($sImg7) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg7.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&empty($sImg7)) echo 'id="upload_image"'; ?> name="sImg7" value="<?php echo stripslashes($sImg7); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 
 		<div class="postbox"><h3><span>Image #8 link:</span></h3>
-		<?php if($sImg8) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg8.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&empty($sImg8)) echo 'id="upload_image"'; ?> name="sImg8" value="<?php echo stripslashes($sImg8); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
-		<h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink8" value="<?php echo stripslashes($sImglink8); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+		<?php if($sImg8) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg8.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&empty($sImg8)) echo 'id="upload_image"'; ?> name="sImg8" value="<?php echo stripslashes($sImg8); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 
 		<div class="postbox"><h3><span>Image #9 link:</span></h3>
-		<?php if($sImg9) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg9.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&isset($sImg8)&empty($sImg9)) echo 'id="upload_image"'; ?> name="sImg9" value="<?php echo stripslashes($sImg9); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /><h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink9" value="<?php echo stripslashes($sImglink9); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div>
+		<?php if($sImg9) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg9.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&isset($sImg8)&empty($sImg9)) echo 'id="upload_image"'; ?> name="sImg9" value="<?php echo stripslashes($sImg9); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div>
 	
 		<div class="postbox"><h3><span>Image #10 link:</span></h3>
-		<?php if($sImg10) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg10.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&isset($sImg8)&isset($sImg9)&empty($sImg10)) echo 'id="upload_image"'; ?> name="sImg10" value="<?php echo stripslashes($sImg10); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" />
-		<h4 style="margin:10px;">Image Link:</h4><input type="text" name="sImglink10" value="<?php echo stripslashes($sImglink10); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?> style="width: 380px;margin:10px;margin-top:0px;"/></div></div>
+		<?php if($sImg10) echo '<h4 style="margin:10px;">Preview:</h4><img src="'.$sImg10.'" style="width:380px;margin:0 10px;" />'; ?><h4 style="margin:10px;">Image Path:</h4><input type="text" <?php if(isset($sImg1)&isset($sImg2)&isset($sImg3)&isset($sImg4)&isset($sImg5)&isset($sImg6)&isset($sImg7)&isset($sImg8)&isset($sImg9)&empty($sImg10)) echo 'id="upload_image"'; ?> name="sImg10" value="<?php echo stripslashes($sImg10); ?>" <?php if($source!='custom') echo 'readonly="readonly"';?>style="width: 380px;margin:10px;margin-top:0px;" /></div></div>
 		
 	</div>
 	<div><!-- second div for content tabs -->
