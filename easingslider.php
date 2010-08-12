@@ -6,7 +6,7 @@ Description: Easing Slider is an image slider which uses the jQuery Easing Plugi
 Version: 1.0
 Author: Matthew Ruddy
 Author URI: http://matthewruddy.com
-License: This plugin is dual-licensed under the GNU General Public License and the MIT License.
+License: This plugin is licensed under the GNU General Public License.
 */
 
 function my_admin_scripts() {
