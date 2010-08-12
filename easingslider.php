@@ -320,7 +320,7 @@ function set_easing_options() {
 	add_option('transition','slide','');
 	add_option('bgcolour','fff','');
 	add_option('transpeed','1200','');
-	add_option('bwidth','5','');
+	add_option('bwidth','3','');
 	add_option('bcolour','ccc','');
 	add_option('preload','indicator','');
 	add_option('start','1','');
