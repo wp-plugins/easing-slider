@@ -99,7 +99,7 @@ This (most likely) is due to one of two potential problems:
 = 1.1.1 =
 * Added: Option to disable permalinks in 'slider settings'.
 
-= 1.1 =
+= 1.1.0 =
 * Added: Ability to add links to images. Images sourced from custom fields link to their respective post.
 * Fixed: Edited script.js issue with fade animation.
 
