@@ -1,5 +1,6 @@
 === Easing Slider  ===
 Homepage: http://easingslider.matthewruddy.com
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=J5SRU24K9UJFQ&lc=US&item_name=Easing%20Slider%20%7c%20Matthew%20Ruddy&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: slider, easing, plugin, jquery, content, featured, images, wordpress
 Requires at least: 2.9.2
 Tested up to: 3.0.1
