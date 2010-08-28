@@ -1,15 +1,17 @@
 === Easing Slider  ===
 Homepage: http://easingslider.matthewruddy.com
-Author: MatthewRuddy
+Contributors: MatthewRuddy
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=matthew_ruddy%40hotmail%2ecom&lc=US&item_name=Easing%20Slider&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: slider, easing, plugin, jquery, content, featured, images, wordpress
 Requires at least: 2.9.2
 Tested up to: 3.0.1
 Stable tag: 1.1.5
 
+The Easing Slider is an image slider plugin for WordPress which uses the jQuery Easing plugin.
+
 == Description ==
 
-The Easing Slider is an image slider plugin for WordPress which uses the jQuery Easing plugin. It comes with various options that allow you to choose different sources to get the images from and also multiple styling options so that you"ll never have to edit any files directly!
+The Easing Slider comes with various options that allow you to choose different sources to get the images from and also multiple styling options so that you"ll never have to edit any files directly & with ease. Create your own unique elegant slider.
 
 <a href="http://easingslider.matthewruddy.com">Live Demo</a>
 
