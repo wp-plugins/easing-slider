@@ -43,11 +43,11 @@ Go to Add new under Plugins. Then search "easing slider" then click install.
 <h4>Usage</h4>
 To use the Easing Slider you can use the following methods:
 
-<b>Shortcode in posts:</b>
-<code>[easingslider]</code>
+Shortcode in posts:
+`[easingslider]`
 
-<b>Function in template files (via php):</b>
-<code><?php if (function_exists("easing_slider")){ easing_slider(); }; ?></code>
+Function in template files (via php):
+`<?php if (function_exists("easing_slider")){ easing_slider(); }; ?>`
 
 
 <h4>Image Source:</h4>
