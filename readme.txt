@@ -2,10 +2,10 @@
 Homepage: http://easingslider.matthewruddy.com
 Contributors: MatthewRuddy
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=matthew_ruddy%40hotmail%2ecom&lc=US&item_name=Easing%20Slider&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Tags: slider, easing, plugin, jquery, content, featured, images, wordpress
+Tags: slider, slideshows, easing, plugin, jquery, content, featured, images, wordpress
 Requires at least: 2.9.2
-Tested up to: 3.0.1
-Stable tag: 1.1.7
+Tested up to: 3.2.1
+Stable tag: 1.1.8
 
 The Easing Slider is an image slider plugin for WordPress which uses the jQuery Easing plugin.
 
@@ -101,6 +101,9 @@ This (most likely) is due to one of two potential problems:
 <h4>For more information please email me at info@matthewruddy.com</h4>
 
 == Changelog ==
+
+= 1.1.8 =
+* Fixed: IE9 issues. Slider is now fully functional in IE9.
 
 = 1.1.7 =
 * Added: Option to enable or disable jQuery.
