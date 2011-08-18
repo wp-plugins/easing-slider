@@ -3,7 +3,7 @@
 Plugin Name: Easing Slider
 Plugin URI: http://easingslider.matthewruddy.com
 Description: Easing Slider is an image slider which uses the jQuery Easing Plugin. It comes with many different transition and styling settings so you'll never have to edit any of the CSS files directly. Images are got from custom fields or Easing Slider's own 'custom images' panel where you can specify particular images via their URL.
-Version: 1.1.7
+Version: 1.1.8
 Author: Matthew Ruddy
 Author URI: http://matthewruddy.com
 License: This plugin is licensed under the GNU General Public License.
