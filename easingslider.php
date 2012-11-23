@@ -25,6 +25,15 @@ add_action('admin_print_scripts', 'my_admin_scripts');
 add_action('admin_print_styles', 'my_admin_styles');
 }
 
+// Adds new version options
+function easing_init() {
+    if ( !get_option('easingslider_version') ) {
+        add_option('easingslider_version', '1.2.1');
+        add_option('easingslider_upgrade_message', 'true');
+    }
+}
+add_action( 'admin_init', 'easing_init' );
+
 function easing_head() {
   $width = get_option('width');
 	$interval = get_option('interval');
