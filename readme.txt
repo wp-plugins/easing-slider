@@ -35,13 +35,15 @@ To display the slideshow, you can use any of the following methods.
 
 **In a post/page:**
 
-Simply insert the shortcode `[rivasliderlite]` into the post/page to display the slideshow. We've also included a handy button above the content editor, screenshotted below.
+Simply insert the shortcode below into the post/page to display the slideshow:
+
+`[rivasliderlite]`
 
 **Function in template files (via php):**
 
 To insert the slideshow into your theme, add the following code to the appropriate theme file:
 
-`<?php if (function_exists("rivasliderlite")){ rivasliderlite(); }; ?>`.
+`<?php if ( function_exists( "rivasliderlite" ) ) { rivasliderlite(); } ?>`
 
 == Changelog ==
 
