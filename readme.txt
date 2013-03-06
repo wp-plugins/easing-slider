@@ -1,7 +1,7 @@
 === Riva Slider "Lite"  ===
 Homepage: http://rivaslider.com
 Contributors: MatthewRuddy
-Tags: slider, slideshows, easing, plugin, jquery, content, featured, images, wordpress
+Tags: slideshow, slider, slides, slide, gallery, images, image, responsive, mobile, jquery, javascript, featured, content
 Requires at least: 3.5
 Tested up to: 3.5.1
 Stable tag: 2.0
@@ -12,12 +12,21 @@ Riva Slider "Lite" is an easy to use slideshow plugin. Simple and lightweight, b
 
 Riva Slider "Lite" is an extremely easy to use slideshow plugin for WordPress. It is built to be lightweight and simple, with absolutely no bloat. It comes with some great features, some of which include:
 
-* Responsive width, ideal for mobile devices & response themes.
-* Lightweight code for faster loading times. Optimization settings included for conditional loading.
-* Pagination icons and next/previous slide arrows.
-* Image preloading.
-* Easy to style CSS.
-* Lots of WordPress action & filter hooks for customization.
+* Fully responsive & mobile ready
+* Lightweight, weighing just 16kb minified including styling
+* Bulk image uploading, integrated with new WordPress Media Library
+* CSS3 transitions for ultra smooth playback
+* Navigation arrows & pagination
+* Preloading functionality on page load
+* Easy to modify styling
+* Developer friendly with built-in Javascript events
+* Lots of actions & filters for custom functionality
+
+Throughly tested on iPhone, iPad and multiple Android devices, Riva Slider "Lite" is the perfect solution for mobile slideshows. We've used CSS3 transitions to ensure ultra smooth transitions on all devices. The codebase is also extremely light (just 16kb), which is perfect for those concerned about page loading times.
+
+We've also integrated the new WordPress Media Library workflow to provide a better media management experience. Bulk uploading images to your slideshow is now easy, requiring just a few clicks.
+
+Last but not least, we've left plenty of opportunity for custom plugin modifications using the WordPress Action & Filter APIs. You can completely create your own external functionality, or modify the plugin to integrate perfectly with your current theme. Awesome!
 
 == Installation ==
 
@@ -25,10 +34,14 @@ Riva Slider "Lite" is an extremely easy to use slideshow plugin for WordPress. I
 To display the slideshow, you can use any of the following methods.
 
 **In a post/page:**
+
 Simply insert the shortcode `[rivasliderlite]` into the post/page to display the slideshow. We've also included a handy button above the content editor, screenshotted below.
 
 **Function in template files (via php):**
-To insert the slideshow into your theme, add the following code to the appropriate theme file: `<?php if (function_exists("rivasliderlite")){ rivasliderlite(); }; ?>`.
+
+To insert the slideshow into your theme, add the following code to the appropriate theme file:
+
+`<?php if (function_exists("rivasliderlite")){ rivasliderlite(); }; ?>`.
 
 == Changelog ==
 
