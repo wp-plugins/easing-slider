@@ -6,7 +6,7 @@
     Version: 2.0
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
-    Description: Riva Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
+    Description: An easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
     License: GNU General Public License v2.0 or later
     License URI: http://www.opensource.org/licenses/gpl-license.php
 
