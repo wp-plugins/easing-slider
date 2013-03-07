@@ -247,7 +247,7 @@
                     src = $self.attr('src');
 
                 /** Preload this image and trigger action on last image */
-                $.get(src, function() {
+                $('<img />').attr('src', src).load(function() {
                     index++;
                     if ( base.count == index ) {
                         base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
