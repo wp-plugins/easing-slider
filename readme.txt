@@ -4,7 +4,7 @@ Contributors: MatthewRuddy
 Tags: slideshow, slider, slides, slide, gallery, images, image, responsive, mobile, jquery, javascript, featured, content
 Requires at least: 3.5
 Tested up to: 3.5.1
-Stable tag: 2.0.1
+Stable tag: 2.0.1.1
 
 Easing Slider "Lite" is an easy to use slideshow plugin. Simple and lightweight, built with native WordPress functionality.
 
@@ -46,6 +46,9 @@ To insert the slideshow into your theme, add the following code to the appropria
 `<?php if ( function_exists( "easingsliderlite" ) ) { easingsliderlite(); } ?>`
 
 == Changelog ==
+
+= 2.0.1.1 =
+* Fixed script cross origin bug.
 
 = 2.0.1 =
 * Fixed bugs with 2.0 release. Reverted name from Riva Slider "Lite" back to Easing Slider (transition did not go as hoped, sorry).
