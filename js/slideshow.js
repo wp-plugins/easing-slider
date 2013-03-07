@@ -60,7 +60,7 @@
 
             /** Flag current slide (and queue for slide change) */
             base.$slides.eq(base.current).addClass('active');
-            base.$el.on('beforetransition', function() {
+            base.$el.bind('beforetransition', function() {
                 base.$slides.removeClass('active').eq(base.current).addClass('active');
             });
 
@@ -108,7 +108,7 @@
             base.$el.addClass('is-responsive');
 
             /** Resize slideshow on window resize */
-            $(window).on('resize.easingsliderlite', function(event) {
+            $(window).bind('resize.easingsliderlite', function(event) {
 
                 /** Queue custom resize end event */
                 clearTimeout(base.resizeEnd);
@@ -170,11 +170,11 @@
                 $arrows = $().add($next).add($prev);
 
             /** Bind click events */
-            $next.on(base.clickEvent, function(event) {
+            $next.bind(base.clickEvent, function(event) {
                 base.nextSlide();
                 return false;
             });
-            $prev.on(base.clickEvent, function(event) {
+            $prev.bind(base.clickEvent, function(event) {
                 base.prevSlide();
                 return false;
             });
@@ -206,14 +206,14 @@
                 $icons = $pagination.children('div');
 
             /** Bind click events */
-            $icons.on(base.clickEvent, function(event) {
+            $icons.bind(base.clickEvent, function(event) {
                 base.goToSlide($(this).index());
                 return false;
             });
 
             /** Set current icon now & on slide change */
             $icons.eq(base.current).addClass('active');
-            base.$el.on('beforetransition', function() {
+            base.$el.bind('beforetransition', function() {
                 $icons.removeClass('active').eq(base.current).addClass('active');
             });
 
