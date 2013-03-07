@@ -10,7 +10,7 @@ Riva Slider "Lite" is an easy to use slideshow plugin. Simple and lightweight, b
 
 == Description ==
 
-Riva Slider "Lite" is an extremely easy to use slideshow plugin for WordPress. It is built to be lightweight and simple, with absolutely no bloat. It comes with some great features, some of which include:
+Riva Slider "Lite" is an extremely easy to use slideshow plugin for WordPress. It is built to be lightweight and simple, with absolutely no bloat. It comes with many great features, some of which include:
 
 * Fully responsive & mobile ready
 * Lightweight, weighing just 16kb minified including styling
