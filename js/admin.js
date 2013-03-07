@@ -140,7 +140,7 @@
             this.collection.on('change:url', this.render, this);
 
             /** Delete all images functionality */
-            $('.delete-images').on('click', function(event) {
+            $('.delete-images').bind('click', function(event) {
 
                 event.preventDefault();
 
@@ -151,7 +151,7 @@
             });
 
             /** Add image(s) functionality */
-            $('.add-image').on('click', function(event) {
+            $('.add-image').bind('click', function(event) {
 
                 event.preventDefault();
 
@@ -161,7 +161,7 @@
             });
 
             /** Delete image functionality */
-            $(document).on('click', '.delete-button', function(event) {
+            $(document).delegate('.delete-button', 'click', function(event) {
 
                 event.preventDefault();
 
@@ -172,7 +172,7 @@
             });
 
             /** Edit slide functionality */
-            $(document).on('click', '.thumbnails-container img', function(event) {
+            $(document).delegate('.thumbnails-container img', 'click', function(event) {
 
                 event.preventDefault();
 
@@ -477,7 +477,7 @@
     wp.media.view.Attachment.Details.prototype.template = wp.media.template('image-details');
 
     /** Show/hide settings functionality */
-    $('.sidebar-name').on('click', function() {
+    $('.sidebar-name').bind('click', function() {
 
         var $thisParent = $(this).parent(),
             $thisContent = $thisParent.find('.sidebar-content');
@@ -536,26 +536,6 @@
         }
     });
 
-    /** Delete slideshow warnings */
-    $('.trash a').on('click', function(event) {
-        if ( !confirm( easingsliderlite.delete_slideshow ) )
-            return false;
-    });
-    $('#doaction, #doaction2').on('click', function(event) {
-        var id = event.target.id.replace('do', '');
-        if ( $('#'+ id).val() == 'delete' )
-            if ( !confirm( easingsliderlite.delete_slideshows ) )
-                return false;
-    });
-
-    /** Select all slideshows (import/export page) functionality */
-    $('.multiple-checkbox .select-all').on('click', function(event) {
-        if ( $(this).hasClass('checked') )
-            $(this).removeClass('checked').parents('ul').find('input').removeAttr('checked');
-        else
-            $(this).addClass('checked').parents('ul').find('input').attr('checked', 'checked');
-    });
-
     /** Fade out messages after 5 seconds */
     setTimeout(function() {
         $('.message').not('.permanent').each(function() {
@@ -566,7 +546,7 @@
     }, 5000);
 
     /** Show warning prompts */
-    $('.warn').on('click', function() {
+    $('.warn').bind('click', function() {
         if ( !confirm('Are you sure you want to do this? This cannot be reversed.' ) )
             return false;
     });

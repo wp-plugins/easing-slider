@@ -76,7 +76,7 @@ class ESL_Upgrade {
      */
     public static final function should_do_major_upgrade() {
 
-        if ( get_option( 'easingslider_version' ) !== false || get_option( 'activation' ) !== false ) {
+        if ( get_option( 'easingslider_version' ) !== false || get_option( 'activation' ) !== false || get_option( 'sImg1' ) !== false ) {
             if ( get_option( 'easingsliderlite_major_upgrade' ) === false )
                 return true;
         }
