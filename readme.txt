@@ -34,16 +34,21 @@ Last but not least, we've left plenty of opportunity for custom plugin modificat
 To display the slideshow, you can use any of the following methods.
 
 **In a post/page:**
-
 Simply insert the shortcode below into the post/page to display the slideshow:
 
 `[easingsliderlite]`
 
 **Function in template files (via php):**
-
 To insert the slideshow into your theme, add the following code to the appropriate theme file:
 
 `<?php if ( function_exists( "easingsliderlite" ) ) { easingsliderlite(); } ?>`
+
+== Screenshots ==
+
+1. The integrated Media Uploader. Use it to add images to your slideshows one at a time, or in bulk.
+2. "Edit Slideshow" panel. Set your various slideshow settings here.
+3. "Settings" panel. Options for script & style loading, and image resizing features.
+4. The slideshow, in all its glory! Nice and clean, but easy to re-style if needed.
 
 == Changelog ==
 

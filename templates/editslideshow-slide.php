@@ -32,13 +32,13 @@
                             <label for="title" class="setting">
                                 <span><?php _e( 'Title', 'easingsliderlite' ); ?></span>
                                 <input type="text" id="title" value="<%= title %>">
-                                <p class="description"><?php _e( 'Enter a value for the image "title" attribute.'. 'easingsliderlite' ); ?></p>
+                                <p class="description"><?php _e( 'Enter a value for the image "title" attribute.', 'easingsliderlite' ); ?></p>
                             </label>
 
                             <label for="alt" class="setting">
                                 <span><?php _e( 'Alt Text', 'easingsliderlite' ); ?></span>
                                 <input type="text" id="alt" value="<%= alt %>">
-                                <p class="description"><?php _e( 'Enter a value for the image "alt" text attribute.'. 'easingsliderlite' ); ?></p>
+                                <p class="description"><?php _e( 'Enter a value for the image "alt" text attribute.', 'easingsliderlite' ); ?></p>
                             </label>
                         </div>
                     </div>
