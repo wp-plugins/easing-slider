@@ -3,7 +3,7 @@
 /*
     Plugin Name: Easing Slider "Lite"
     Plugin URI: http://easingslider.com/
-    Version: 2.0.1.2
+    Version: 2.0.1.3
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
     Description: Easing Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
@@ -60,7 +60,14 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public static $version = '2.0.1.2';
+    public static $version = '2.0.1.3';
+
+    /**
+     * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts
+     *
+     * @since 2.0.1.2
+     */
+    public $whitelist = array();
 
     /**
      * Arrays of admin messages
@@ -139,10 +146,10 @@ class EasingSliderLite {
         add_shortcode( 'easingslider', array( $this, 'do_shortcode' ) );
 
         /** Plugin actions */
-        add_action( 'init', array( $this, 'register_all_styles' ) );
-        add_action( 'init', array( $this, 'register_all_scripts' ) );
         add_action( 'admin_menu', array( $this, 'add_menus' ) );
         add_action( 'admin_menu', array( $this, 'do_actions' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
         add_action( 'media_buttons', array( $this, 'add_media_button' ), 11 );
         add_action( 'print_media_templates', array( $this, 'print_backbone_templates' ) );
         add_action( 'wp_before_admin_bar_render', array( $this, 'add_admin_bar_links' ) );
@@ -443,11 +450,10 @@ class EasingSliderLite {
     public function add_menus() {
 
         /** Hook suffixs for admin menus */
-        $suffixes = array();
         $pages = array( 'easingsliderlite_edit_slideshow', 'easingsliderlite_edit_settings' );
 
         /** Toplevel menu */
-        $hook_suffixes[] = add_menu_page(
+        $this->whitelist[] = add_menu_page(
             __( 'Slideshow', 'easingsliderlite' ),
             __( 'Slideshow', 'easingsliderlite' ),
             'easingsliderlite_edit_slideshow',
@@ -456,7 +462,7 @@ class EasingSliderLite {
         );
 
         /** Submenus */
-        $hook_suffixes[] = add_submenu_page(
+        $this->whitelist[] = add_submenu_page(
             'easingsliderlite_edit_slideshow',
             __( 'Edit Slideshow', 'easingsliderlite' ),
             __( 'Edit Slideshow', 'easingsliderlite' ),
@@ -464,7 +470,7 @@ class EasingSliderLite {
             'easingsliderlite_edit_slideshow',
             array( $this, 'edit_slideshow_view' )
         );
-        $hook_suffixes[] = add_submenu_page(
+        $this->whitelist[] = add_submenu_page(
             'easingsliderlite_edit_slideshow',
             __( 'Edit Settings', 'easingsliderlite' ),
             __( 'Settings', 'easingsliderlite' ),
@@ -476,12 +482,6 @@ class EasingSliderLite {
         /** Set flag if we are on one of our own plugin pages */
         if ( isset( $_GET['page'] ) && in_array( $_GET['page'], $pages ) )
             $this->is_easingsliderlite_page = true;
-
-        /** Load our scripts and styles for our plugin menus */
-        foreach ( $hook_suffixes as $hook_suffix ) {
-            add_action( "admin_print_styles-{$hook_suffix}", array( $this, 'enqueue_admin_styles' ) );
-            add_action( "admin_print_scripts-{$hook_suffix}", array( $this, 'enqueue_admin_scripts' ) );
-        }
 
     }
 
@@ -614,6 +614,26 @@ class EasingSliderLite {
         if ( isset( $_GET['disable_welcome_panel'] ) )
             update_option( 'easingsliderlite_disable_welcome_panel', filter_var( $_GET['disable_welcome_panel'], FILTER_VALIDATE_BOOLEAN ) );
 
+        /** Imports legacy Easing Slider setting */
+        if ( isset( $_POST['legacy-import'] ) ) {
+
+            /** Security check */
+            if ( !$this->security_check( 'legacy-import', $page ) ) {
+                wp_die( __( 'Security check has failed. Import has been prevented. Please try again.', 'easingsliderlite' ) );
+                exit();
+            }
+
+            /** Uninstall the plugin (thus removing its settings) */
+            $this->uninstall();
+
+            /** Import old settings */
+            ESL_Upgrade::do_major_upgrade();
+
+            /** Queue message */
+            return $this->queue_message( __( 'Easing Slider settings have been imported.', 'easingsliderlite' ), 'updated' );
+
+        }
+
         /** Save or update a slideshow. Whichever is appropriate. */
         if ( isset( $_POST['save'] ) ) {
 
@@ -650,12 +670,32 @@ class EasingSliderLite {
      */
     public function do_settings_actions( $page ) {
 
-        /** Removes old legacy Easing Slider settings */
-        if ( isset( $_POST['easingslider'] ) ) {
+        /** Imports legacy Easing Slider setting */
+        if ( isset( $_POST['legacy-import'] ) ) {
 
             /** Security check */
-            if ( !$this->security_check( 'easingslider', $page ) ) {
-                wp_die( __( 'Security check has failed. Action has been prevented. Please try again.', 'easingsliderlite' ) );
+            if ( !$this->security_check( 'legacy-import', $page ) ) {
+                wp_die( __( 'Security check has failed. Import has been prevented. Please try again.', 'easingsliderlite' ) );
+                exit();
+            }
+
+            /** Uninstall the plugin (thus removing its settings) */
+            $this->uninstall();
+
+            /** Import old settings */
+            ESL_Upgrade::do_major_upgrade();
+
+            /** Queue message */
+            return $this->queue_message( __( 'Easing Slider settings have been imported.', 'easingsliderlite' ), 'updated' );
+
+        }
+
+        /** Removes legacy Easing Slider settings */
+        if ( isset( $_POST['legacy-remove'] ) ) {
+
+            /** Security check */
+            if ( !$this->security_check( 'legacy-remove', $page ) ) {
+                wp_die( __( 'Security check has failed. Removal has been prevented. Please try again.', 'easingsliderlite' ) );
                 exit();
             }
 
@@ -773,46 +813,21 @@ class EasingSliderLite {
     }
     
     /**
-     * Register all admin stylesheets
-     *
-     * @since 2.0
-     */
-    public function register_all_styles() {
-
-        /** Get the extension */
-        $ext = ( apply_filters( 'easingsliderlite_style_debug', __return_false() ) === true ) ? '.css' : '.min.css';
-
-        /** Register styles */
-        wp_register_style( 'rsd-admin', plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'admin'. $ext ), false, self::$version );
-        wp_register_style( 'rsd-slideshow', plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, self::$version );
-        
-    }
-    
-    /**
-     * Register all admin scripts
-     *
-     * @since 2.0
-     */
-    public function register_all_scripts() {
-
-        /** Get the extension */
-        $ext = ( apply_filters( 'easingsliderlite_script_debug', __return_false() ) ) ? '.js' : '.min.js';
-
-        /** Register scripts */
-        wp_register_script( 'rsd-admin',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'admin'. $ext ), array( 'jquery', 'jquery-ui-sortable', 'backbone' ), self::$version, true);
-        wp_register_script( 'rsd-slideshow',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, self::$version );
-
-    }
-    
-    /**
      * Loads admin stylesheets
      *
      * @since 2.0
      */
-    public function enqueue_admin_styles() {
+    public function enqueue_admin_styles( $hook ) {
 
-        /** Load admin styling */
-        wp_enqueue_style( 'rsd-admin' );
+        /** Bail if not an Easing Slider "Lite" page */
+        if ( !in_array( $hook, $this->whitelist ) )
+            return;
+
+        /** Get the extension */
+        $ext = ( apply_filters( 'easingsliderlite_style_debug', __return_false() ) === true ) ? '.css' : '.min.css';
+
+        /** Load styles */
+        wp_enqueue_style( 'esl-admin', plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'admin'. $ext ), false, self::$version );
 
         /** Load your custom admin styles here */
         do_action( 'easingsliderlite_enqueue_admin_styles' );
@@ -824,16 +839,21 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public function enqueue_admin_scripts() {
+    public function enqueue_admin_scripts( $hook ) {
 
-        /** Load new media uploader functionality */
+        /** Bail if not an Easing Slider "Lite" page */
+        if ( !in_array( $hook, $this->whitelist ) )
+            return;
+
+        /** Get the extension */
+        $ext = ( apply_filters( 'easingsliderlite_script_debug', __return_false() ) ) ? '.js' : '.min.js';
+
+        /** Load scripts */
         wp_enqueue_media();
-
-        /** Load admin scripting and jQuery sortables plugin */
-        wp_enqueue_script( 'rsd-admin' );
+        wp_enqueue_script( 'esl-admin',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'admin'. $ext ), array( 'jquery', 'jquery-ui-sortable', 'backbone' ), self::$version, true );
 
         /** Print Localized variables */
-        wp_localize_script( 'rsd-admin', 'easingsliderlite', $this->localizations() );
+        wp_localize_script( 'esl-admin', 'easingsliderlite', $this->localizations() );
 
         /** Load your custom admin scripts here */
         do_action( 'easingsliderlite_enqueue_admin_scripts' );
@@ -848,6 +868,7 @@ class EasingSliderLite {
     public function localizations() {
         return array(
             'plugin_url' => '/wp-content/plugins/'. dirname( plugin_basename( self::get_file() ) ) .'/',
+            'warn' => __( 'Are you sure you wish to do this? This cannot be reversed.', 'easingsliderlite' ),
             'delete_image' => __( 'Are you sure you wish to delete this image? This cannot be reversed.', 'easingsliderlite' ),
             'delete_images' => __( 'Are you sure you wish to delete all of this slideshows images? This cannot be reversed.', 'easingsliderlite' ),
             'media_upload' => array(

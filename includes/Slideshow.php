@@ -35,8 +35,11 @@ class ESL_Slideshow {
      */
     public static function enqueue_styles() {
 
+        /** Get the extension */
+        $ext = ( apply_filters( 'easingsliderlite_style_debug', __return_false() ) === true ) ? '.css' : '.min.css';
+
         /** Load styling */
-        wp_enqueue_style( 'rsd-slideshow' );
+        wp_enqueue_style( 'esl-slideshow', plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, EasingSliderLite::$version  );
 
         /** Trigger actions */
         do_action( 'easingsliderlite_enqueue_styles' );
@@ -50,14 +53,15 @@ class ESL_Slideshow {
      */
     public static function enqueue_scripts() {
 
+        /** Get the extension */
+        $ext = ( apply_filters( 'easingsliderlite_script_debug', __return_false() ) === true ) ? '.js' : '.min.js';
+
         /** Get plugin settings */
         $settings = get_option( 'easingsliderlite_settings' );
 
-        /** Load jQuery */
+        /** Load scripts */
         wp_enqueue_script( 'jquery' );
-
-        /** Load slideshow script */
-        wp_enqueue_script( 'rsd-slideshow' );
+        wp_enqueue_script( 'esl-slideshow', plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, EasingSliderLite::$version  );
 
         /** Trigger actions */
         do_action( 'easingsliderlite_enqueue_scripts' );

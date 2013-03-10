@@ -1,5 +1,3 @@
-"use strict";
-
 ;(function($) {
 
     /** Backbone pre-compiled template loader */
@@ -547,7 +545,7 @@
 
     /** Show warning prompts */
     $('.warn').bind('click', function() {
-        if ( !confirm('Are you sure you want to do this? This cannot be reversed.' ) )
+        if ( !confirm( easingsliderlite.warn ) )
             return false;
     });
 

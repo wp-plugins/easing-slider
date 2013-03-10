@@ -16,7 +16,7 @@
         base.$images = base.$slides.find('.easingsliderlite-image');
 
         /** Get the plugin options */
-        base.options = o = $.extend({}, $.EasingSliderLite.defaults, JSON.parse(base.$el.attr('data-options')));
+        base.options = o = $.extend({}, $.EasingSliderLite.defaults, $.parseJSON(base.$el.attr('data-options')));
 
         /** State variables */
         base.current = 0;
@@ -258,8 +258,6 @@
                 });
  
             });
-
-            return 'test';
 
         };
 
@@ -569,7 +567,7 @@
      */
     $.EasingSliderLite.defaults = {
         general: {
-            enableCSS3: true,
+            enableCSS3: true
         },
         navigation: {
             arrows: true,
@@ -578,16 +576,16 @@
             pagination: true,
             pagination_hover: true,
             pagination_position: 'inside',
-            pagination_location: 'bottom-left',
+            pagination_location: 'bottom-left'
         },
         dimensions: {
             width: 500,
             height: 200,
-            responsive: true,
+            responsive: true
         },
         transitions: {
             effect: 'slide',
-            duration: 500,
+            duration: 500
         },
         playback: {
             enabled: false,
