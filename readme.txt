@@ -54,8 +54,9 @@ To insert the slideshow into your theme, add the following code to the appropria
 
 = 2.0.1.3 =
 * Made some alterations to give a better success rate when upgrading from v1.x.
-* Added option to manually import v1.x options if needed.
+* Added options to manually import v1.x options, instead of automatically (which often failed and caused major problems).
 * Fixed IE7 bugs
+* Reconfigured admin script & style functions to hopefully resolve some issues that were preventing them from loading for some users (inexplicably).
 
 = 2.0.1.2 =
 * Fixed backwards compatibility issues with older versions of jQuery

@@ -3,25 +3,28 @@
     /** Get the slideshow */
     $slideshow = $s = EasingSliderLite::get_instance()->validate( get_option( 'easingsliderlite_slideshow' ) );
 
-    /** Return WordPress error if slideshow doesn't exist */
-    if ( $s === false )
-        return printf( __( 'The slideshow does not appear to exist. Oh dear! Please try contacting support.', 'easingsliderlite' ), $id );
+    /** Bail if we failed to retrieve the slideshow */
+    if ( $s === false ) {
+        if ( current_user_can( 'easingsliderlite_edit_slideshow' ) )
+            _e( '<p style="background-color: #ffebe8; border: 1px solid #c00; border-radius: 4px; padding: 8px !important;">The slideshow does not appear to exist. Oh dear! Please try contacting support.</p>', 'easingsliderlite' );
+        return;
+    }
+
+    /** Bail if there are no slides to display */
+    if ( count( $slideshow->slides ) == 0 ) {
+        if ( current_user_can( 'easingsliderlite_edit_slideshow' ) )
+            _e( '<p style="background-color: #ffebe8; border: 1px solid #c00; border-radius: 4px; padding: 8px !important;">This slideshow contains no slides. Uh oh!', 'easingsliderlite' );
+        return;
+    }
 
     /** Get plugin settings */
     $settings = get_option( 'easingsliderlite_settings' );
 
     /** Load slideshow scripts and styles in foooter (if set to do so) */
     if ( isset( $settings['load_styles'] ) && $settings['load_styles'] == 'footer' )
-        add_action( 'wp_footer', array( $this, 'enqueue_styles' ) ); 
+        add_action( 'wp_footer', array( 'ESL_Slideshow', 'enqueue_styles' ) ); 
     if ( isset( $settings['load_scripts'] ) && $settings['load_scripts'] == 'footer' )
-        add_action( 'wp_footer', array( $this, 'enqueue_scripts' ) );
-
-    /** Bail if there are no slides to display */
-    if ( count( $slideshow->slides ) == 0 ) {
-        if ( current_user_can( 'easingsliderlite_edit_slideshow' ) )
-            _e( '<p>This slideshow contains no slides. Uh oh!', 'easingsliderlite' );
-        return;
-    }
+        add_action( 'wp_footer', array( 'ESL_Slideshow', 'enqueue_scripts' ) );
 
     /** Inline slideshow styles */
     if ( $s->dimensions->responsive )
