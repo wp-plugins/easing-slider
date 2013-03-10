@@ -43,6 +43,18 @@ To insert the slideshow into your theme, add the following code to the appropria
 
 `<?php if ( function_exists( "easingsliderlite" ) ) { easingsliderlite(); } ?>`
 
+= Upgrading from v1.x to v2.x =
+If you are upgrading from v1.0+ of Easing Slider to v2.0+, you'll need to import your slideshow settings manually after the upgrade process. You can do this by clicking the button titled <strong>"Import my Easing Slider v1.x settings"</strong> in the <strong>"Edit Slideshows"</strong> admin menu. Have a look at the screencast below for more information.
+
+http://cl.ly/1V0V411I1V09
+
+== Frequently Asked Questions ==
+
+= I'm having issues upgrading from v1.x to v2.x. My settings weren't imported. Please help! =
+Don't sweat! Simply navigate to the <strong>"Edit Slideshow"</strong> admin panel and click the <strong>"Import my Easing Slider v1.x settings"</strong> button. That's it! If you run into any trouble, don't hesitate to open a support topic, or have a look at the screencast below.
+
+http://cl.ly/1V0V411I1V09
+
 == Screenshots ==
 
 1. The integrated Media Uploader. Use it to add images to your slideshows one at a time, or in bulk.
