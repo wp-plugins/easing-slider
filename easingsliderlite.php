@@ -1,9 +1,12 @@
 <?php
 
+add_filter( 'easingsliderlite_debug_scripts', '__return_true' );
+add_filter( 'easingsliderlite_debug_styles', '__return_true' );
+
 /*
     Plugin Name: Easing Slider "Lite"
     Plugin URI: http://easingslider.com/
-    Version: 2.0.1.2
+    Version: 2.0.2-rc2
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
     Description: Easing Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
@@ -60,7 +63,7 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public static $version = '2.0.1.2';
+    public static $version = '2.0.2';
 
     /**
      * Arrays of admin messages
@@ -155,16 +158,19 @@ class EasingSliderLite {
 
         /** Some hooks for our own custom actions */
         add_action( 'easingsliderlite_edit_slideshow_actions', array( $this, 'do_slideshow_actions' ) );
+        add_action( 'easingsliderlite_customizer_actions', array( $this, 'do_customizer_actions' ) );
         add_action( 'easingsliderlite_edit_settings_actions', array( $this, 'do_settings_actions' ) );
 
         /** Get plugin settings */
         $settings = get_option( 'easingsliderlite_settings' );
 
         /** Load slideshow scripts & styles in the header if set to do so */
-        if ( isset( $settings['load_styles'] ) && $settings['load_styles'] == 'header' )
-            add_action( 'wp_enqueue_scripts', array( 'ESL_Slideshow', 'enqueue_styles' ) );
         if ( isset( $settings['load_scripts'] ) && $settings['load_scripts'] == 'header' )
             add_action( 'wp_enqueue_scripts', array( 'ESL_Slideshow', 'enqueue_scripts' ) );
+        if ( isset( $settings['load_styles'] ) && $settings['load_styles'] == 'header' ) {
+            add_action( 'wp_enqueue_scripts', array( 'ESL_Slideshow', 'enqueue_styles' ) );
+            add_action( 'wp_head', array( 'ESL_Slideshow', 'print_custom_styles') );
+        }
 
         /** Initialization hook for adding external functionality */
         do_action_ref_array( 'easingsliderlite', array( $this ) );
@@ -268,7 +274,8 @@ class EasingSliderLite {
 
         /** Add "wp_options" table options */
         add_option( 'easingsliderlite_version', self::$version );
-        add_option( 'easingsliderlite_slideshow', $this->defaults() );
+        add_option( 'easingsliderlite_slideshow', $this->slideshow_defaults() );
+        add_option( 'easingsliderlite_customizations', json_encode( $this->customization_defaults() ) );
         add_option( 'easingsliderlite_settings',
             array(
                 'resizing' => true,
@@ -297,6 +304,7 @@ class EasingSliderLite {
         /** Delete "wp_options" table options */
         delete_option( 'easingsliderlite_version' );
         delete_option( 'easingsliderlite_slideshow' );
+        delete_option( 'easingsliderlite_customizations' );
         delete_option( 'easingsliderlite_settings' );
         delete_option( 'easingsliderlite_major_upgrade' );
         delete_option( 'easingsliderlite_disable_welcome_panel' );
@@ -357,7 +365,7 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public function defaults() {
+    public function slideshow_defaults() {
 
         /** Get the current user to be assigned as the slideshow author */
         $author = __( 'Unknown', 'easingsliderlite' );
@@ -368,11 +376,45 @@ class EasingSliderLite {
         $object->author = $author;
         $object->slides = array();
         $object->general = (object) array( 'randomize' => '' );
-        $object->dimensions = (object) array( 'width' => 640, 'height' => 240, 'responsive' => true );
+        $object->dimensions = (object) array( 'width' => 640, 'height' => 240, 'responsive' => false );
         $object->transitions = (object) array( 'effect' => 'slide', 'duration' => 500 );
         $object->navigation = (object) array( 'arrows' => true, 'arrows_hover' => false, 'arrows_position' => 'inside', 'pagination' => true, 'pagination_hover' => false, 'pagination_position' => 'inside', 'pagination_location' => 'bottom-center' );
         $object->playback = (object) array( 'enabled' => true, 'pause' => 4000 );
         return apply_filters( 'easingsliderlite_slideshow_defaults', $object );
+
+    }
+
+    /**
+     * Get custom styling default options
+     *
+     * @since 2.0.2
+     */
+    public function customization_defaults() {
+
+        $object = (object) array(
+            'arrows' => (object) array(
+                'next' => stripslashes_deep( plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'slideshow_arrow_next.png' ) ),
+                'prev' => stripslashes_deep( plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'slideshow_arrow_prev.png' ) ),
+                'width' => 30,
+                'height' => 30
+            ),
+            'pagination' => (object) array(
+                'inactive' => stripslashes_deep( plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'slideshow_icon_inactive.png' ) ),
+                'active' => stripslashes_deep( plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'slideshow_icon_active.png' ) ),
+                'width' => 15,
+                'height' => 15
+            ),
+            'border' => (object) array(
+                'color' => '#000',
+                'width' => 0,
+                'radius' => 0
+            ),
+            'shadow' => (object) array(
+                'enable' => true,
+                'image' => stripslashes_deep( plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'slideshow_shadow.png' ) )
+            )
+        );
+        return apply_filters( 'easingsliderlite_customizer_defaults', $object );
 
     }
 
@@ -384,6 +426,7 @@ class EasingSliderLite {
     public function capabilities() {
         $capabilities = array(
             'easingsliderlite_edit_slideshow',
+            'easingsliderlite_can_customize',
             'easingsliderlite_edit_settings'
         );
         $capabilities = apply_filters( 'easingsliderlite_capabilities', $capabilities );
@@ -444,7 +487,7 @@ class EasingSliderLite {
 
         /** Hook suffixs for admin menus */
         $suffixes = array();
-        $pages = array( 'easingsliderlite_edit_slideshow', 'easingsliderlite_edit_settings' );
+        $pages = array( 'easingsliderlite_edit_slideshow', 'easingsliderlite_customizer', 'easingsliderlite_edit_settings' );
 
         /** Toplevel menu */
         $hook_suffixes[] = add_menu_page(
@@ -463,6 +506,14 @@ class EasingSliderLite {
             'easingsliderlite_edit_slideshow',
             'easingsliderlite_edit_slideshow',
             array( $this, 'edit_slideshow_view' )
+        );
+        $hook_suffixes[] = add_submenu_page(
+            'easingsliderlite_edit_slideshow',
+            __( 'Customize', 'easingsliderlite' ),
+            __( 'Customize', 'easingsliderlite' ),
+            'easingsliderlite_can_customize',
+            'easingsliderlite_customizer',
+            array( $this, 'customizer_view' )
         );
         $hook_suffixes[] = add_submenu_page(
             'easingsliderlite_edit_slideshow',
@@ -511,6 +562,14 @@ class EasingSliderLite {
                 'id' => 'edit-slideshow-sub_menu',
                 'title' => __( 'Edit Slideshow', 'easingsliderlite' ),
                 'href' => admin_url( "admin.php?page=easingsliderlite_edit_slideshow" )
+            )
+        );
+        $wp_admin_bar->add_menu(
+            array(
+                'parent' => 'slideshows-top_menu',
+                'id' => 'customizer-sub_menu',
+                'title' => __( 'Customize', 'easingsliderlite' ),
+                'href' => admin_url( "admin.php?page=easingsliderlite_customizer" )
             )
         );
         $wp_admin_bar->add_menu(
@@ -624,7 +683,7 @@ class EasingSliderLite {
             }
 
             /** Updates the slideshow */
-            $slideshow = update_option( 'easingsliderlite_slideshow', 
+            update_option( 'easingsliderlite_slideshow', 
                 (object) array(
                     'author' => stripslashes_deep( $_POST['author'] ),
                     'slides' => json_decode( stripslashes_deep( $_POST['slides'] ) ), /** Slides are stored as JSON string and need to be decoded before being saved. */
@@ -638,6 +697,36 @@ class EasingSliderLite {
 
             /** Return success message */
             return $this->queue_message( __( 'Slideshow has been <strong>saved</strong> successfully.', 'easingsliderlite' ), 'updated' );
+
+        }
+
+    }
+    
+    /**
+     * Customization page actions
+     *
+     * @since 2.0.2
+     */
+    public function do_customizer_actions( $page ) {
+
+        /** Save customizations */
+        if ( isset( $_POST['save'] ) ) {
+
+            /** Security check */
+            if ( !$this->security_check( 'save', $page ) ) {
+                wp_die( __( 'Security check has failed. Save has been prevented. Please try again.', 'easingsliderlite' ) );
+                exit();
+            }
+
+            /** Save the customizations */
+            update_option( 'easingsliderlite_customizations',
+                json_encode( EasingSliderLite::get_instance()->validate( (object) array(
+                    'arrows' => (object) $_POST['arrows'],
+                    'pagination' => (object) $_POST['pagination'],
+                    'border' => (object) $_POST['border'],
+                    'shadow' => (object) $_POST['shadow']
+                ) ) )
+            );
 
         }
 
@@ -708,7 +797,7 @@ class EasingSliderLite {
             $settings = $this->validate( $_POST['settings'] );
 
             /** Update database option and get response */
-            $response = update_option( 'easingsliderlite_settings', stripslashes_deep( $settings ) );
+            update_option( 'easingsliderlite_settings', stripslashes_deep( $settings ) );
 
             /** Show update message */
             return $this->queue_message( __( 'Settings have been <strong>saved</strong> successfully.', 'easingsliderlite' ), 'updated' );
@@ -780,11 +869,11 @@ class EasingSliderLite {
     public function register_all_styles() {
 
         /** Get the extension */
-        $ext = ( apply_filters( 'easingsliderlite_style_debug', __return_false() ) === true ) ? '.css' : '.min.css';
+        $ext = ( apply_filters( 'easingsliderlite_debug_styles', __return_false() ) === true ) ? '.css' : '.min.css';
 
         /** Register styles */
-        wp_register_style( 'rsd-admin', plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'admin'. $ext ), false, self::$version );
-        wp_register_style( 'rsd-slideshow', plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, self::$version );
+        wp_register_style( 'esl-admin', plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'admin'. $ext ), false, self::$version );
+        wp_register_style( 'esl-slideshow', plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'css'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, self::$version );
         
     }
     
@@ -796,11 +885,12 @@ class EasingSliderLite {
     public function register_all_scripts() {
 
         /** Get the extension */
-        $ext = ( apply_filters( 'easingsliderlite_script_debug', __return_false() ) ) ? '.js' : '.min.js';
+        $ext = ( apply_filters( 'easingsliderlite_debug_scripts', __return_false() ) ) ? '.js' : '.min.js';
 
         /** Register scripts */
-        wp_register_script( 'rsd-admin',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'admin'. $ext ), array( 'jquery', 'jquery-ui-sortable', 'backbone' ), self::$version, true);
-        wp_register_script( 'rsd-slideshow',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, self::$version );
+        wp_register_script( 'esl-admin',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'admin'. $ext ), array( 'jquery', 'jquery-ui-sortable', 'backbone' ), self::$version, true);
+        wp_register_script( 'esl-customizer',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'customizer'. $ext ), array( 'jquery', 'backbone' ), self::$version );        
+        wp_register_script( 'esl-slideshow',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, self::$version );
 
     }
     
@@ -812,7 +902,7 @@ class EasingSliderLite {
     public function enqueue_admin_styles() {
 
         /** Load admin styling */
-        wp_enqueue_style( 'rsd-admin' );
+        wp_enqueue_style( 'esl-admin' );
 
         /** Load your custom admin styles here */
         do_action( 'easingsliderlite_enqueue_admin_styles' );
@@ -830,10 +920,10 @@ class EasingSliderLite {
         wp_enqueue_media();
 
         /** Load admin scripting and jQuery sortables plugin */
-        wp_enqueue_script( 'rsd-admin' );
+        wp_enqueue_script( 'esl-admin' );
 
         /** Print Localized variables */
-        wp_localize_script( 'rsd-admin', 'easingsliderlite', $this->localizations() );
+        wp_localize_script( 'esl-admin', 'easingsliderlite', $this->localizations() );
 
         /** Load your custom admin scripts here */
         do_action( 'easingsliderlite_enqueue_admin_scripts' );
@@ -894,6 +984,18 @@ class EasingSliderLite {
 
         /** Load the edit view template */
         require dirname( self::get_file() ) . DIRECTORY_SEPARATOR .'templates'. DIRECTORY_SEPARATOR .'editslideshow.php';
+
+    }
+
+    /**
+     * Customizer view
+     *
+     * @since 2.0.2
+     */
+    public function customizer_view() {
+
+        /** Load the customizer view template */
+        require dirname( self::get_file() ) . DIRECTORY_SEPARATOR .'templates'. DIRECTORY_SEPARATOR .'customizer.php';
 
     }
     

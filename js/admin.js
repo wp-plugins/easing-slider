@@ -1,5 +1,3 @@
-"use strict";
-
 ;(function($) {
 
     /** Backbone pre-compiled template loader */

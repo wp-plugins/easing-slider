@@ -16,7 +16,7 @@
         base.$images = base.$slides.find('.easingsliderlite-image');
 
         /** Get the plugin options */
-        base.options = o = $.extend({}, $.EasingSliderLite.defaults, JSON.parse(base.$el.attr('data-options')));
+        base.options = o = $.extend({}, $.EasingSliderLite.defaults, $.parseJSON(base.$el.attr('data-options')));
 
         /** State variables */
         base.current = 0;
@@ -212,9 +212,9 @@
             });
 
             /** Set current icon now & on slide change */
-            $icons.eq(base.current).addClass('active');
+            $icons.eq(base.current).addClass('active').removeClass('inactive');
             base.$el.bind('beforetransition', function() {
-                $icons.removeClass('active').eq(base.current).addClass('active');
+                $icons.removeClass('active').addClass('inactive').eq(base.current).addClass('active').removeClass('inactive');
             });
 
             /** Visibility & hover styling */
@@ -258,8 +258,6 @@
                 });
  
             });
-
-            return 'test';
 
         };
 
@@ -317,7 +315,7 @@
                 base.order = ( base.order ) ? base.order+1 : 1;
 
                 /** Do some CSS resetting after all fade transitions have occurred */
-                base.$el.off('aftertransition._transition').one('aftertransition._transition', function() {
+                base.$el.unbind('aftertransition._transition').one('aftertransition._transition', function() {
 
                     /** Resets CSS for each slide after fade transition has ended */
                     base.$slides.each(function(index) {
@@ -569,7 +567,7 @@
      */
     $.EasingSliderLite.defaults = {
         general: {
-            enableCSS3: true,
+            enableCSS3: true
         },
         navigation: {
             arrows: true,
@@ -578,16 +576,16 @@
             pagination: true,
             pagination_hover: true,
             pagination_position: 'inside',
-            pagination_location: 'bottom-left',
+            pagination_location: 'bottom-left'
         },
         dimensions: {
             width: 500,
             height: 200,
-            responsive: true,
+            responsive: true
         },
         transitions: {
             effect: 'slide',
-            duration: 500,
+            duration: 500
         },
         playback: {
             enabled: false,

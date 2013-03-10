@@ -95,7 +95,7 @@ class ESL_Upgrade {
         EasingSliderLite::get_instance()->activate();
 
         /** Get current slideshow settings */
-        $slideshow = EasingSliderLite::get_instance()->defaults();
+        $slideshow = EasingSliderLite::get_instance()->slideshow_defaults();
 
         /** Transfer the settings */
         $slideshow->dimensions->width = get_option( 'width' );

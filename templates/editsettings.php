@@ -67,7 +67,7 @@
                 </tbody>
             </table>
 
-            <?php if ( get_option( 'easingslider_version' ) ) : ?>
+            <?php if ( get_option( 'easingslider_version' ) || get_option( 'activation' ) || get_option( 'sImg1' ) ) : ?>
             <div class="divider"></div>
 
             <h3><?php _e( 'Legacy Settings', 'easingsliderlite' ); ?></h3>
