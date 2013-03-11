@@ -315,7 +315,7 @@
                 base.order = ( base.order ) ? base.order+1 : 1;
 
                 /** Do some CSS resetting after all fade transitions have occurred */
-                base.$el.off('aftertransition._transition').one('aftertransition._transition', function() {
+                base.$el.unbind('aftertransition._transition').one('aftertransition._transition', function() {
 
                     /** Resets CSS for each slide after fade transition has ended */
                     base.$slides.each(function(index) {
