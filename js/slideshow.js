@@ -241,22 +241,22 @@
             
             /** Loop through and preload each slide image */
             var index = 0;
-            base.$images.each(function() {
+            base.$images.one('load', function() {
 
-                var $self = $(this),
-                    src = $self.attr('src');
+                /** Increment load count */
+                index++;
 
-                /** Preload this image and trigger action on last image */
-                $('<img />').attr('src', src).load(function() {
-                    index++;
-                    if ( base.count == index ) {
-                        base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
-                            $(this).remove();
-                            base.$el.trigger('load');
-                        }});
-                    }
-                });
- 
+                /** Fade out the preloader if we've loaded the last image */
+                if ( base.count == index ) {
+                    base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
+                        $(this).remove();
+                        base.$el.trigger('load');
+                    }});
+                }
+
+            }).each(function() {
+                if ( this.complete )
+                    $(this).trigger('load');
             });
 
         };
