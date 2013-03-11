@@ -98,11 +98,6 @@ class ESL_Upgrade {
         /** Update the slideshow settings */
         update_option( 'easingsliderlite_slideshow', $slideshow );
 
-        /** Make some settings changes */
-        $settings = get_option( 'easingsliderlite_settings' );
-        $settings['resizing'] = false;
-        update_option( 'easingsliderlite_settings', $settings );
-
         /** Flag upgrade */
         update_option( 'easingsliderlite_major_upgrade', 1 );
 

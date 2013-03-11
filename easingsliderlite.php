@@ -278,7 +278,7 @@ class EasingSliderLite {
         add_option( 'easingsliderlite_slideshow', $this->defaults() );
         add_option( 'easingsliderlite_settings',
             array(
-                'resizing' => true,
+                'resizing' => false,
                 'load_styles' => 'header',
                 'load_scripts' => 'header'
             )
