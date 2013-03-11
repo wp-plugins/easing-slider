@@ -892,7 +892,7 @@ class EasingSliderLite {
             return;
 
         /** Slide template */
-        echo '<script type="text/html" id="tmpl-slide"><div class="thumbnail" data-id="<%= id %>"><a href="#" class="delete-button"></a><img src="<%= sizes.thumbnail.url %>" alt="<%= alt %>" /></div></script>';
+        echo '<script type="text/html" id="tmpl-slide"><div class="thumbnail" data-id="{{ data.id }}"><a href="#" class="delete-button"></a><img src="{{ data.sizes.thumbnail.url }}" alt="{{ data.alt }}" /></div></script>';
         
         /** Slide editor template */
         echo '<script type="text/html" id="tmpl-edit-slide">';

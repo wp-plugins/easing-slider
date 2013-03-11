@@ -273,11 +273,11 @@ textarea.success {
 }
 
 /** ===== Settings page ===== */
-.settings label > input {
+.main-settings label > input {
     margin-top: 0;
     margin-right: 4px;
 }
-.settings label > span {
+.main-settings label > span {
     margin-right: 20px;
 }
 

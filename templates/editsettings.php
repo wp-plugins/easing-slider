@@ -19,7 +19,7 @@
             </div>
 
             <h3><?php _e( 'General Settings', 'easingsliderlite' ); ?></h3>
-            <table class="form-table settings">
+            <table class="form-table main-settings">
                 <tbody>
                     <tr valign="top">
                         <th scope="row"><label for="resizing"><?php _e( 'Image Resizing', 'easingsliderlite' ); ?></label></th>
@@ -72,7 +72,7 @@
             <div class="divider"></div>
 
             <h3><?php _e( 'Legacy Settings', 'easingsliderlite' ); ?></h3>
-            <table class="form-table settings">
+            <table class="form-table main-settings">
                 <tbody>
                     <tr valign="top">
                         <th scope="row"><label for="load_scripts"><?php _e( 'Legacy Settings', 'easingsliderlite' ); ?></label></th>
@@ -89,7 +89,7 @@
             <div class="divider"></div>
 
             <h3><?php _e( 'Reset Plugin', 'easingsliderlite' ); ?></h3>
-            <table class="form-table settings">
+            <table class="form-table main-settings">
                 <tbody>
                     <tr valign="top">
                         <th scope="row"><label for="reset"><?php _e( 'Plugin Settings', 'easingsliderlite' ); ?></label></th>
@@ -104,7 +104,7 @@
             <div class="divider"></div>
 
             <h3><?php _e( 'Installation Settings', 'easingsliderlite' ); ?></h3>
-            <table class="form-table">
+            <table class="form-table main-settings">
                 <tbody>
                     <tr valign="top">
                         <th scope="row"><?php _e( 'PHP Version', 'easingsliderlite' ); ?></th>
