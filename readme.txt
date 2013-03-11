@@ -69,6 +69,7 @@ http://cl.ly/1V0V411I1V09
 * Added options to manually import v1.x options, instead of automatically (which often failed and caused major problems).
 * Fixed IE7 bugs
 * Reconfigured admin script & style functions to hopefully resolve some issues that were preventing them from loading for some users (inexplicably).
+* Disable image resizing functionality on activation due to some rare unknown issues. Feel free to use it if you like!
 
 = 2.0.1.2 =
 * Fixed backwards compatibility issues with older versions of jQuery
