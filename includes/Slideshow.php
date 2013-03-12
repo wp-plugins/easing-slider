@@ -58,7 +58,7 @@ class ESL_Slideshow {
     /**
      * Prints the slideshow custom styling
      *
-     * @since 2.0.2
+     * @since 2.1
      */
     public static function print_custom_styles() {
 
@@ -109,7 +109,7 @@ class ESL_Slideshow {
     /**
      * Returns the users current browser
      *
-     * @since 2.0.2
+     * @since 2.1
      */
     public function detect_browser() {
         $browser = esc_attr( $_SERVER[ 'HTTP_USER_AGENT' ] );

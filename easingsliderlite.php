@@ -3,7 +3,7 @@
 /*
     Plugin Name: Easing Slider "Lite"
     Plugin URI: http://easingslider.com/
-    Version: 2.0.2
+    Version: 2.1
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
     Description: Easing Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
@@ -60,7 +60,7 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public static $version = '2.0.2';
+    public static $version = '2.1';
 
     /**
      * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts
@@ -393,7 +393,7 @@ class EasingSliderLite {
     /**
      * Get custom styling default options
      *
-     * @since 2.0.2
+     * @since 2.1
      */
     public function customization_defaults() {
 
@@ -724,7 +724,7 @@ class EasingSliderLite {
     /**
      * Customization page actions
      *
-     * @since 2.0.2
+     * @since 2.1
      */
     public function do_customizer_actions( $page ) {
 
@@ -903,7 +903,7 @@ class EasingSliderLite {
     /**
      * Register all admin stylesheets
      *
-     * @since 2.0.2
+     * @since 2.1
      */
     public function register_all_styles() {
 
@@ -919,7 +919,7 @@ class EasingSliderLite {
     /**
      * Register all admin scripts
      *
-     * @since 2.0.2
+     * @since 2.1
      */
     public function register_all_scripts() {
 
@@ -1032,7 +1032,7 @@ class EasingSliderLite {
     /**
      * Customizer view
      *
-     * @since 2.0.2
+     * @since 2.1
      */
     public function customizer_view() {
 

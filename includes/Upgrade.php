@@ -32,9 +32,9 @@ class ESL_Upgrade {
         if ( get_option( 'rivasliderlite_version' ) && ( version_compare( $version, '2.0.1', '=' ) ) )
             self::do_201_cleanup();
 
-        /** Upgrade to v2.0.2 */
-        if ( version_compare( $version, '2.0.2', '<' ) )
-            self::do_202_upgrade();
+        /** Upgrade to v2.1 */
+        if ( version_compare( $version, '2.1', '<' ) )
+            self::do_210_upgrade();
 
         /** Custom hooks */
         do_action( 'easingsliderlite_upgrades', EasingSliderLite::$version, $version );
@@ -154,11 +154,11 @@ class ESL_Upgrade {
     }
 
     /**
-     * Does 2.0.2 plugin upgrade
+     * Does 2.1 plugin upgrade
      *
-     * @since 2.0.2
+     * @since 2.1
      */
-    public static final function do_202_upgrade() {
+    public static final function do_210_upgrade() {
 
         global $wp_roles;
 

@@ -4,7 +4,7 @@ Contributors: MatthewRuddy
 Tags: slideshow, slider, slides, slide, gallery, images, image, responsive, mobile, jquery, javascript, featured, content
 Requires at least: 3.5
 Tested up to: 3.5.1
-Stable tag: 2.0.2
+Stable tag: 2.1
 
 Easing Slider "Lite" is an easy to use slideshow plugin. Simple and lightweight, built with native WordPress functionality.
 
@@ -76,7 +76,7 @@ This is easy. When viewing the <strong>"Edit Slideshow"</strong> Easing Slider "
 
 == Changelog ==
 
-= 2.0.2 =
+= 2.1 =
 * Added "Customize" panel which allows you to make basic slideshow styling alterations using a new visual editor.
 * Reconfigured preloading functionality to fix a bug.
 * Added title attribute functionality to images.
