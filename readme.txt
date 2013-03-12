@@ -46,11 +46,11 @@ To insert the slideshow into your theme, add the following code to the appropria
 
 == Frequently Asked Questions ==
 
-= I'm having issues upgrading from v1.x to v2.x. My settings has disappeared. =
+= I've upgraded from v1.x and my slides have disappeared. =
 
 Don't sweat! Simply navigate to the <strong>"Edit Slideshow"</strong> admin panel and click the <strong>"Import my Easing Slider v1.x settings"</strong> button. That's it! If you run into any trouble, don't hesitate to open a support topic, or have a look at the screencast below.
 
-<a href="http://cl.ly/1V0V411I1V09">Upgrading from v1.x to v2.x</a>
+<a href="http://cl.ly/1V0V411I1V09">Upgrading from v1.x</a>
 
 = My slideshow continually loads. What's wrong? =
 
