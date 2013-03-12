@@ -1,5 +1,5 @@
 === Easing Slider "Lite"  ===
-Homepage: http://rivaslider.com
+Homepage: http://easingslider.com
 Contributors: MatthewRuddy
 Tags: slideshow, slider, slides, slide, gallery, images, image, responsive, mobile, jquery, javascript, featured, content
 Requires at least: 3.5
@@ -43,17 +43,27 @@ To insert the slideshow into your theme, add the following code to the appropria
 
 `<?php if ( function_exists( "easingsliderlite" ) ) { easingsliderlite(); } ?>`
 
-= Upgrading from v1.x to v2.x =
-If you are upgrading from v1.0+ of Easing Slider to v2.0+, you'll need to import your slideshow settings manually after the upgrade process. You can do this by clicking the button titled <strong>"Import my Easing Slider v1.x settings"</strong> in the <strong>"Edit Slideshows"</strong> admin menu. Have a look at the screencast below for more information.
-
-http://cl.ly/1V0V411I1V09
-
 == Frequently Asked Questions ==
 
-= I'm having issues upgrading from v1.x to v2.x. My settings weren't imported. Please help! =
+= I'm having issues upgrading from v1.x to v2.x. My settings has disappeared. =
+
 Don't sweat! Simply navigate to the <strong>"Edit Slideshow"</strong> admin panel and click the <strong>"Import my Easing Slider v1.x settings"</strong> button. That's it! If you run into any trouble, don't hesitate to open a support topic, or have a look at the screencast below.
 
-http://cl.ly/1V0V411I1V09
+<a href="http://cl.ly/1V0V411I1V09">Upgrading from v1.x to v2.x</a>
+
+= My slideshow continually loads. What's wrong? =
+
+This can often be caused by a jQuery conflict. Many plugins don't load jQuery correctly and as a result break the plugins that do.
+
+Firstly, disable all of the other plugins you have activated (or as many as you can). If the issue persists, with just Easing Slider "Lite" active, it is more than likely a conflict with the theme.
+
+If the slideshow works when it is the only plugin active, you're experiencing a plugin conflict. Carefully enable each plugin, one-by-one, checking the slideshow each time. Keep doing this until you activate the plugin that breaks the slideshow.
+
+After you've taken these two steps, make a support topic and we will get back to you as soon as you can. Otherwise, feel free to contact the developer(s) of the conflict plugin/theme also. They should also be able to provide you with assistance.
+
+= How do I edit a slide's settings? =
+
+This is easy. When viewing the <strong>"Edit Slideshow"</strong> Easing Slider "Lite" admin panel, you should be able to see your slideshow images. To edit the settings of an individual slide, simply click it and its settings will appear in a modal window. Simple!
 
 == Screenshots ==
 
@@ -61,12 +71,15 @@ http://cl.ly/1V0V411I1V09
 2. "Edit Slideshow" panel. Set your various slideshow settings here.
 3. "Settings" panel. Options for script & style loading, and image resizing features.
 4. The slideshow, in all its glory! Nice and clean, but easy to re-style if needed.
+5. Simply click a slide to edit its individual settings. This is the panel you will see.
 
 == Changelog ==
 
-= 2.0.1.4 =
+= 2.0.2 =
+* Added "Customize" panel which allows you to make basic slideshow styling alterations using a new visual editor.
 * Reconfigured preloading functionality to fix a bug.
 * Added title attribute functionality to images.
+* Re-added functionality for script and style registration, making them easier enqueue.
 * Fixed backbone templating issues that would render admin area unusable for some users.
 
 = 2.0.1.3 =
