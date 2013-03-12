@@ -32,6 +32,10 @@ class ESL_Upgrade {
         if ( get_option( 'rivasliderlite_version' ) && ( version_compare( $version, '2.0.1', '=' ) ) )
             self::do_201_cleanup();
 
+        /** Upgrade to v2.0.2 */
+        if ( version_compare( $version, '2.0.2', '<' ) )
+            self::do_202_upgrade();
+
         /** Custom hooks */
         do_action( 'easingsliderlite_upgrades', EasingSliderLite::$version, $version );
 
@@ -147,6 +151,24 @@ class ESL_Upgrade {
         delete_option( 'rivasliderlite_settings' );
         delete_option( 'rivasliderlite_easingslider_upgrade' );
         delete_option( 'rivasliderlite_disable_welcome_panel' );
+    }
+
+    /**
+     * Does 2.0.2 plugin upgrade
+     *
+     * @since 2.0.2
+     */
+    public static final function do_202_upgrade() {
+
+        global $wp_roles;
+
+        /** Add the customizations database option */
+        add_option( 'easingsliderlite_customizations', json_encode( EasingSliderLite::get_instance()->customization_defaults() ) );
+        
+        /** Add the customization panel capability */
+        foreach ( $wp_roles->roles as $role => $info )
+            EasingSliderLite::get_instance()->add_capability( 'easingsliderlite_can_customize', get_role( $role ) );
+
     }
 
 }
