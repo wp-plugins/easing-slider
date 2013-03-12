@@ -241,22 +241,22 @@
             
             /** Loop through and preload each slide image */
             var index = 0;
-            base.$images.each(function() {
+            base.$images.one('load', function() {
 
-                var $self = $(this),
-                    src = $self.attr('src');
+                /** Increment load count */
+                index++;
 
-                /** Preload this image and trigger action on last image */
-                $('<img />').attr('src', src).load(function() {
-                    index++;
-                    if ( base.count == index ) {
-                        base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
-                            $(this).remove();
-                            base.$el.trigger('load');
-                        }});
-                    }
-                });
- 
+                /** Fade out the preloader if we've loaded the last image */
+                if ( base.count == index ) {
+                    base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
+                        $(this).remove();
+                        base.$el.trigger('load');
+                    }});
+                }
+
+            }).each(function() {
+                if ( this.complete )
+                    $(this).trigger('load');
             });
 
         };
@@ -315,7 +315,7 @@
                 base.order = ( base.order ) ? base.order+1 : 1;
 
                 /** Do some CSS resetting after all fade transitions have occurred */
-                base.$el.off('aftertransition._transition').one('aftertransition._transition', function() {
+                base.$el.unbind('aftertransition._transition').one('aftertransition._transition', function() {
 
                     /** Resets CSS for each slide after fade transition has ended */
                     base.$slides.each(function(index) {

@@ -3,7 +3,7 @@
 /*
     Plugin Name: Easing Slider "Lite"
     Plugin URI: http://easingslider.com/
-    Version: 2.0.1.3
+    Version: 2.0.2-rc2
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
     Description: Easing Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
@@ -60,7 +60,7 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public static $version = '2.0.1.3';
+    public static $version = '2.0.2-rc2';
 
     /**
      * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts
@@ -892,7 +892,7 @@ class EasingSliderLite {
             return;
 
         /** Slide template */
-        echo '<script type="text/html" id="tmpl-slide"><div class="thumbnail" data-id="<%= id %>"><a href="#" class="delete-button"></a><img src="<%= sizes.thumbnail.url %>" alt="<%= alt %>" /></div></script>';
+        echo '<script type="text/html" id="tmpl-slide"><div class="thumbnail" data-id="{{ data.id }}"><a href="#" class="delete-button"></a><img src="{{ data.sizes.thumbnail.url }}" alt="{{ data.alt }}" /></div></script>';
         
         /** Slide editor template */
         echo '<script type="text/html" id="tmpl-edit-slide">';

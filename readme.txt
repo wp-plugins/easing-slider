@@ -64,6 +64,11 @@ http://cl.ly/1V0V411I1V09
 
 == Changelog ==
 
+= 2.0.1.4 =
+* Reconfigured preloading functionality to fix a bug.
+* Added title attribute functionality to images.
+* Fixed backbone templating issues that would render admin area unusable for some users.
+
 = 2.0.1.3 =
 * Made some alterations to give a better success rate when upgrading from v1.x.
 * Added options to manually import v1.x options, instead of automatically (which often failed and caused major problems).

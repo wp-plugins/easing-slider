@@ -84,7 +84,7 @@
             ?>
                 <div class="easingsliderlite-slide" style="<?php echo $slide_styles; ?>">
                     <?php if ( !empty( $slide->link ) ) { ?><a href="<?php echo esc_attr( $slide->link ); ?>" target="<?php echo esc_attr( $slide->linkTarget ); ?>"><?php } ?>
-                        <img src="<?php echo esc_attr( $image['url'] ); ?>" class="easingsliderlite-image" alt="<?php echo esc_attr( $slide->alt ); ?>" />
+                        <img src="<?php echo esc_attr( $image['url'] ); ?>" class="easingsliderlite-image" alt="<?php echo esc_attr( $slide->alt ); ?>" title="<?php echo esc_attr( $slide->title ); ?>" />
                     <?php if ( !empty( $slide->link ) ) { ?></a><?php } ?>
                     <?php if ( !empty( $slide->content ) ) { ?>
                         <div class="easingsliderlite-slide-content">

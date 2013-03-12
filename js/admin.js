@@ -1,27 +1,5 @@
 ;(function($) {
 
-    /** Backbone pre-compiled template loader */
-    window.TemplateLoader = {
-
-        get: function(selector) {
-
-            if ( !this.templates )
-                this.templates = {};
-
-            /** Load and cache the template */
-            var template = this.templates[selector];
-            if ( !template ) {
-                template = $(selector).html();
-                template = _.template(template);
-                this.templates[selector] = template;
-            }
-
-            return template;
-
-        }
-
-    }
-
     /** Our slide model */
     window.Slide = Backbone.Model.extend({
 
@@ -120,16 +98,15 @@
     });
 
     /** Our slides view */
-    window.SlideView = Backbone.View.extend({
+    window.SlideView = wp.media.View.extend({
 
         $container: $('.thumbnails-container .inner'),
+
+        template: wp.media.template('slide'),
 
         initialize: function() {
 
             var self = this;
-
-            /** Get our slide template */
-            this.template = TemplateLoader.get('#tmpl-slide');
 
             /** Bind events */
             this.collection.on('add', this.addThumb, this);
@@ -228,13 +205,15 @@
     });
 
     /** Edit slide view */
-    window.EditSlideView = Backbone.View.extend({
+    window.EditSlideView = wp.media.View.extend({
 
         attributes: {
             'tabindex': 0
         },
 
         changeImageView: null,
+
+        template: wp.media.template('edit-slide'),
 
         events: {
             'change': 'change',
@@ -250,9 +229,6 @@
 
             /** Clone original attributes as a window is opened (for restoration if changes are discarded) */
             this.origAttributes = _.clone(this.model.attributes);
-
-            /** Set the slide editor template */
-            this.template = TemplateLoader.get('#tmpl-edit-slide');
 
             /** Reset thumbnail on image URL change */
             this.model.on('change:url', this.resetThumbnail, this);
