@@ -212,9 +212,9 @@
             });
 
             /** Set current icon now & on slide change */
-            $icons.eq(base.current).addClass('active');
+            $icons.eq(base.current).addClass('active').removeClass('inactive');
             base.$el.bind('beforetransition', function() {
-                $icons.removeClass('active').eq(base.current).addClass('active');
+                $icons.removeClass('active').addClass('inactive').eq(base.current).addClass('active').removeClass('inactive');
             });
 
             /** Visibility & hover styling */

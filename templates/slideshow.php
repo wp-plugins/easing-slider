@@ -3,6 +3,9 @@
     /** Get the slideshow */
     $slideshow = $s = EasingSliderLite::get_instance()->validate( get_option( 'easingsliderlite_slideshow' ) );
 
+    /** Get customizations */
+    $customizations = $c = json_decode( get_option( 'easingsliderlite_customizations' ) );
+
     /** Bail if we failed to retrieve the slideshow */
     if ( $s === false ) {
         if ( current_user_can( 'easingsliderlite_edit_slideshow' ) )
@@ -21,10 +24,12 @@
     $settings = get_option( 'easingsliderlite_settings' );
 
     /** Load slideshow scripts and styles in foooter (if set to do so) */
-    if ( isset( $settings['load_styles'] ) && $settings['load_styles'] == 'footer' )
-        add_action( 'wp_footer', array( 'ESL_Slideshow', 'enqueue_styles' ) ); 
     if ( isset( $settings['load_scripts'] ) && $settings['load_scripts'] == 'footer' )
         add_action( 'wp_footer', array( 'ESL_Slideshow', 'enqueue_scripts' ) );
+    if ( isset( $settings['load_styles'] ) && $settings['load_styles'] == 'footer' ) {
+        add_action( 'wp_footer', array( 'ESL_Slideshow', 'enqueue_styles' ) );
+        add_action( 'wp_footer', array( 'ESL_Slideshow', 'print_custom_styles') );
+    }
 
     /** Inline slideshow styles */
     if ( $s->dimensions->responsive )
@@ -56,7 +61,7 @@
         $container_styles .= " padding-top: {$viewport_height}% !important;";
 
 ?>
-<div class="easingsliderlite use-<?php echo $s->transitions->effect; ?>" data-options="<?php echo esc_attr( $slideshow_options ); ?>" style="<?php echo esc_attr( $slideshow_styles ); ?>">
+<div class="easingsliderlite <?php echo ESL_Slideshow::detect_browser(); ?> use-<?php echo $s->transitions->effect; ?>" data-options="<?php echo esc_attr( $slideshow_options ); ?>" style="<?php echo esc_attr( $slideshow_styles ); ?>">
     <div class="easingsliderlite-viewport" style="<?php echo esc_attr( $viewport_styles ); ?>">
         <div class="easingsliderlite-slides-container" style="<?php echo esc_attr( $container_styles ); ?>">
             <?php
@@ -101,15 +106,15 @@
     <?php if ( $s->navigation->arrows && !has_action( 'easingsliderlite_arrows' ) ) : ?>
         <div class="easingsliderlite-arrows easingsliderlite-next <?php echo esc_attr( $s->navigation->arrows_position ); ?>"></div>
         <div class="easingsliderlite-arrows easingsliderlite-prev <?php echo esc_attr( $s->navigation->arrows_position ); ?>"></div>
-    <?php else : do_action( 'easingsliderlite_arrows', $s ); endif; ?>
+    <?php else : do_action( 'easingsliderlite_arrows', $s, $c ); endif; ?>
 
     <?php if ( $s->navigation->pagination && !has_action( 'easingsliderlite_pagination' ) ) : ?>
         <div class="easingsliderlite-pagination <?php echo esc_attr( $s->navigation->pagination_position ) .' '. esc_attr( $s->navigation->pagination_location ); ?>">
             <?php foreach ( $s->slides as $index => $slide ) : ?>
-                <div class="easingsliderlite-icon"></div>
+                <div class="easingsliderlite-icon inactive"></div>
             <?php endforeach; ?>
         </div>
-    <?php else : do_action( 'easingsliderlite_pagination', $s ); endif; ?>
+    <?php else : do_action( 'easingsliderlite_pagination', $s, $c ); endif; ?>
 
     <?php /** Edit slideshow link, don't remove this! Won't show if user isn't logged in or doesn't have permission to edit slideshows */ ?>
     <?php if ( current_user_can( 'easingsliderlite_edit_slideshow' ) && apply_filters( 'easingsliderlite_edit_slideshow_icon', __return_true() ) ) : ?>
@@ -118,3 +123,25 @@
         </a>
     <?php endif; ?>
 </div>
+
+<?php
+    /** Display the slideshow shadow */
+    if ( !apply_filters( 'easingsliderlite_disable_shadow', __return_false() ) ) :
+
+        /** Get the inline styling */
+        $styles = ( $c->shadow->enable ) ? 'display: block; ' : 'display: none; ';
+        $styles .= ( $s->dimensions->responsive ) ? "max-width: {$s->dimensions->width}px; " : "width: {$s->dimensions->width}px ";
+        $styles .= ( $c->border->width !== 0 ) ? "margin-left: {$c->border->width}px;" : '';
+
+        /** Print the shadow */
+        if ( !has_action( 'easingsliderlite_shadow' ) ) :
+            echo "<div class='easingsliderlite-shadow' style='{$styles}'>";
+            if ( $c->shadow->enable )
+                echo "<img src='{$c->shadow->image}' alt='' />";
+            echo "</div>";
+        else :
+            do_action( 'easingsliderlite_shadow', $s, $c );
+        endif;
+
+    endif;
+?>
