@@ -19,7 +19,6 @@ Easing Slider "Lite" is an extremely easy to use slideshow plugin for WordPress.
 * Navigation arrows & pagination
 * Preloading functionality on page load
 * A visual editor for customizating basic styling
-* Easy to modify styling
 * Developer friendly with built-in Javascript events
 * Lots of actions & filters for custom functionality
 
