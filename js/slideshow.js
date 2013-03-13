@@ -1,4 +1,4 @@
-;(function($) {
+(function($) {
 
     /** Main plugin object */
     $.EasingSliderLite = function(el) {
@@ -66,7 +66,7 @@
 
             /** Queue playback (if enabled) */
             if ( o.playback.enabled )
-                base.$el.one('load', base.startPlayback);
+                base.$el.one('onload', base.startPlayback);
 
             /** Preload slideshow */
             base._preload();
@@ -183,7 +183,7 @@
             if ( o.navigation.arrows_hover )
                 $arrows.addClass('has-hover');
             else {
-                base.$el.one('load', function() {
+                base.$el.one('onload', function() {
                     $arrows.css({ 'opacity': 1 });
                 });
             }
@@ -221,7 +221,7 @@
             if ( o.navigation.pagination_hover )
                 $pagination.addClass('has-hover');
             else {
-                base.$el.one('load', function() {
+                base.$el.one('onload', function() {
                     $pagination.css({ 'opacity': 1 });
                 });
             }
@@ -250,7 +250,7 @@
                 if ( base.count == index ) {
                     base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
                         $(this).remove();
-                        base.$el.trigger('load');
+                        base.$el.trigger('onload');
                     }});
                 }
 
