@@ -252,7 +252,7 @@
                     if ( base.count == index ) {
                         base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
                             $(this).remove();
-                            base.$el.trigger('load');
+                            base.$el.trigger('onload');
                         }});
                     }
                 });

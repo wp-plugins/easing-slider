@@ -928,7 +928,7 @@ class EasingSliderLite {
 
         /** Register scripts */
         wp_register_script( 'esl-admin',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'admin'. $ext ), array( 'jquery', 'jquery-ui-sortable', 'backbone' ), self::$version, true );
-        wp_register_script( 'esl-customizer',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'customizer'. $ext ), array( 'jquery', 'backbone' ), self::$version );        
+        wp_register_script( 'esl-customizer',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'customizer'. $ext ), array( 'jquery', 'backbone' ), self::$version ); 
         wp_register_script( 'esl-slideshow',  plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'js'. DIRECTORY_SEPARATOR .'slideshow'. $ext ), false, self::$version );
 
     }
