@@ -63,7 +63,7 @@ class EasingSliderLite {
     public static $version = '2.1.1-rc1';
 
     /**
-     * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts
+     * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts.
      *
      * @since 2.0.1.2
      */

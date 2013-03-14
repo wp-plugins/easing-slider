@@ -120,7 +120,7 @@
                 event.preventDefault();
 
                 /** Remove all of the thumbnails */
-                if ( confirm( easingsliderlite.delete_images) )
+                if ( confirm( easingsliderlite.delete_images ) )
                     self.removeThumbs.call(self, event);
 
             });

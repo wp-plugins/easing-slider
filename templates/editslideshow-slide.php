@@ -14,8 +14,8 @@
                     <div id="general" class="media-tab">
                         <div class="embed-link-settings" style="top: 0;">
                             <div class="thumbnail">
-                                <# var size = data.sizes.large || data.sizes.medium || data.sizes.thumbnail || data.url; #>
-                                <img src="{{ data.url }}" class="slide-thumbnail" alt="{{ data.alt }}" />
+                                <# var thumbnail = data.sizes.large || data.sizes.medium || data.sizes.thumbnail || { url: data.url }; #>
+                                <img src="{{ thumbnail.url }}" class="slide-thumbnail" alt="{{ data.alt }}" />
                                 <a href="#" id="change-image" class="button button-primary button-large change-image" data-editor="content" title="Change Image"><span class="wp-media-buttons-icon"></span> Change Image</a>
                             </div>
 
