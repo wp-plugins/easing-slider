@@ -126,32 +126,6 @@
     display: block !important;
 }
 
-.easingsliderlite-slide-content {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-}
-
-.easingsliderlite-slide-content .caption.left {
-    top: 0 !important;
-    left: 0 !important;
-}
-
-.easingsliderlite-slide-content .caption.right {
-    top: 0 !important;
-    right: 0 !important;
-}
-
-.easingsliderlite-slide-content .caption.top {
-    top: 0 !important;
-    left: 0 !important;
-}
-
-.easingsliderlite-slide-content .caption.bottom {
-    bottom: 0 !important;
-    left: 0 !important;
-}
-
 .easingsliderlite-shadow,
 .easingsliderlite-shadow img {
     padding: 0 !important;

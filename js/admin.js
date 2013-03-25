@@ -291,7 +291,7 @@
             else {
                 if ( confirm( easingsliderlite.media_upload.discard_changes ) ) {
                     this.model.set(this.origAttributes);
-                    this.close();
+                    this.close(event);
                 }
             }
 

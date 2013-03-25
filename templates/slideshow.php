@@ -80,22 +80,21 @@
                 /** Apply filter for custom styles */
                 $slide_styles = apply_filters( 'easingsliderlite_slide_styles', $slide_styles, $slide, $s );
 
-                /** Resized image */
-                if ( $settings['resizing'] )
-                    $image = ESL_Resize::resize( $slide->url, $s->dimensions->width, $s->dimensions->height, true, true );
-                else
-                    $image = array( 'url' => $slide->url, 'width' => $s->dimensions->width, 'height' => $s->dimensions->height );
+                /** Image array */
+                $image = array( 'url' => $slide->url, 'width' => $s->dimensions->width, 'height' => $s->dimensions->height );
+
+                /** Resize the image (if enabled) */
+                if ( $settings['resizing'] ) {
+                    $resized_image = ESL_Resize::resize( $slide->url, $s->dimensions->width, $s->dimensions->height, true, true );
+                    if ( !is_wp_error( $resized_image ) )
+                        $image = $resized_image;
+                }
 
             ?>
                 <div class="easingsliderlite-slide" style="<?php echo $slide_styles; ?>">
                     <?php if ( !empty( $slide->link ) ) { ?><a href="<?php echo esc_attr( $slide->link ); ?>" target="<?php echo esc_attr( $slide->linkTarget ); ?>"><?php } ?>
                         <img src="<?php echo esc_attr( $image['url'] ); ?>" class="easingsliderlite-image" alt="<?php echo esc_attr( $slide->alt ); ?>" title="<?php echo esc_attr( $slide->title ); ?>" />
                     <?php if ( !empty( $slide->link ) ) { ?></a><?php } ?>
-                    <?php if ( !empty( $slide->content ) ) { ?>
-                        <div class="easingsliderlite-slide-content">
-                            <?php echo do_shortcode( html_entity_decode( $slide->content ) ) ?>
-                        </div>
-                    <?php } ?>
                 </div>
             <?php endforeach; ?>
         </div>

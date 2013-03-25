@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 
     /** Main plugin object */
     $.EasingSliderLite = function(el) {
