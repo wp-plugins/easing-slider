@@ -79,10 +79,9 @@ class ESL_Upgrade {
                 continue;
 
             /** Resize the image and get its thumbnail */
-            $resize = ESL_Resize::resize( $image, 150, 150, true );
             $sizes = (object) array(
                 'thumbnail' => (object) array(
-                    'url' => $resize['url']
+                    'url' => $image
                 )
             );
 
