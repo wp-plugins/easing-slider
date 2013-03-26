@@ -22,6 +22,8 @@ Easing Slider "Lite" is an extremely easy to use slideshow plugin for WordPress.
 * Developer friendly with built-in Javascript events
 * Lots of actions & filters for custom functionality
 
+<a href="http://easingslider.com/">Need more features? Unlimited slideshows, touch support, video support, HTML content and more? Get Easing Slider "Pro"!</a>
+
 Throughly tested on iPhone, iPad and multiple Android devices, Easing Slider "Lite" is the perfect solution for mobile slideshows. We've used CSS3 transitions to ensure ultra smooth transitions on all devices. The codebase is also extremely light (just 16kb), which is perfect for those concerned about page loading times.
 
 We've also integrated the new WordPress Media Library workflow to provide a better media management experience. Bulk uploading images to your slideshow is now easy, requiring just a few clicks.
