@@ -85,7 +85,7 @@
 
                 /** Resize the image (if enabled) */
                 if ( $settings['resizing'] ) {
-                    $resized_image = ESL_Resize::resize( $slide->url, $s->dimensions->width, $s->dimensions->height, true, true );
+                    $resized_image = ESL_Resize::resize( $slide->url, $s->dimensions->width, $s->dimensions->height, true, false );
                     if ( !is_wp_error( $resized_image ) )
                         $image = $resized_image;
                 }
