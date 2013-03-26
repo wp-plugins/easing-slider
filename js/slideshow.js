@@ -108,7 +108,7 @@
             base.$el.addClass('is-responsive');
 
             /** Resize slideshow on window resize */
-            $(window).bind('resize.easingsliderlite', function(event) {
+            $(window).bind('resize.easingsliderlite', function(event, force) {
 
                 /** Queue custom resize end event */
                 clearTimeout(base.resizeEnd);
@@ -122,7 +122,7 @@
                     height = base.$viewport.outerHeight();
 
                 /** Bail if slideshow width hasn't changed */
-                if ( width === base.width )
+                if ( width === base.width && !force )
                     return;
 
                 /** Save new dimensions */
@@ -152,7 +152,7 @@
             });
 
             /** Trigger a resize now */
-            $(window).trigger('resize.easingsliderlite');
+            $(window).trigger('resize.easingsliderlite', true);
 
         };
 
