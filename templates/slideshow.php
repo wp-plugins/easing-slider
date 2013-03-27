@@ -129,7 +129,7 @@
 
         /** Get the inline styling */
         $styles = ( $c->shadow->enable ) ? 'display: block; ' : 'display: none; ';
-        $styles .= ( $s->dimensions->responsive ) ? "max-width: {$s->dimensions->width}px; " : "width: {$s->dimensions->width}px ";
+        $styles .= ( $s->dimensions->responsive ) ? "max-width: {$s->dimensions->width}px; " : "width: {$s->dimensions->width}px; ";
         $styles .= ( $c->border->width !== 0 ) ? "margin-left: {$c->border->width}px;" : '';
 
         /** Print the shadow */
