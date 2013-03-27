@@ -63,6 +63,7 @@
 .easingsliderlite-viewport {
     position: relative !important;
     overflow: hidden !important;
+    width: 100% !important;
 }
 
 .easingsliderlite-slides-container {
