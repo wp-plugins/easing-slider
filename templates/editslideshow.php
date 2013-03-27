@@ -41,7 +41,7 @@
             <input type="hidden" name="slides" id="slideshow-images" value="">
             <input type="submit" name="save" class="button button-primary button-large" id="save" accesskey="p" value="<?php _e( 'Save Slideshow', 'easingsliderlite' ); ?>">
             <?php /** This ensures that the slide's JSON is encoded correctly. Using PHP JSON encode can cause magic quote issues */ ?>
-            <script type="text/javascript">document.getElementById('slideshow-images').value = '<?php echo json_encode( $s->slides ); ?>';</script>
+            <script type="text/javascript">document.getElementById('slideshow-images').value = '<?php echo addslashes( json_encode( $s->slides ) ); ?>';</script>
         </div>
     </form>
 </div>

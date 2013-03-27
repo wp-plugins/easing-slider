@@ -159,7 +159,7 @@
 
             <input type="hidden" name="customizations" id="customizations" value="">
             <?php /** This ensures that the JSON is encoded correctly. Using PHP JSON encode can cause magic quote issues */ ?>
-            <script type="text/javascript">document.getElementById('customizations').value = '<?php echo json_encode( $customizations ); ?>';</script>
+            <script type="text/javascript">document.getElementById('customizations').value = '<?php echo addslashes( json_encode( $customizations ) ); ?>';</script>
         </form>
 
         <div id="customize-preview" class="wp-full-overlay-main" style="position: relative;">
