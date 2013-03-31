@@ -53,7 +53,8 @@ class ESL_Upgrade {
      */
     public static final function do_major_upgrade() {
 
-        /** Fire plugin activation (won't have been fired by upgrade) */
+        /** Reset the plugin */
+        EasingSliderLite::get_instance()->uninstall();
         EasingSliderLite::get_instance()->activate();
 
         /** Get default slideshow settings */

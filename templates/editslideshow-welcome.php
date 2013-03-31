@@ -42,12 +42,7 @@ if ( get_option( 'easingsliderlite_disable_welcome_panel' ) == false ) :
     <div class="welcome-panel-content">
         <h3><?php _e( 'Welcome to Easing Slider "Lite"', 'easingsliderlite' ); ?></h3>
         <p class="about-description">
-            <?php
-                if ( get_option( 'easingsliderlite_major_upgrade' ) )
-                    _e( 'Thanks for upgrading to Easing Slider "Lite". Here are some links to get you clued up on the new plugin.', 'easingsliderlite' );
-                else
-                    _e( 'Thanks for installing Easing Slider "Lite". Here are some links to help get you started.', 'easingsliderlite' );
-            ?>
+            <?php _e( 'Thanks for upgrading to Easing Slider "Lite". Here are some links to get you clued up on the new plugin.', 'easingsliderlite' ); ?>
         </p>
         <div class="welcome-panel-column-container">
             <div class="welcome-panel-column">

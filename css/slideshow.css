@@ -98,6 +98,11 @@
     transition: none;
 }
 
+.easingsliderlite.use-css3 .easingsliderlite-slide {
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+}
+
 .easingsliderlite.use-slide .easingsliderlite-slide {
     float: left !important;
     position: relative !important;

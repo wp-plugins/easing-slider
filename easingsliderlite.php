@@ -681,10 +681,7 @@ class EasingSliderLite {
                 exit();
             }
 
-            /** Uninstall the plugin (thus removing its settings) */
-            $this->uninstall();
-
-            /** Import old settings */
+            /** Do upgrade (thus importing settings) */
             ESL_Upgrade::do_major_upgrade();
 
             /** Queue message */
@@ -767,10 +764,7 @@ class EasingSliderLite {
                 exit();
             }
 
-            /** Uninstall the plugin (thus removing its settings) */
-            $this->uninstall();
-
-            /** Import old settings */
+            /** Do upgrade (thus importing settings) */
             ESL_Upgrade::do_major_upgrade();
 
             /** Queue message */
