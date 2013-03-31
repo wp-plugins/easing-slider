@@ -2,6 +2,7 @@
 
 /**
  * Legacy plugin functionality.
+ * All v1.x related functionality is located here.
  *
  * @author Matthew Ruddy
  * @since 2.1.1
