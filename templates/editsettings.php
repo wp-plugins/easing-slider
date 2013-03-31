@@ -7,17 +7,16 @@
     <h2><?php _e( 'Edit Settings', 'easingsliderlite' ); ?></h2>
     <form name="post" action="admin.php?page=easingsliderlite_edit_settings" method="post">
         <?php
+
             /** Security nonce fields */
             wp_nonce_field( "easingsliderlite-save_{$_GET['page']}", "easingsliderlite-save_{$_GET['page']}", false );
             wp_nonce_field( "easingsliderlite-reset_{$_GET['page']}", "easingsliderlite-reset_{$_GET['page']}", false );
-            wp_nonce_field( "easingsliderlite-legacy-import_{$_GET['page']}", "easingsliderlite-legacy-import_{$_GET['page']}", false );
-            wp_nonce_field( "easingsliderlite-legacy-remove_{$_GET['page']}", "easingsliderlite-legacy-remove_{$_GET['page']}", false );
+
+            /** Before actions */
+            do_action( 'easingsliderlite_settings_before', $s, $_GET['page'] );
+
         ?>
         <div class="main-panel">
-            <div class="messages-container">
-                <?php do_action( 'easingsliderlite_admin_messages' ); ?>
-            </div>
-
             <h3><?php _e( 'General Settings', 'easingsliderlite' ); ?></h3>
             <table class="form-table main-settings">
                 <tbody>
@@ -68,24 +67,6 @@
                 </tbody>
             </table>
 
-            <?php if ( get_option( 'easingslider_version' ) || get_option( 'activation' ) || get_option( 'sImg1' ) ) : ?>
-            <div class="divider"></div>
-
-            <h3><?php _e( 'Legacy Settings', 'easingsliderlite' ); ?></h3>
-            <table class="form-table main-settings">
-                <tbody>
-                    <tr valign="top">
-                        <th scope="row"><label for="load_scripts"><?php _e( 'Legacy Settings', 'easingsliderlite' ); ?></label></th>
-                        <td>
-                            <input type="submit" name="legacy-import" class="button button-primary warn" value="<?php _e( 'Import v1.x Settings', 'easingsliderlite' ); ?>">
-                            <input type="submit" name="legacy-remove" class="button button-secondary warn" value="<?php _e( 'Remove v1.x Settings', 'easingsliderlite' ); ?>">
-                            <p class="description"><?php _e( 'These buttons allow you to import and remove your old Easing Slider v1.x settings. Only remove them if you are sure you will not be downgrading the plugin in the future.', 'easingsliderlite' ); ?></p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <?php endif; ?>
-
             <div class="divider"></div>
 
             <h3><?php _e( 'Reset Plugin', 'easingsliderlite' ); ?></h3>
@@ -129,6 +110,11 @@
             </table>
 
             <div class="divider"></div>
+
+            <?php
+                /** After actions */
+                do_action( 'easingsliderlite_settings_after', $s, $_GET['page'] );
+            ?>
 
             <p class="submit">
                 <input type="submit" name="save" class="button button-primary button-large" id="save" accesskey="p" value="<?php _e( 'Save Settings', 'easingsliderlite' ); ?>">

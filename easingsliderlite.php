@@ -140,10 +140,12 @@ class EasingSliderLite {
             register_uninstall_hook( __FILE__, array( __CLASS__, 'do_uninstall' ) );
         }
 
+        /** Legacy functionality */
+        if ( apply_filters( 'easingsliderlite_legacy', __return_true() ) )
+            add_action( 'easingsliderlite', array( 'ESL_Legacy', 'init' ) );
+
         /** Plugin shortcodes */
         add_shortcode( 'easingsliderlite', array( $this, 'do_shortcode' ) );
-        add_shortcode( 'rivasliderlite', array( $this, 'do_shortcode' ) );
-        add_shortcode( 'easingslider', array( $this, 'do_shortcode' ) );
 
         /** Plugin actions */
         add_action( 'init', array( $this, 'register_all_styles' ) );
@@ -619,8 +621,10 @@ class EasingSliderLite {
      * @since 2.0
      */
     public function queue_message( $text, $type ) {
+        if ( !$this->is_easingsliderlite_page )
+            return;
         $message = "<div class='message $type'><p>$text</p></div>";
-        add_action( 'easingsliderlite_admin_messages', create_function( '', 'echo "'. $message .'";' ) );
+        add_action( 'admin_notices', create_function( '', 'echo "'. $message .'";' ) );
     }
 
     /**
@@ -671,23 +675,6 @@ class EasingSliderLite {
         /** Disable welcome panel if it is dismissed */
         if ( isset( $_GET['disable_welcome_panel'] ) )
             update_option( 'easingsliderlite_disable_welcome_panel', filter_var( $_GET['disable_welcome_panel'], FILTER_VALIDATE_BOOLEAN ) );
-
-        /** Imports legacy Easing Slider setting */
-        if ( isset( $_POST['legacy-import'] ) ) {
-
-            /** Security check */
-            if ( !$this->security_check( 'legacy-import', $page ) ) {
-                wp_die( __( 'Security check has failed. Import has been prevented. Please try again.', 'easingsliderlite' ) );
-                exit();
-            }
-
-            /** Do upgrade (thus importing settings) */
-            ESL_Upgrade::do_major_upgrade();
-
-            /** Queue message */
-            return $this->queue_message( __( 'Easing Slider settings have been imported.', 'easingsliderlite' ), 'updated' );
-
-        }
 
         /** Save or update a slideshow. Whichever is appropriate. */
         if ( isset( $_POST['save'] ) ) {
@@ -754,50 +741,6 @@ class EasingSliderLite {
      * @since 2.0
      */
     public function do_settings_actions( $page ) {
-
-        /** Imports legacy Easing Slider setting */
-        if ( isset( $_POST['legacy-import'] ) ) {
-
-            /** Security check */
-            if ( !$this->security_check( 'legacy-import', $page ) ) {
-                wp_die( __( 'Security check has failed. Import has been prevented. Please try again.', 'easingsliderlite' ) );
-                exit();
-            }
-
-            /** Do upgrade (thus importing settings) */
-            ESL_Upgrade::do_major_upgrade();
-
-            /** Queue message */
-            return $this->queue_message( __( 'Easing Slider settings have been imported.', 'easingsliderlite' ), 'updated' );
-
-        }
-
-        /** Removes legacy Easing Slider settings */
-        if ( isset( $_POST['legacy-remove'] ) ) {
-
-            /** Security check */
-            if ( !$this->security_check( 'legacy-remove', $page ) ) {
-                wp_die( __( 'Security check has failed. Removal has been prevented. Please try again.', 'easingsliderlite' ) );
-                exit();
-            }
-
-            /** Horrific amount of options. God I was bad back then! */
-            $options = array(
-                'sImg1', 'sImg2', 'sImg3', 'sImg4', 'sImg5', 'sImg6', 'sImg7', 'sImg8', 'sImg9', 'sImg10',
-                'sImglink1', 'sImglink2', 'sImglink3', 'sImglink4', 'sImglink5', 'sImglink6', 'sImglink7', 'sImglink8', 'sImglink9', 'sImglink10',
-                'activation', 'width', 'height', 'shadow', 'interval', 'transition', 'bgcolour', 'transpeed', 'bwidth', 'bcolour', 'preload', 'starts',
-                'buttons', 'source', 'featcat', 'featpost', 'padbottom', 'padleft', 'padright', 'paddingtop', 'shadowstyle', 'paginationon', 'paginationoff',
-                'next', 'prev', 'pageposition', 'pageside', 'permalink', 'jquery', 'easingslider_version'
-            );
-
-            /** Delete the options */
-            foreach ( $options as $option )
-                delete_option( $option );
-
-            /** Queue message */
-            return $this->queue_message( __( 'Easing Slider settings have been permanently deleted!', 'easingsliderlite' ), 'updated' );
-
-        }
 
         /** Reset plugin */
         if ( isset( $_POST['reset'] ) ) {
@@ -1050,23 +993,13 @@ class EasingSliderLite {
 }
 
 /**
- * Handy helper & legacy functions for displaying a slideshow
+ * Slideshow helper function
  *
  * @author Matthew Ruddy
  * @since 2.0
  */
 if ( !function_exists( 'easingsliderlite' ) ) {
     function easingsliderlite() {
-        echo ESL_Slideshow::get_instance()->display_slideshow();
-    }
-}
-if ( !function_exists( 'rivasliderlite' ) ) {
-    function rivasliderlite() {
-        echo ESL_Slideshow::get_instance()->display_slideshow();
-    }
-}
-if ( !function_exists( 'easing_slider' ) ) {
-    function easing_slider() {
         echo ESL_Slideshow::get_instance()->display_slideshow();
     }
 }

@@ -16,10 +16,6 @@
 
         ?>
         <div class="main-panel">
-            <div class="messages-container">
-                <?php do_action( 'easingsliderlite_admin_messages' ); ?>
-            </div>
-
             <div class="clearfix">
                 <div class="thumbnails-container">
                     <div class="inner clearfix">

@@ -46,68 +46,6 @@ class ESL_Upgrade {
     }
 
     /**
-     * Upgrade settings from the old Easing Slider plugin
-     * We don't do this automatically. Instead, we give the user the choice through the 'Edit Slideshow' panel.
-     *
-     * @since 2.0
-     */
-    public static final function do_major_upgrade() {
-
-        /** Reset the plugin */
-        EasingSliderLite::get_instance()->uninstall();
-        EasingSliderLite::get_instance()->activate();
-
-        /** Get default slideshow settings */
-        $slideshow = EasingSliderLite::get_instance()->slideshow_defaults();
-
-        /** Transfer the settings */
-        $slideshow->dimensions->width = get_option( 'width' );
-        $slideshow->dimensions->height = get_option( 'height' );
-        $slideshow->dimensions->responsive = false;
-        $slideshow->transitions->effect = ( get_option( 'transition' ) == 'fade' ) ? 'fade' : 'slide';
-        $slideshow->transitions->duration = get_option( 'transpeed' );
-        $slideshow->navigation->arrows = ( get_option( 'buttons' ) == '' ) ? 'false' : 'true';
-        $slideshow->navigation->pagination = ( get_option( 'sPagination' ) == '' ) ? 'false' : 'true';
-        $slideshow->playback->pause = get_option( 'interval' );
-
-        /** Add the slides */
-        $slideshow->slides = array();
-        for ( $i = 1; $i <= 10; $i++ ) {
-
-            /** Check if the slide has an image. Bail if not. */
-            $image = get_option( "sImg{$i}" );
-            if ( empty( $image ) )
-                continue;
-
-            /** Resize the image and get its thumbnail */
-            $sizes = (object) array(
-                'thumbnail' => (object) array(
-                    'url' => $image
-                )
-            );
-
-            /** Add the slide image & link */
-            $slideshow->slides[] = (object) array(
-                'id' => $i,
-                'url' => $image,
-                'alt' => null,
-                'title' => null,
-                'link' => get_option( "sImgLink{$i}" ),
-                'linkTarget' => '_blank',
-                'sizes' => $sizes
-            );
-
-        }
-
-        /** Update the slideshow settings */
-        update_option( 'easingsliderlite_slideshow', $slideshow );
-
-        /** Flag upgrade */
-        update_option( 'easingsliderlite_major_upgrade', 1 );
-
-    }
-
-    /**
      * Do 2.0.1 upgrades
      *
      * @since 2.0.1
