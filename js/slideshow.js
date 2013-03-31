@@ -130,12 +130,16 @@
                 base.height = height;
 
                 /** Prevent transitions from triggering & reset container positioning */
-                if ( base.useCSS3 && o.transitions.effect == 'slide' ) {
+                if ( o.transitions.effect == 'slide' ) {
 
                     /** Apply our CSS changes */
                     var properties = {};
-                    properties[ '-'+ base.vendorPrefix +'-transition-duration' ] = '0ms';
-                    properties[ '-'+ base.vendorPrefix +'-transform' ] = 'translate3d(-'+ ( base.current * base.width ) +'px, 0, 0)';
+                    if ( base.useCSS3 ) {
+                        properties[ '-'+ base.vendorPrefix +'-transition-duration' ] = '0ms';
+                        properties[ '-'+ base.vendorPrefix +'-transform' ] = 'translate3d(-'+ ( base.current * base.width ) +'px, 0, 0)';
+                    }
+                    else
+                        properties['left'] = '-'+ ( base.current * base.width ) +'px';
                     base.$container.css(properties);
 
                     /** Queue transition duration reset */
@@ -238,25 +242,42 @@
          * @since 2.0
          */
         base._preload = function() {
-            
-            /** Loop through and preload each slide image */
-            var index = 0;
-            base.$images.each(function() {
 
-                var $self = $(this),
-                    src = $self.attr('src');
+            /** Preloaded image count */
+            var count = 0;
 
-                /** Preload this image and trigger action on last image */
-                $('<img />').attr('src', src).load(function() {
-                    index++;
-                    if ( base.count == index ) {
-                        base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 200, complete: function() {
-                            $(this).remove();
-                            base.$el.trigger('onload');
-                        }});
-                    }
-                });
- 
+            /** Complete function run after image is preloaded */
+            var loadComplete = function() {
+
+                count++;
+                if ( count >= base.count )
+                    base.$el.find('.easingsliderlite-preload').animate({ 'opacity': 0 }, { duration: 400, complete: function() {
+                        $(this).remove();
+                        base.$el.trigger('onload');
+                    }});
+
+            };
+
+            /** Loop through and preload each image. Doesn't stop on failure, just continues instead */
+            base.$images.each(function(index, image) {
+
+                /**
+                 * Create a virtual image element. We set its src after event handler is registered.
+                 * We have to do this to prevent IE bugs (it doesn't always fire the onload event if image are loaded (from cache) before the event is bound)
+                 */
+                preloadImage = new Image();
+
+                /** Bind preload functions. Still continues if a preload fails */
+                if ( !preloadImage.complete ) {
+                    preloadImage.onload = loadComplete;
+                    preloadImage.onerror = loadComplete;
+                }
+                else
+                    loadComplete();
+
+                /** Set image src attribute */
+                preloadImage.src = image;
+
             });
 
         };
@@ -301,7 +322,7 @@
                 }
                 else {
                     /** Otherwise fallback to jQuery/Zepto animate */
-                    base.$container.animate({ 'left': '-'+ ( base.width * base.current )}, o.transitions.duration);
+                    base.$container.animate({ 'left': '-'+ ( base.width * base.current ) +'px' }, o.transitions.duration);
                 }
 
             }
