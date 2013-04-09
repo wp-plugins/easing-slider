@@ -1,3 +1,11 @@
+<?php if ( !apply_filters( 'easingsliderlite_hide_advert', __return_false() ) ) : ?>
+<div style="margin-bottom: 15px;">
+    <a href="http://easingslider.com/" target="_blank">
+        <img src="<?php echo plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'advert.png'; ?>" width="285" height="100" alt="<?php _e( 'Easing Slider, Go Pro!', 'easingsliderlite' ); ?>" />
+    </a>
+</div>
+<?php endif; ?>
+
 <!-- Manage Slides -->
 <div class="widgets-holder-wrap exclude">
     <div class="sidebar-name">

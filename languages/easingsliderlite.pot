@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easing Slider \"Lite\"\n"
-"POT-Creation-Date: 2013-03-31 18:02-0000\n"
-"PO-Revision-Date: 2013-03-31 18:02-0000\n"
+"POT-Creation-Date: 2013-04-09 16:43-0000\n"
+"PO-Revision-Date: 2013-04-09 16:44-0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,110 +15,145 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: .\n"
 
-#: ../easingsliderlite.php:377
+#: ../easingsliderlite.php:379
 msgid "Unknown"
 msgstr ""
 
-#: ../easingsliderlite.php:499 ../easingsliderlite.php:500
-#: ../easingsliderlite.php:552 ../includes/Widget.php:19
+#: ../easingsliderlite.php:501 ../easingsliderlite.php:502
+#: ../easingsliderlite.php:554 ../includes/Widget.php:19
 msgid "Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:509 ../easingsliderlite.php:510
-#: ../easingsliderlite.php:562 ../templates/editslideshow.php:8
+#: ../easingsliderlite.php:511 ../easingsliderlite.php:512
+#: ../easingsliderlite.php:564 ../templates/editslideshow.php:8
 msgid "Edit Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:517
+#: ../easingsliderlite.php:519
 msgid "Customizer"
 msgstr ""
 
-#: ../easingsliderlite.php:518 ../easingsliderlite.php:570
+#: ../easingsliderlite.php:520 ../easingsliderlite.php:572
 msgid "Customize"
 msgstr ""
 
-#: ../easingsliderlite.php:525 ../templates/editsettings.php:7
+#: ../easingsliderlite.php:527 ../templates/editsettings.php:7
 msgid "Edit Settings"
 msgstr ""
 
-#: ../easingsliderlite.php:526 ../easingsliderlite.php:578
+#: ../easingsliderlite.php:528 ../easingsliderlite.php:580
 msgid "Settings"
 msgstr ""
 
-#: ../easingsliderlite.php:612
+#: ../easingsliderlite.php:614
 msgid "Add a slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:612
+#: ../easingsliderlite.php:614
 msgid "Add Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:680 ../easingsliderlite.php:763
-msgid "Security check has failed. Import has been prevented. Please try again."
-msgstr ""
-
-#: ../easingsliderlite.php:688 ../easingsliderlite.php:771
-msgid "Easing Slider settings have been imported."
-msgstr ""
-
-#: ../easingsliderlite.php:697 ../easingsliderlite.php:733
-#: ../easingsliderlite.php:825
+#: ../easingsliderlite.php:684 ../easingsliderlite.php:720
+#: ../easingsliderlite.php:768
 msgid "Security check has failed. Save has been prevented. Please try again."
 msgstr ""
 
-#: ../easingsliderlite.php:715
+#: ../easingsliderlite.php:702
 msgid "Slideshow has been <strong>saved</strong> successfully."
 msgstr ""
 
-#: ../easingsliderlite.php:780
-msgid ""
-"Security check has failed. Removal has been prevented. Please try again."
-msgstr ""
-
-#: ../easingsliderlite.php:798
-msgid "Easing Slider settings have been permanently deleted!"
-msgstr ""
-
-#: ../easingsliderlite.php:807
+#: ../easingsliderlite.php:750
 msgid "Security check has failed. Reset has been prevented. Please try again."
 msgstr ""
 
-#: ../easingsliderlite.php:816
+#: ../easingsliderlite.php:759
 msgid "Plugin has been reset successfully."
 msgstr ""
 
-#: ../easingsliderlite.php:836
+#: ../easingsliderlite.php:779
 msgid "Settings have been <strong>saved</strong> successfully."
 msgstr ""
 
-#: ../easingsliderlite.php:976
+#: ../easingsliderlite.php:919
 msgid "Are you sure you wish to do this? This cannot be reversed."
 msgstr ""
 
-#: ../easingsliderlite.php:977
+#: ../easingsliderlite.php:920
 msgid "Are you sure you wish to delete this image? This cannot be reversed."
 msgstr ""
 
-#: ../easingsliderlite.php:978
+#: ../easingsliderlite.php:921
 msgid ""
 "Are you sure you wish to delete all of this slideshows images? This cannot "
 "be reversed."
 msgstr ""
 
-#: ../easingsliderlite.php:980
+#: ../easingsliderlite.php:923
 msgid "Add Images to Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:981
+#: ../easingsliderlite.php:924
 msgid "Insert into slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:982
+#: ../easingsliderlite.php:925
 msgid "Use this image"
 msgstr ""
 
-#: ../easingsliderlite.php:983
+#: ../easingsliderlite.php:926
 msgid "Are you sure you wish to discard changes?"
+msgstr ""
+
+#: ../includes/Legacy.php:128
+msgid "Security check has failed. Import has been prevented. Please try again."
+msgstr ""
+
+#: ../includes/Legacy.php:136
+msgid "Easing Slider settings have been imported."
+msgstr ""
+
+#: ../includes/Legacy.php:154
+msgid ""
+"Security check has failed. Removal has been prevented. Please try again."
+msgstr ""
+
+#: ../includes/Legacy.php:172
+msgid "Easing Slider settings have been permanently deleted!"
+msgstr ""
+
+#: ../includes/Legacy.php:192
+msgid "Legacy Settings Detected"
+msgstr ""
+
+#: ../includes/Legacy.php:194
+msgid "Click the button below to import your settings from Easing Slider v1.x"
+msgstr ""
+
+#: ../includes/Legacy.php:198
+msgid "Import your old settings"
+msgstr ""
+
+#: ../includes/Legacy.php:199
+msgid "Import my v1.x Easing Slider settings."
+msgstr ""
+
+#: ../includes/Legacy.php:218 ../includes/Legacy.php:227
+msgid "Legacy Settings"
+msgstr ""
+
+#: ../includes/Legacy.php:229
+msgid "Import v1.x Settings"
+msgstr ""
+
+#: ../includes/Legacy.php:230
+msgid "Remove v1.x Settings"
+msgstr ""
+
+#: ../includes/Legacy.php:231
+msgid ""
+"These buttons allow you to import and remove your old Easing Slider v1.x "
+"settings. Only remove them if you are sure you will not be downgrading the "
+"plugin in the future."
 msgstr ""
 
 #: ../includes/Resize.php:22
@@ -147,7 +182,7 @@ msgid ""
 "strong>"
 msgstr ""
 
-#: ../templates/customizer.php:46 ../templates/editslideshow-sidebar.php:96
+#: ../templates/customizer.php:46 ../templates/editslideshow-sidebar.php:104
 msgid "Next & Previous Arrows"
 msgstr ""
 
@@ -167,7 +202,7 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: ../templates/customizer.php:76 ../templates/editslideshow-sidebar.php:149
+#: ../templates/customizer.php:76 ../templates/editslideshow-sidebar.php:157
 msgid "Pagination Icons"
 msgstr ""
 
@@ -207,13 +242,13 @@ msgstr ""
 msgid "Display a Drop Shadow"
 msgstr ""
 
-#: ../templates/customizer.php:136 ../templates/editslideshow-sidebar.php:119
-#: ../templates/editslideshow-sidebar.php:172
+#: ../templates/customizer.php:136 ../templates/editslideshow-sidebar.php:127
+#: ../templates/editslideshow-sidebar.php:180
 msgid "True"
 msgstr ""
 
-#: ../templates/customizer.php:137 ../templates/editslideshow-sidebar.php:122
-#: ../templates/editslideshow-sidebar.php:175
+#: ../templates/customizer.php:137 ../templates/editslideshow-sidebar.php:130
+#: ../templates/editslideshow-sidebar.php:183
 msgid "False"
 msgstr ""
 
@@ -229,119 +264,100 @@ msgstr ""
 msgid "Collapse"
 msgstr ""
 
-#: ../templates/editsettings.php:21
+#: ../templates/editsettings.php:20
 msgid "General Settings"
 msgstr ""
 
-#: ../templates/editsettings.php:25
+#: ../templates/editsettings.php:24
 msgid "Image Resizing"
 msgstr ""
 
-#: ../templates/editsettings.php:28 ../templates/editslideshow-sidebar.php:104
-#: ../templates/editslideshow-sidebar.php:157
-#: ../templates/editslideshow-sidebar.php:218
+#: ../templates/editsettings.php:27 ../templates/editslideshow-sidebar.php:112
+#: ../templates/editslideshow-sidebar.php:165
+#: ../templates/editslideshow-sidebar.php:226
 msgid "Enable"
 msgstr ""
 
-#: ../templates/editsettings.php:31 ../templates/editslideshow-sidebar.php:107
-#: ../templates/editslideshow-sidebar.php:160
-#: ../templates/editslideshow-sidebar.php:221
+#: ../templates/editsettings.php:30 ../templates/editslideshow-sidebar.php:115
+#: ../templates/editslideshow-sidebar.php:168
+#: ../templates/editslideshow-sidebar.php:229
 msgid "Disable"
 msgstr ""
 
-#: ../templates/editsettings.php:33
+#: ../templates/editsettings.php:32
 msgid ""
 "Enable or disable the plugins image resizing functionality. Disable this if "
 "you do not want the slide images to be resized."
 msgstr ""
 
-#: ../templates/editsettings.php:38
+#: ../templates/editsettings.php:37
 msgid "Output JS"
 msgstr ""
 
-#: ../templates/editsettings.php:41 ../templates/editsettings.php:57
+#: ../templates/editsettings.php:40 ../templates/editsettings.php:56
 msgid "Header"
 msgstr ""
 
-#: ../templates/editsettings.php:44 ../templates/editsettings.php:60
+#: ../templates/editsettings.php:43 ../templates/editsettings.php:59
 msgid "Footer"
 msgstr ""
 
-#: ../templates/editsettings.php:47 ../templates/editsettings.php:63
+#: ../templates/editsettings.php:46 ../templates/editsettings.php:62
 msgid "Off"
 msgstr ""
 
-#: ../templates/editsettings.php:49
+#: ../templates/editsettings.php:48
 msgid ""
 "Settings for Javascript output. Scripts loaded in the \"Footer\" are only "
 "when they are needed. This decreases page loading times but is prone to "
 "errors."
 msgstr ""
 
-#: ../templates/editsettings.php:54
+#: ../templates/editsettings.php:53
 msgid "Output CSS"
 msgstr ""
 
-#: ../templates/editsettings.php:65
+#: ../templates/editsettings.php:64
 msgid ""
 "Settings for CSS output. Styles loaded in the \"Footer\" will invalidate the "
 "HTML, but will prevent them from loading when not needed."
 msgstr ""
 
-#: ../templates/editsettings.php:74 ../templates/editsettings.php:78
-msgid "Legacy Settings"
-msgstr ""
-
-#: ../templates/editsettings.php:80
-msgid "Import v1.x Settings"
-msgstr ""
-
-#: ../templates/editsettings.php:81
-msgid "Remove v1.x Settings"
-msgstr ""
-
-#: ../templates/editsettings.php:82
-msgid ""
-"These buttons allow you to import and remove your old Easing Slider v1.x "
-"settings. Only remove them if you are sure you will not be downgrading the "
-"plugin in the future."
-msgstr ""
-
-#: ../templates/editsettings.php:91 ../templates/editsettings.php:97
+#: ../templates/editsettings.php:72 ../templates/editsettings.php:78
 msgid "Reset Plugin"
 msgstr ""
 
-#: ../templates/editsettings.php:95
+#: ../templates/editsettings.php:76
 msgid "Plugin Settings"
 msgstr ""
 
-#: ../templates/editsettings.php:98
+#: ../templates/editsettings.php:79
 msgid ""
 "Click this button to reset the plugin to its default settings. This cannot "
 "be reversed, so be sure before you do this!"
 msgstr ""
 
-#: ../templates/editsettings.php:106
+#: ../templates/editsettings.php:87
 msgid "Installation Settings"
 msgstr ""
 
-#: ../templates/editsettings.php:110
+#: ../templates/editsettings.php:91
 msgid "PHP Version"
 msgstr ""
 
-#: ../templates/editsettings.php:115
+#: ../templates/editsettings.php:96
 msgid "MySQL Version"
 msgstr ""
 
-#: ../templates/editsettings.php:120
+#: ../templates/editsettings.php:101
 msgid "WordPress Version"
 msgstr ""
 
-#: ../templates/editsettings.php:125
+#: ../templates/editsettings.php:106
 msgid "Plugin Version"
 msgstr ""
 
-#: ../templates/editsettings.php:134
+#: ../templates/editsettings.php:120
 msgid "Save Settings"
 msgstr ""
 
@@ -361,175 +377,179 @@ msgstr ""
 msgid "Delete Permanently"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:5
+#: ../templates/editslideshow-sidebar.php:4
+msgid "Easing Slider, Go Pro!"
+msgstr ""
+
+#: ../templates/editslideshow-sidebar.php:13
 msgid "Manage Slides"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:9
+#: ../templates/editslideshow-sidebar.php:17
 msgid "Add Images"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:10
+#: ../templates/editslideshow-sidebar.php:18
 msgid "Delete Images"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:16
+#: ../templates/editslideshow-sidebar.php:24
 msgid "Randomize the slideshow order."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:27
+#: ../templates/editslideshow-sidebar.php:35
 msgid "Dimensions"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:33
+#: ../templates/editslideshow-sidebar.php:41
 msgid "Width:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:39
+#: ../templates/editslideshow-sidebar.php:47
 msgid "Height:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:43
+#: ../templates/editslideshow-sidebar.php:51
 msgid "Slideshow \"width\" and \"height\" values (in pixels)."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:50
+#: ../templates/editslideshow-sidebar.php:58
 msgid "Make this slideshow responsive."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:53
+#: ../templates/editslideshow-sidebar.php:61
 msgid ""
 "Check this option to make this slideshow responsive. If enabled, the \"width"
 "\" and \"height\" values above will act as maximums."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:63
+#: ../templates/editslideshow-sidebar.php:71
 msgid "Transitions"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:69
+#: ../templates/editslideshow-sidebar.php:77
 msgid "Effect:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:71
+#: ../templates/editslideshow-sidebar.php:79
 msgid "Slide"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:72
+#: ../templates/editslideshow-sidebar.php:80
 msgid "Fade"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:76
+#: ../templates/editslideshow-sidebar.php:84
 msgid "Choose the transition effect you would like to use."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:82
+#: ../templates/editslideshow-sidebar.php:90
 msgid "Duration:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:86
+#: ../templates/editslideshow-sidebar.php:94
 msgid "Sets the duration (in milliseconds) for the slideshow transition."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:101
+#: ../templates/editslideshow-sidebar.php:109
 msgid "Arrows:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:111
+#: ../templates/editslideshow-sidebar.php:119
 msgid "Toggles the next and previous slide arrows."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:116
-#: ../templates/editslideshow-sidebar.php:169
+#: ../templates/editslideshow-sidebar.php:124
+#: ../templates/editslideshow-sidebar.php:177
 msgid "On Hover:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:126
+#: ../templates/editslideshow-sidebar.php:134
 msgid ""
 "Set to \"True\" to only show the arrows when the user hovers over the "
 "slideshow."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:132
-#: ../templates/editslideshow-sidebar.php:185
+#: ../templates/editslideshow-sidebar.php:140
+#: ../templates/editslideshow-sidebar.php:193
 msgid "Position:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:134
-#: ../templates/editslideshow-sidebar.php:187
+#: ../templates/editslideshow-sidebar.php:142
+#: ../templates/editslideshow-sidebar.php:195
 msgid "Inside"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:135
-#: ../templates/editslideshow-sidebar.php:188
+#: ../templates/editslideshow-sidebar.php:143
+#: ../templates/editslideshow-sidebar.php:196
 msgid "Outside"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:139
+#: ../templates/editslideshow-sidebar.php:147
 msgid "Select a position for the arrows."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:154
+#: ../templates/editslideshow-sidebar.php:162
 msgid "Pagination:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:164
+#: ../templates/editslideshow-sidebar.php:172
 msgid ""
 "Enable/Disable the Pagination Icons. Each icon represents a slide in their "
 "respective order."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:179
+#: ../templates/editslideshow-sidebar.php:187
 msgid ""
 "Set to \"True\" to only show the pagination when the user hovers over the "
 "slideshow."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:191
+#: ../templates/editslideshow-sidebar.php:199
 msgid "Top Left"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:192
+#: ../templates/editslideshow-sidebar.php:200
 msgid "Top Right"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:193
+#: ../templates/editslideshow-sidebar.php:201
 msgid "Top Center"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:194
+#: ../templates/editslideshow-sidebar.php:202
 msgid "Bottom Left"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:195
+#: ../templates/editslideshow-sidebar.php:203
 msgid "Bottom Right"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:196
+#: ../templates/editslideshow-sidebar.php:204
 msgid "Bottom Center"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:200
+#: ../templates/editslideshow-sidebar.php:208
 msgid "Select a position for the pagination icons."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:210
+#: ../templates/editslideshow-sidebar.php:218
 msgid "Automatic Playback"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:215
+#: ../templates/editslideshow-sidebar.php:223
 msgid "Playback:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:225
+#: ../templates/editslideshow-sidebar.php:233
 msgid "Enable/Disable slideshow automatic playback."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:231
+#: ../templates/editslideshow-sidebar.php:239
 msgid "Pause Duration:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:235
+#: ../templates/editslideshow-sidebar.php:243
 msgid ""
 "Sets the duration (in milliseconds) for the pause between slide transitions."
 msgstr ""
@@ -570,61 +590,45 @@ msgstr ""
 msgid "Apply Changes"
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:25
-msgid "Legacy Settings Detected"
-msgstr ""
-
-#: ../templates/editslideshow-welcome.php:27
-msgid "Click the button below to import your settings from Easing Slider v1.x"
-msgstr ""
-
-#: ../templates/editslideshow-welcome.php:31
-msgid "Import your old settings"
-msgstr ""
-
-#: ../templates/editslideshow-welcome.php:32
-msgid "Import my v1.x Easing Slider settings."
-msgstr ""
-
-#: ../templates/editslideshow-welcome.php:41
+#: ../templates/editslideshow-welcome.php:21
 msgid "Dismiss"
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:43
+#: ../templates/editslideshow-welcome.php:23
 msgid "Welcome to Easing Slider \"Lite\""
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:45
+#: ../templates/editslideshow-welcome.php:25
 msgid ""
 "Thanks for upgrading to Easing Slider \"Lite\". Here are some links to get "
 "you clued up on the new plugin."
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:49
+#: ../templates/editslideshow-welcome.php:29
 msgid "Get Started"
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:50
+#: ../templates/editslideshow-welcome.php:30
 msgid "View the Documentation"
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:54
+#: ../templates/editslideshow-welcome.php:34
 msgid "Need some help?"
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:56
+#: ../templates/editslideshow-welcome.php:36
 msgid "Displaying a Slideshow"
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:57
+#: ../templates/editslideshow-welcome.php:37
 msgid "Frequently Asked Questions"
 msgstr ""
 
-#: ../templates/editslideshow-welcome.php:58
+#: ../templates/editslideshow-welcome.php:38
 msgid "Support Forums"
 msgstr ""
 
-#: ../templates/editslideshow.php:42
+#: ../templates/editslideshow.php:38
 msgid "Save Slideshow"
 msgstr ""
 

@@ -276,7 +276,7 @@
                     loadComplete();
 
                 /** Set image src attribute */
-                preloadImage.src = image;
+                preloadImage.src = image.src;
 
             });
 
@@ -350,7 +350,7 @@
 
                 });
 
-                /** Only do jQuery/Zepto animate for this transition. CSS3 opacity effects mke no performance difference */
+                /** Only do jQuery animate for this transition. CSS3 opacity effects mke no performance difference */
                 base.$slides.eq(base.current).css({ 'opacity': '0', 'display': 'block', 'z-index': base.order }).animate({ 'opacity': '1' }, o.transitions.duration);
 
             }
