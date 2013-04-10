@@ -33,8 +33,8 @@ class ESL_Legacy {
         add_shortcode( 'easingslider', array( $class, 'do_shortcode' ) );
 
         /** Bail if there are no legacy settings to act upon */
-        if ( !get_option( 'easingslider_version' ) || !get_option( 'activation' ) || !get_option( 'sImg1' ) )
-            return;
+        //if ( !get_option( 'easingslider_version' ) || !get_option( 'activation' ) || !get_option( 'sImg1' ) )
+            //return;
 
         /** Import settings admin notice */
         if ( $pagenow == 'plugins.php' && !get_option( 'easingsliderlite_major_upgrade' ) )
