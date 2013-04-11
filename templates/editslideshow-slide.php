@@ -16,7 +16,7 @@
                             <div class="thumbnail">
                                 <# var thumbnail = data.sizes.large || data.sizes.medium || data.sizes.thumbnail || { url: data.url }; #>
                                 <img src="{{ thumbnail.url }}" class="slide-thumbnail" alt="{{ data.alt }}" />
-                                <a href="#" id="change-image" class="button button-primary button-large change-image" data-editor="content" title="Change Image"><span class="wp-media-buttons-icon"></span> Change Image</a>
+                                <a href="#" id="change-image" class="button button-primary button-large change-image" data-editor="content" title="<?php _e( 'Change Image', 'easingsliderlite' ); ?>"><span class="wp-media-buttons-icon"></span> <?php _e( 'Change Image', 'easingsliderlite' ); ?></a>
                             </div>
 
                             <label for="link" class="setting">

@@ -141,7 +141,8 @@ class EasingSliderLite {
         }
 
         /** Legacy functionality */
-        ESL_Legacy::init( $this );
+        if ( apply_filters( 'easingsliderlite_legacy_functionality', __return_true() ) )
+            ESL_Legacy::init( $this );
 
         /** Plugin shortcodes */
         add_shortcode( 'easingsliderlite', array( $this, 'do_shortcode' ) );

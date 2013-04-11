@@ -75,7 +75,7 @@
                 /** Get slide styles */
                 $slide_styles = $slideshow_styles;
                 if ( $s->transitions->effect == 'fade' && $index > 0 )
-                    $slide_styles .= " display: none; opacity: 0;";
+                    $slide_styles .= " opacity: 0; display: none;";
 
                 /** Apply filter for custom styles */
                 $slide_styles = apply_filters( 'easingsliderlite_slide_styles', $slide_styles, $slide, $s );

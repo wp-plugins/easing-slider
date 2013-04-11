@@ -32,20 +32,21 @@ class ESL_Legacy {
         add_shortcode( 'rivasliderlite', array( $class, 'do_shortcode' ) );
         add_shortcode( 'easingslider', array( $class, 'do_shortcode' ) );
 
-        /** Bail if there are no legacy settings to act upon */
-        //if ( !get_option( 'easingslider_version' ) || !get_option( 'activation' ) || !get_option( 'sImg1' ) )
-            //return;
+        /** Continue only if there are legacy settings to act upon */
+        if ( get_option( 'easingslider_version' ) || get_option( 'activation' ) || get_option( 'sImg1' ) ) {
 
-        /** Import settings admin notice */
-        if ( $pagenow == 'plugins.php' && !get_option( 'easingsliderlite_major_upgrade' ) )
-            add_action( 'admin_notices', create_function( '', '_e( "<div class=\'message updated\'><p>Don\'t forget to import your old Easing Slider settings. <a href=\'admin.php?page=easingsliderlite_edit_slideshow\'>Click here.</a></p></div>", "easingsliderlite" );' ) );
+            /** Import settings admin notice */
+            if ( $pagenow == 'plugins.php' && !get_option( 'easingsliderlite_major_upgrade' ) )
+                add_action( 'admin_notices', create_function( '', '_e( "<div class=\'message updated\'><p>Don\'t forget to import your old Easing Slider settings. <a href=\'admin.php?page=easingsliderlite_edit_slideshow\'>Click here.</a></p></div>", "easingsliderlite" );' ) );
 
-        /** Hook actions */
-        add_action( 'easingsliderlite_edit_slideshow_actions', array( __CLASS__, 'do_legacy_import' ) );
-        add_action( 'easingsliderlite_edit_settings_actions', array( __CLASS__, 'do_legacy_import' ) );
-        add_action( 'easingsliderlite_edit_settings_actions', array( __CLASS__, 'do_legacy_remove' ) );
-        add_action( 'easingsliderlite_welcome_panel_before', array( __CLASS__, 'print_legacy_message' ) );
-        add_action( 'easingsliderlite_settings_after', array( __CLASS__, 'print_legacy_settings_field' ), 10, 2 );
+            /** Hook actions */
+            add_action( 'easingsliderlite_edit_slideshow_actions', array( __CLASS__, 'do_legacy_import' ) );
+            add_action( 'easingsliderlite_edit_settings_actions', array( __CLASS__, 'do_legacy_import' ) );
+            add_action( 'easingsliderlite_edit_settings_actions', array( __CLASS__, 'do_legacy_remove' ) );
+            add_action( 'easingsliderlite_welcome_panel_before', array( __CLASS__, 'print_legacy_message' ) );
+            add_action( 'easingsliderlite_settings_after', array( __CLASS__, 'print_legacy_settings_field' ), 10, 2 );
+
+        }
 
     }
 

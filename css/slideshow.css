@@ -113,10 +113,6 @@
     left: 0 !important;
 }
 
-.easingsliderlite.use-fade .easingsliderlite-slide.active {
-    z-index: 10;
-}
-
 .easingsliderlite-slide {
     width: 100%;
 }
