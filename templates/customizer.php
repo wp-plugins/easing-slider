@@ -36,15 +36,15 @@
 
             <div class="wp-full-overlay-sidebar-content" tabindex="-1">
                 <div id="customize-info" class="customize-section">
-                    <div class="customize-section-title" aria-label="Theme Customizer Options" tabindex="0">
+                    <div class="accordion-section-title customize-section-title" aria-label="Theme Customizer Options" tabindex="0">
                         <span class="preview-notice"><?php _e( 'You are customizing <strong class="theme-name">Easing Slider "Lite"</strong>', 'easingsliderlite' ); ?></span>
                     </div>
                 </div>
-                <div id="customize-theme-controls">
+                <div id="customize-theme-controls" class="accordion-container">
                     <ul>
-                        <li class="control-section customize-section">
-                            <h3 class="customize-section-title" tabindex="0" title=""><?php _e( 'Next & Previous Arrows', 'easingsliderlite' ); ?></h3>
-                            <ul class="customize-section-content">
+                        <li class="control-section accordion-section customize-section">
+                            <h3 class="accordion-section-title customize-section-title" tabindex="0" title=""><?php _e( 'Next & Previous Arrows', 'easingsliderlite' ); ?></h3>
+                            <ul class="accordion-section-content customize-section-content">
                                 <li class="customize-control customize-control-text">
                                     <label>
                                         <span class="customize-control-title"><?php _e( '"Next" Arrow Image', 'easingsliderlite' ); ?></span>
@@ -72,9 +72,9 @@
                             </ul>
                         </li>
 
-                        <li class="control-section customize-section">
-                            <h3 class="customize-section-title" tabindex="0" title=""><?php _e( 'Pagination Icons', 'easingsliderlite' ); ?></h3>
-                            <ul class="customize-section-content">
+                        <li class="control-section accordion-section customize-section">
+                            <h3 class="accordion-section-title customize-section-title" tabindex="0" title=""><?php _e( 'Pagination Icons', 'easingsliderlite' ); ?></h3>
+                            <ul class="accordion-section-content customize-section-content">
                                 <li class="customize-control customize-control-text">
                                     <label>
                                         <span class="customize-control-title"><?php _e( '"Inactive" Image', 'easingsliderlite' ); ?></span>
@@ -102,9 +102,9 @@
                             </ul>
                         </li>
 
-                        <li class="control-section customize-section">
-                            <h3 class="customize-section-title" tabindex="0" title=""><?php _e( 'Border', 'easingsliderlite' ); ?></h3>
-                            <ul class="customize-section-content">
+                        <li class="control-section accordion-section customize-section">
+                            <h3 class="accordion-section-title customize-section-title" tabindex="0" title=""><?php _e( 'Border', 'easingsliderlite' ); ?></h3>
+                            <ul class="accordion-section-content customize-section-content">
                                 <li class="customize-control customize-control-text">
                                     <label>
                                         <span class="customize-control-title"><?php _e( 'Color', 'easingsliderlite' ); ?></span>
@@ -127,9 +127,9 @@
                         </li>
 
                         <?php if ( !apply_filters( 'easingsliderlite_disable_shadow', __return_false() ) ) : ?>
-                        <li class="control-section customize-section">
-                            <h3 class="customize-section-title" tabindex="0" title=""><?php _e( 'Drop Shadow', 'easingsliderlite' ); ?></h3>
-                            <ul class="customize-section-content">
+                        <li class="control-section accordion-section customize-section">
+                            <h3 class="accordion-section-title customize-section-title" tabindex="0" title=""><?php _e( 'Drop Shadow', 'easingsliderlite' ); ?></h3>
+                            <ul class="accordion-section-content customize-section-content">
                                 <li class="customize-control customize-control-text">
                                     <label>
                                         <span class="customize-control-title"><?php _e( 'Display a Drop Shadow', 'easingsliderlite' ); ?></span>
