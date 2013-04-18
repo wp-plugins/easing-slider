@@ -225,7 +225,7 @@ class ESL_Legacy {
                         wp_nonce_field( "easingsliderlite-legacy-import_{$_GET['page']}", "easingsliderlite-legacy-import_{$_GET['page']}", false );
                         wp_nonce_field( "easingsliderlite-legacy-remove_{$_GET['page']}", "easingsliderlite-legacy-remove_{$_GET['page']}", false );
                     ?>
-                    <th scope="row"><label for="load_scripts"><?php _e( 'Legacy Settings', 'easingsliderlite' ); ?></label></th>
+                    <th scope="row"><label><?php _e( 'Legacy Settings', 'easingsliderlite' ); ?></label></th>
                     <td>
                         <input type="submit" name="legacy-import" class="button button-primary warn" value="<?php _e( 'Import v1.x Settings', 'easingsliderlite' ); ?>">
                         <input type="submit" name="legacy-remove" class="button button-secondary warn" value="<?php _e( 'Remove v1.x Settings', 'easingsliderlite' ); ?>">
