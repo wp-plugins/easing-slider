@@ -35,7 +35,7 @@
             </div>
 
             <div class="wp-full-overlay-sidebar-content" tabindex="-1">
-                <div id="customize-info" class="customize-section">
+                <div id="customize-info" class="accordion-section customize-section">
                     <div class="accordion-section-title customize-section-title" aria-label="Theme Customizer Options" tabindex="0">
                         <span class="preview-notice"><?php _e( 'You are customizing <strong class="theme-name">Easing Slider "Lite"</strong>', 'easingsliderlite' ); ?></span>
                     </div>
