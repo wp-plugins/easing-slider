@@ -24,9 +24,10 @@
 }
 
 .easingsliderlite div,
-.easingsliderlite a
+.easingsliderlite a,
 .easingsliderlite img {
     border: 0 !important;
+    clear: none !important;
 }
 
 .easingsliderlite {
@@ -125,6 +126,7 @@
     width: 100% !important;
     max-width: 100% !important;
     display: block !important;
+    border: none !important;
 }
 
 .easingsliderlite-shadow,

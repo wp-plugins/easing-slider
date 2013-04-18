@@ -268,12 +268,8 @@
                 preloadImage = new Image();
 
                 /** Bind preload functions. Still continues if a preload fails */
-                if ( !preloadImage.complete ) {
-                    preloadImage.onload = loadComplete;
-                    preloadImage.onerror = loadComplete;
-                }
-                else
-                    loadComplete();
+                preloadImage.onload = loadComplete;
+                preloadImage.onerror = loadComplete;
 
                 /** Set image src attribute */
                 preloadImage.src = image.src;
