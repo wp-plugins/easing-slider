@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easing Slider \"Lite\"\n"
-"POT-Creation-Date: 2013-04-09 16:43-0000\n"
-"PO-Revision-Date: 2013-04-09 16:44-0000\n"
+"POT-Creation-Date: 2013-04-25 18:50-0000\n"
+"PO-Revision-Date: 2013-04-25 18:51-0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -104,52 +104,52 @@ msgstr ""
 msgid "Are you sure you wish to discard changes?"
 msgstr ""
 
-#: ../includes/Legacy.php:128
+#: ../includes/Legacy.php:129
 msgid "Security check has failed. Import has been prevented. Please try again."
 msgstr ""
 
-#: ../includes/Legacy.php:136
+#: ../includes/Legacy.php:137
 msgid "Easing Slider settings have been imported."
 msgstr ""
 
-#: ../includes/Legacy.php:154
+#: ../includes/Legacy.php:155
 msgid ""
 "Security check has failed. Removal has been prevented. Please try again."
 msgstr ""
 
-#: ../includes/Legacy.php:172
+#: ../includes/Legacy.php:173
 msgid "Easing Slider settings have been permanently deleted!"
 msgstr ""
 
-#: ../includes/Legacy.php:192
+#: ../includes/Legacy.php:193
 msgid "Legacy Settings Detected"
 msgstr ""
 
-#: ../includes/Legacy.php:194
+#: ../includes/Legacy.php:195
 msgid "Click the button below to import your settings from Easing Slider v1.x"
 msgstr ""
 
-#: ../includes/Legacy.php:198
+#: ../includes/Legacy.php:199
 msgid "Import your old settings"
 msgstr ""
 
-#: ../includes/Legacy.php:199
+#: ../includes/Legacy.php:200
 msgid "Import my v1.x Easing Slider settings."
 msgstr ""
 
-#: ../includes/Legacy.php:218 ../includes/Legacy.php:227
+#: ../includes/Legacy.php:219 ../includes/Legacy.php:228
 msgid "Legacy Settings"
 msgstr ""
 
-#: ../includes/Legacy.php:229
+#: ../includes/Legacy.php:230
 msgid "Import v1.x Settings"
 msgstr ""
 
-#: ../includes/Legacy.php:230
+#: ../includes/Legacy.php:231
 msgid "Remove v1.x Settings"
 msgstr ""
 
-#: ../includes/Legacy.php:231
+#: ../includes/Legacy.php:232
 msgid ""
 "These buttons allow you to import and remove your old Easing Slider v1.x "
 "settings. Only remove them if you are sure you will not be downgrading the "
@@ -556,6 +556,10 @@ msgstr ""
 
 #: ../templates/editslideshow-slide.php:7
 msgid "Edit a Slide: #{{ data.id }}"
+msgstr ""
+
+#: ../templates/editslideshow-slide.php:19
+msgid "Change Image"
 msgstr ""
 
 #: ../templates/editslideshow-slide.php:23
