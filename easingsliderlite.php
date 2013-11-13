@@ -547,6 +547,10 @@ class EasingSliderLite {
         
         global $wp_admin_bar;
 
+        /** Avoid showing these links when not logged into admin (prevents buddypress bug) */
+        if ( ! is_admin() )
+            return;
+
         /** Add the new toplevel menu */
         $wp_admin_bar->add_menu(
             array(
