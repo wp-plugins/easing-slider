@@ -77,6 +77,13 @@ class EasingSliderLite {
     public $admin_messages = array();
 
     /**
+     * A handy flag for identifying if we are currently using the new WordPress admin area
+     *
+     * @since 2.1.3
+     */
+    private $is_updated_admin = false;
+
+    /**
      * Flag for indicating that we are on a EasingSliderLite plugin page
      *
      * @since 2.0
@@ -127,8 +134,13 @@ class EasingSliderLite {
      */
     private function __construct() {
 
+        global $wp_version;
+
         /** Load plugin textdomain for language capabilities */
         load_plugin_textdomain( 'easingsliderlite', false, dirname( plugin_basename( self::get_file() ) ) . '/languages' );
+
+        /** Flag the new admin area if appropriate */
+        $this->is_updated_admin = ( version_compare( $wp_version, '3.8', '>=' ) ) ? true : false;
 
         /** Activation and deactivation hooks. Static methods are used to avoid activation/uninstallation scoping errors. */
         if ( is_multisite() ) {
@@ -595,20 +607,9 @@ class EasingSliderLite {
      * @since 2.0
      */
     function add_media_button( $editor_id ) {
-        $img = '<span class="insert-slideshow-icon"></span>';
+
+        /** Load button javascript */
         ?>
-        <style type="text/css">
-            .insert-slideshow.button .insert-slideshow-icon {
-                width: 16px;
-                height: 16px;
-                margin-top: -1px;
-                margin-left: -1px;
-                margin-right: 4px;
-                display: inline-block;
-                vertical-align: text-top;
-                background: url(<?php echo plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'menu_icon_single_grey.png' ); ?>) no-repeat top left;
-            }
-        </style>
         <script type="text/javascript">
             function insertSlideshow() {
                 send_to_editor( '[easingsliderlite]' );
@@ -616,8 +617,47 @@ class EasingSliderLite {
                 return false;
             }
         </script>
-        <a onClick="insertSlideshow();" class="button insert-slideshow" data-editor="<?php echo esc_attr( $editor_id ); ?>" title="<?php _e( 'Add a slideshow', 'easingsliderlite' ); ?>"><?php echo $img . __( 'Add Slideshow', 'easingsliderlite' ); ?></a>
         <?php
+        
+        /** Show appropriate button and styling */
+        if ( $this->is_updated_admin ) {
+
+            /** WordPress v3.8+ button */
+            ?>
+            <style type="text/css">
+                .insert-slideshow.button .insert-slideshow-icon:before {
+                    content: "\f128";
+                    font: 400 18px/1 dashicons;
+                    speak: none;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+            </style>
+            <a onClick="insertSlideshow();" class="button insert-slideshow" data-editor="<?php echo esc_attr( $editor_id ); ?>" title="<?php _e( 'Add a slideshow', 'easingsliderlite' ); ?>"><?php echo '<span class="wp-media-buttons-icon insert-slideshow-icon"></span>' . __( ' Add Slideshow', 'easingsliderlite' ); ?></a>
+            <?php
+
+        }
+        else {
+
+            /** Backwards compatibility button */
+            ?>
+            <style type="text/css">
+                .insert-slideshow.button .insert-slideshow-icon {
+                    width: 16px;
+                    height: 16px;
+                    margin-top: -1px;
+                    margin-left: -1px;
+                    margin-right: 4px;
+                    display: inline-block;
+                    vertical-align: text-top;
+                    background: url(<?php echo plugins_url( dirname( plugin_basename( self::get_file() ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'menu_icon_single_grey.png' ); ?>) no-repeat top left;
+                }
+            </style>
+            <a onClick="insertSlideshow();" class="button insert-slideshow" data-editor="<?php echo esc_attr( $editor_id ); ?>" title="<?php _e( 'Add a slideshow', 'easingsliderlite' ); ?>"><?php echo '<span class="insert-slideshow-icon"></span>' . __( 'Add Slideshow', 'easingsliderlite' ); ?></a>
+            <?php
+
+        }
+
     }
     
     /**
@@ -849,10 +889,8 @@ class EasingSliderLite {
      */
     public function admin_body_classes( $classes ) {
 
-        global $wp_version;
-
         /** Add a reference to the new-look flat WordPress admin area if appropriate */
-        if ( version_compare( $wp_version, '3.8', '>=' ) ) {
+        if ( $this->is_updated_admin ) {
             $classes .= 'easingsliderlite-updated-admin';
         }
 
@@ -903,6 +941,11 @@ class EasingSliderLite {
         /** Bail if not an Easing Slider "Lite" page */
         if ( !in_array( $hook, $this->whitelist ) )
             return;
+
+        /** Load dashicons if using the new flat administration area */
+        if ( $this->is_updated_admin ) {
+            wp_enqueue_style( 'dashicons' );
+        }
 
         /** Load styles */
         wp_enqueue_style( 'esl-admin' );
