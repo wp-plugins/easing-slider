@@ -21,9 +21,33 @@
                     <div class="inner clearfix">
                         <?php
                             /** We display the current slides anyway using PHP (rather than Javascript) to avoid any rendering delays */
-                            if ( $s->slides )
-                                foreach ( $s->slides as $slide )
-                                    echo "<div class='thumbnail' data-id='{$slide->id}'><a href='#' class='delete-button'></a><img src='{$slide->sizes->thumbnail->url}' alt='{$slide->alt}' /></div>";
+                            if ( $s->slides ) {
+                                foreach ( $s->slides as $slide ) {
+
+                                    /** Pretty rebust set of fallbacks for the slide thumbnail! Shouldn't ever fail. */
+                                    if (isset($slide->sizes->thumbnail)) {
+                                        $thumbnail = $slide->sizes->thumbnail->url;
+                                    }
+                                    else if (isset($slide->sizes->small)) {
+                                        $thumbnail = $slide->sizes->small->url;
+                                    }
+                                    else if (isset($slide->sizes->medium)) {
+                                        $thumbnail = $slide->sizes->medium->url;
+                                    }
+                                    else if (isset($slide->sizes->large)) {
+                                        $thumbnail = $slide->sizes->large->url;
+                                    }
+                                    else if (isset($slide->sizes->full)) {
+                                        $thumbnail = $slide->sizes->full->url;
+                                    }
+                                    else {
+                                        $thumbnail = $slide->url;
+                                    }
+
+                                    echo "<div class='thumbnail' data-id='{$slide->id}'><a href='#' class='delete-button'></a><img src='{$thumbnail}' alt='{$slide->alt}' /></div>";
+
+                                }
+                            }
                         ?>
                     </div>
                 </div>

@@ -3,7 +3,7 @@
 /*
     Plugin Name: Easing Slider "Lite"
     Plugin URI: http://easingslider.com/
-    Version: 2.1.3-beta
+    Version: 2.1.3
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
     Description: Easing Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
@@ -60,7 +60,7 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public static $version = '2.1.3-beta';
+    public static $version = '2.1.3';
 
     /**
      * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts.
@@ -152,6 +152,7 @@ class EasingSliderLite {
         add_action( 'init', array( $this, 'register_all_scripts' ) );
         add_action( 'admin_menu', array( $this, 'add_menus' ) );
         add_action( 'admin_menu', array( $this, 'do_actions' ) );
+        add_action( 'admin_body_class', array( $this, 'admin_body_classes' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
         add_action( 'media_buttons', array( $this, 'add_media_button' ), 11 );
@@ -840,6 +841,24 @@ class EasingSliderLite {
             return trim( $slideshow );
 
     }
+
+    /**
+     * Adds our admin specific body classes
+     *
+     * @since 2.1.3
+     */
+    public function admin_body_classes( $classes ) {
+
+        global $wp_version;
+
+        /** Add a reference to the new-look flat WordPress admin area if appropriate */
+        if ( version_compare( $wp_version, '3.8', '>=' ) ) {
+            $classes .= 'easingsliderlite-updated-admin';
+        }
+
+        return $classes;
+
+    }
     
     /**
      * Register all admin stylesheets
@@ -944,7 +963,9 @@ class EasingSliderLite {
             return;
 
         /** Slide template */
-        echo '<script type="text/html" id="tmpl-slide"><div class="thumbnail" data-id="{{ data.id }}"><a href="#" class="delete-button"></a><img src="{{ data.sizes.thumbnail.url }}" alt="{{ data.alt }}" /></div></script>';
+        echo '<script type="text/html" id="tmpl-slide">';
+        require dirname( self::get_file() ) . DIRECTORY_SEPARATOR .'templates'. DIRECTORY_SEPARATOR .'editslideshow-thumbnail.php';
+        echo '</script>';
         
         /** Slide editor template */
         echo '<script type="text/html" id="tmpl-edit-slide">';

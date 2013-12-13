@@ -285,3 +285,36 @@ textarea.success {
 .supports-drag-drop {
     z-index: 1000;
 }
+
+.easingsliderlite-updated-admin .welcome-panel {
+    padding-bottom: 11px;
+}
+
+.easingsliderlite-updated-admin .sidebar-name {
+    border-bottom: 1px solid #eee;
+}
+
+.easingsliderlite-updated-admin .closed .sidebar-name {
+    border-width: 0;
+}
+
+.easingsliderlite-updated-admin .sidebar-name h3 {
+    padding: 15px;
+}
+
+.easingsliderlite-updated-admin .sidebar-name-arrow:before {
+    top: 4px !important;
+}
+
+.easingsliderlite-updated-admin .widgets-holder-wrap {
+    margin-bottom: 9px;
+}
+
+.easingsliderlite-updated-admin .settings-container .sidebar-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.easingsliderlite-updated-admin .customize-container {
+    background-image: none !important;
+}
