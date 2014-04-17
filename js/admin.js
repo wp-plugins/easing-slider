@@ -369,7 +369,7 @@
                 return;
 
             /** Create the media frame */
-            this.fileFrame = wp.media.frames.fileFrame = new wp.media({
+            this.fileFrame = wp.media.frames.fileFrame = wp.media({
                 title: this.frameProperties.title,
                 button: {
                     text: this.frameProperties.button
@@ -447,8 +447,8 @@
 
     });
 
-    /** Override Medai Library sidebar template with our own */
-    wp.media.view.Attachment.Details.prototype.template = wp.media.template('image-details');
+    /** Override Media Library sidebar template with our own */
+    wp.media.view.Attachment.Details.prototype.template = wp.media.template('media-details');
 
     /** Show/hide settings functionality */
     $('.sidebar-name').bind('click', function() {

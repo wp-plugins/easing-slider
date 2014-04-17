@@ -14,6 +14,8 @@
     /** Customize View */
     window.CustomizeView = Backbone.View.extend({
 
+        el: '#customize-container',
+
         events: {
             'change': 'change'
         },
@@ -22,9 +24,6 @@
 
             var self = this,
                 $items = {};
-
-            /** Set the element */
-            this.$el = this.options.$el;
 
             /** Title click functionality */
             $('.customize-section-title').bind('click', function() {
@@ -145,7 +144,7 @@
 
             /** Show the view */
             this.$el.find('.wp-full-overlay').animate({ 'opacity': 1 }, { duration: 200 });
-
+            
         }
 
     });
@@ -153,7 +152,6 @@
     /** Let's go! */
     $(document).ready(function() {
         window.customizeView = new CustomizeView({
-            $el: $('#customize-container'),
             model: new Customizations(JSON.parse($('#customizations').val()))
         }).render();
     });

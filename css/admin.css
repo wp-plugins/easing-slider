@@ -282,10 +282,6 @@ textarea.success {
 }
 
 /** ===== Additional ===== */
-.supports-drag-drop {
-    z-index: 1000;
-}
-
 .easingsliderlite-updated-admin .welcome-panel {
     padding-bottom: 11px;
 }
@@ -304,6 +300,10 @@ textarea.success {
 
 .easingsliderlite-updated-admin .sidebar-name-arrow:before {
     top: 4px !important;
+}
+
+.easingsliderlite-updated-admin .sidebar-content {
+    border-color: #fff;
 }
 
 .easingsliderlite-updated-admin .widgets-holder-wrap {
