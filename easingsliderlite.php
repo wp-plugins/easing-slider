@@ -3,7 +3,7 @@
 /*
     Plugin Name: Easing Slider "Lite"
     Plugin URI: http://easingslider.com/
-    Version: 2.1.4
+    Version: 2.1.4.1
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
     Description: Easing Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
@@ -60,7 +60,7 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public static $version = '2.1.4';
+    public static $version = '2.1.4.1';
 
     /**
      * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts.
@@ -509,13 +509,17 @@ class EasingSliderLite {
         /** Hook suffixs for admin menus */
         $pages = array( 'easingsliderlite_edit_slideshow', 'easingsliderlite_customizer', 'easingsliderlite_edit_settings' );
 
+        /** Show a dashicon if using the updated admin area */
+        $icon = ( $this->is_updated_admin ) ? 'dashicons-format-gallery' : null;
+
         /** Toplevel menu */
         $this->whitelist[] = add_menu_page(
             __( 'Slideshow', 'easingsliderlite' ),
             __( 'Slideshow', 'easingsliderlite' ),
             'easingsliderlite_edit_slideshow',
             'easingsliderlite_edit_slideshow',
-            null
+            null,
+            $icon
         );
 
         /** Submenus */
@@ -891,7 +895,7 @@ class EasingSliderLite {
 
         /** Add a reference to the new-look flat WordPress admin area if appropriate */
         if ( $this->is_updated_admin ) {
-            $classes .= 'easingsliderlite-updated-admin';
+            $classes .= ' easingsliderlite-updated-admin ';
         }
 
         return $classes;

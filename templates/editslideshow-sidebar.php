@@ -1,7 +1,13 @@
 <?php if ( !apply_filters( 'easingsliderlite_hide_advert', __return_false() ) ) : ?>
 <div style="margin-bottom: 15px;">
     <a href="http://easingslider.com/" target="_blank">
-        <img src="<?php echo plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'advert.png'; ?>" width="285" height="100" alt="<?php _e( 'Easing Slider, Go Pro!', 'easingsliderlite' ); ?>" />
+        <img src="<?php echo plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'banner-easingsliderpro.png'; ?>" width="285" height="100" alt="<?php _e( 'Easing Slider, Go Pro!', 'easingsliderlite' ); ?>" />
+    </a>
+</div>
+
+<div style="margin-bottom: 15px;">
+    <a href="http://rocketgalleries.com/" target="_blank">
+        <img src="<?php echo plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'banner-rocketgalleries.png'; ?>" width="285" height="100" alt="<?php _e( 'Rocket Galleries for WordPress', 'easingsliderlite' ); ?>" />
     </a>
 </div>
 <?php endif; ?>

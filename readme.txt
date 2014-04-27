@@ -4,7 +4,7 @@ Contributors: MatthewRuddy
 Tags: slideshow, slider, slides, slide, gallery, images, image, responsive, mobile, jquery, javascript, featured, content
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 2.1.4
+Stable tag: 2.1.4.1
 
 Easing Slider "Lite" is an easy to use slideshow plugin. Simple and lightweight, built with native WordPress functionality.
 
@@ -76,6 +76,11 @@ This is easy. When viewing the <strong>"Edit Slideshow"</strong> Easing Slider "
 5. Simply click a slide to edit its individual settings. This is the panel you will see.
 
 == Changelog ==
+
+= 2.1.4.1 =
+* Added dashicon to top-level menu.
+* Fixed admin menu styling bug when Easing Slider “Pro” was active and using WordPress v3.8+.
+* Updated plugin translations .pot file.
 
 = 2.1.4 =
 * Fixed bug that broke media uploader in WordPress v3.9.

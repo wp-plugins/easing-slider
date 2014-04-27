@@ -1,106 +1,112 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easing Slider \"Lite\"\n"
-"POT-Creation-Date: 2013-04-25 18:50-0000\n"
-"PO-Revision-Date: 2013-04-25 18:51-0000\n"
+"POT-Creation-Date: 2014-04-27 14:56-0000\n"
+"PO-Revision-Date: 2014-04-27 14:56-0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: .\n"
 
-#: ../easingsliderlite.php:379
+#: ../easingsliderlite.php:392
 msgid "Unknown"
 msgstr ""
 
-#: ../easingsliderlite.php:501 ../easingsliderlite.php:502
-#: ../easingsliderlite.php:554 ../includes/Widget.php:19
+#: ../easingsliderlite.php:517 ../easingsliderlite.php:518
+#: ../easingsliderlite.php:575 ../includes/Widget.php:19
 msgid "Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:511 ../easingsliderlite.php:512
-#: ../easingsliderlite.php:564 ../templates/editslideshow.php:8
+#: ../easingsliderlite.php:528 ../easingsliderlite.php:529
+#: ../easingsliderlite.php:585 ../templates/editslideshow.php:8
 msgid "Edit Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:519
+#: ../easingsliderlite.php:536
 msgid "Customizer"
 msgstr ""
 
-#: ../easingsliderlite.php:520 ../easingsliderlite.php:572
+#: ../easingsliderlite.php:537 ../easingsliderlite.php:593
 msgid "Customize"
 msgstr ""
 
-#: ../easingsliderlite.php:527 ../templates/editsettings.php:7
+#: ../easingsliderlite.php:544 ../templates/editsettings.php:7
 msgid "Edit Settings"
 msgstr ""
 
-#: ../easingsliderlite.php:528 ../easingsliderlite.php:580
+#: ../easingsliderlite.php:545 ../easingsliderlite.php:601
 msgid "Settings"
 msgstr ""
 
-#: ../easingsliderlite.php:614
+#: ../easingsliderlite.php:640 ../easingsliderlite.php:660
 msgid "Add a slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:614
+#: ../easingsliderlite.php:640
+msgid " Add Slideshow"
+msgstr ""
+
+#: ../easingsliderlite.php:660
 msgid "Add Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:684 ../easingsliderlite.php:720
-#: ../easingsliderlite.php:768
+#: ../easingsliderlite.php:733 ../easingsliderlite.php:769
+#: ../easingsliderlite.php:817
 msgid "Security check has failed. Save has been prevented. Please try again."
 msgstr ""
 
-#: ../easingsliderlite.php:702
+#: ../easingsliderlite.php:751
 msgid "Slideshow has been <strong>saved</strong> successfully."
 msgstr ""
 
-#: ../easingsliderlite.php:750
+#: ../easingsliderlite.php:799
 msgid "Security check has failed. Reset has been prevented. Please try again."
 msgstr ""
 
-#: ../easingsliderlite.php:759
+#: ../easingsliderlite.php:808
 msgid "Plugin has been reset successfully."
 msgstr ""
 
-#: ../easingsliderlite.php:779
+#: ../easingsliderlite.php:828
 msgid "Settings have been <strong>saved</strong> successfully."
 msgstr ""
 
-#: ../easingsliderlite.php:919
+#: ../easingsliderlite.php:989
 msgid "Are you sure you wish to do this? This cannot be reversed."
 msgstr ""
 
-#: ../easingsliderlite.php:920
+#: ../easingsliderlite.php:990
 msgid "Are you sure you wish to delete this image? This cannot be reversed."
 msgstr ""
 
-#: ../easingsliderlite.php:921
+#: ../easingsliderlite.php:991
 msgid ""
 "Are you sure you wish to delete all of this slideshows images? This cannot "
 "be reversed."
 msgstr ""
 
-#: ../easingsliderlite.php:923
+#: ../easingsliderlite.php:993
 msgid "Add Images to Slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:924
+#: ../easingsliderlite.php:994
 msgid "Insert into slideshow"
 msgstr ""
 
-#: ../easingsliderlite.php:925
+#: ../easingsliderlite.php:995
 msgid "Use this image"
 msgstr ""
 
-#: ../easingsliderlite.php:926
+#: ../easingsliderlite.php:996
 msgid "Are you sure you wish to discard changes?"
 msgstr ""
 
@@ -182,7 +188,7 @@ msgid ""
 "strong>"
 msgstr ""
 
-#: ../templates/customizer.php:46 ../templates/editslideshow-sidebar.php:104
+#: ../templates/customizer.php:46 ../templates/editslideshow-sidebar.php:110
 msgid "Next & Previous Arrows"
 msgstr ""
 
@@ -202,7 +208,7 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: ../templates/customizer.php:76 ../templates/editslideshow-sidebar.php:157
+#: ../templates/customizer.php:76 ../templates/editslideshow-sidebar.php:163
 msgid "Pagination Icons"
 msgstr ""
 
@@ -242,13 +248,13 @@ msgstr ""
 msgid "Display a Drop Shadow"
 msgstr ""
 
-#: ../templates/customizer.php:136 ../templates/editslideshow-sidebar.php:127
-#: ../templates/editslideshow-sidebar.php:180
+#: ../templates/customizer.php:136 ../templates/editslideshow-sidebar.php:133
+#: ../templates/editslideshow-sidebar.php:186
 msgid "True"
 msgstr ""
 
-#: ../templates/customizer.php:137 ../templates/editslideshow-sidebar.php:130
-#: ../templates/editslideshow-sidebar.php:183
+#: ../templates/customizer.php:137 ../templates/editslideshow-sidebar.php:136
+#: ../templates/editslideshow-sidebar.php:189
 msgid "False"
 msgstr ""
 
@@ -272,15 +278,15 @@ msgstr ""
 msgid "Image Resizing"
 msgstr ""
 
-#: ../templates/editsettings.php:27 ../templates/editslideshow-sidebar.php:112
-#: ../templates/editslideshow-sidebar.php:165
-#: ../templates/editslideshow-sidebar.php:226
+#: ../templates/editsettings.php:27 ../templates/editslideshow-sidebar.php:118
+#: ../templates/editslideshow-sidebar.php:171
+#: ../templates/editslideshow-sidebar.php:232
 msgid "Enable"
 msgstr ""
 
-#: ../templates/editsettings.php:30 ../templates/editslideshow-sidebar.php:115
-#: ../templates/editslideshow-sidebar.php:168
-#: ../templates/editslideshow-sidebar.php:229
+#: ../templates/editsettings.php:30 ../templates/editslideshow-sidebar.php:121
+#: ../templates/editslideshow-sidebar.php:174
+#: ../templates/editslideshow-sidebar.php:235
 msgid "Disable"
 msgstr ""
 
@@ -381,175 +387,179 @@ msgstr ""
 msgid "Easing Slider, Go Pro!"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:13
+#: ../templates/editslideshow-sidebar.php:10
+msgid "Rocket Galleries for WordPress"
+msgstr ""
+
+#: ../templates/editslideshow-sidebar.php:19
 msgid "Manage Slides"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:17
+#: ../templates/editslideshow-sidebar.php:23
 msgid "Add Images"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:18
+#: ../templates/editslideshow-sidebar.php:24
 msgid "Delete Images"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:24
+#: ../templates/editslideshow-sidebar.php:30
 msgid "Randomize the slideshow order."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:35
+#: ../templates/editslideshow-sidebar.php:41
 msgid "Dimensions"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:41
+#: ../templates/editslideshow-sidebar.php:47
 msgid "Width:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:47
+#: ../templates/editslideshow-sidebar.php:53
 msgid "Height:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:51
+#: ../templates/editslideshow-sidebar.php:57
 msgid "Slideshow \"width\" and \"height\" values (in pixels)."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:58
+#: ../templates/editslideshow-sidebar.php:64
 msgid "Make this slideshow responsive."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:61
+#: ../templates/editslideshow-sidebar.php:67
 msgid ""
 "Check this option to make this slideshow responsive. If enabled, the \"width"
 "\" and \"height\" values above will act as maximums."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:71
+#: ../templates/editslideshow-sidebar.php:77
 msgid "Transitions"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:77
+#: ../templates/editslideshow-sidebar.php:83
 msgid "Effect:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:79
+#: ../templates/editslideshow-sidebar.php:85
 msgid "Slide"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:80
+#: ../templates/editslideshow-sidebar.php:86
 msgid "Fade"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:84
+#: ../templates/editslideshow-sidebar.php:90
 msgid "Choose the transition effect you would like to use."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:90
+#: ../templates/editslideshow-sidebar.php:96
 msgid "Duration:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:94
+#: ../templates/editslideshow-sidebar.php:100
 msgid "Sets the duration (in milliseconds) for the slideshow transition."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:109
+#: ../templates/editslideshow-sidebar.php:115
 msgid "Arrows:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:119
+#: ../templates/editslideshow-sidebar.php:125
 msgid "Toggles the next and previous slide arrows."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:124
-#: ../templates/editslideshow-sidebar.php:177
+#: ../templates/editslideshow-sidebar.php:130
+#: ../templates/editslideshow-sidebar.php:183
 msgid "On Hover:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:134
+#: ../templates/editslideshow-sidebar.php:140
 msgid ""
 "Set to \"True\" to only show the arrows when the user hovers over the "
 "slideshow."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:140
-#: ../templates/editslideshow-sidebar.php:193
+#: ../templates/editslideshow-sidebar.php:146
+#: ../templates/editslideshow-sidebar.php:199
 msgid "Position:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:142
-#: ../templates/editslideshow-sidebar.php:195
+#: ../templates/editslideshow-sidebar.php:148
+#: ../templates/editslideshow-sidebar.php:201
 msgid "Inside"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:143
-#: ../templates/editslideshow-sidebar.php:196
+#: ../templates/editslideshow-sidebar.php:149
+#: ../templates/editslideshow-sidebar.php:202
 msgid "Outside"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:147
+#: ../templates/editslideshow-sidebar.php:153
 msgid "Select a position for the arrows."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:162
+#: ../templates/editslideshow-sidebar.php:168
 msgid "Pagination:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:172
+#: ../templates/editslideshow-sidebar.php:178
 msgid ""
 "Enable/Disable the Pagination Icons. Each icon represents a slide in their "
 "respective order."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:187
+#: ../templates/editslideshow-sidebar.php:193
 msgid ""
 "Set to \"True\" to only show the pagination when the user hovers over the "
 "slideshow."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:199
+#: ../templates/editslideshow-sidebar.php:205
 msgid "Top Left"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:200
+#: ../templates/editslideshow-sidebar.php:206
 msgid "Top Right"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:201
+#: ../templates/editslideshow-sidebar.php:207
 msgid "Top Center"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:202
+#: ../templates/editslideshow-sidebar.php:208
 msgid "Bottom Left"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:203
+#: ../templates/editslideshow-sidebar.php:209
 msgid "Bottom Right"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:204
+#: ../templates/editslideshow-sidebar.php:210
 msgid "Bottom Center"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:208
+#: ../templates/editslideshow-sidebar.php:214
 msgid "Select a position for the pagination icons."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:218
+#: ../templates/editslideshow-sidebar.php:224
 msgid "Automatic Playback"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:223
+#: ../templates/editslideshow-sidebar.php:229
 msgid "Playback:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:233
+#: ../templates/editslideshow-sidebar.php:239
 msgid "Enable/Disable slideshow automatic playback."
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:239
+#: ../templates/editslideshow-sidebar.php:245
 msgid "Pause Duration:"
 msgstr ""
 
-#: ../templates/editslideshow-sidebar.php:243
+#: ../templates/editslideshow-sidebar.php:249
 msgid ""
 "Sets the duration (in milliseconds) for the pause between slide transitions."
 msgstr ""
@@ -632,7 +642,7 @@ msgstr ""
 msgid "Support Forums"
 msgstr ""
 
-#: ../templates/editslideshow.php:38
+#: ../templates/editslideshow.php:62
 msgid "Save Slideshow"
 msgstr ""
 
