@@ -32,7 +32,7 @@ class ESL_Widget extends WP_Widget {
         extract( $args );
 
         /** Get widget title */
-        $title = apply_filters( 'widgets_title', $instance['title'] );
+        $title = apply_filters( 'widget_title', $instance['title'] );
 
         /** Display widget header */
         echo $before_widget;
