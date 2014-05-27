@@ -318,3 +318,7 @@ textarea.success {
 .easingsliderlite-updated-admin .customize-container {
     background-image: none !important;
 }
+
+.easingsliderlite-updated-admin .wp-media-buttons span.wp-media-buttons-icon {
+    margin-top: 1px;
+}

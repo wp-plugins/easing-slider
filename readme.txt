@@ -4,13 +4,13 @@ Contributors: MatthewRuddy
 Tags: slideshow, slider, slides, slide, gallery, images, image, responsive, mobile, jquery, javascript, featured, content
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 2.1.4.1
+Stable tag: 2.1.4.2
 
-Easing Slider "Lite" is an easy to use slideshow plugin. Simple and lightweight, built with native WordPress functionality.
+Easing Slider "Lite" is an easy to use slider plugin. Simple and lightweight, built with native WordPress functionality.
 
 == Description ==
 
-Easing Slider "Lite" is an extremely easy to use slideshow plugin for WordPress. It is built to be lightweight and simple, with absolutely no bloat. It comes with many great features, some of which include:
+Easing Slider "Lite" is an extremely easy to use slider plugin for WordPress. It is built to be lightweight and simple, with absolutely no bloat. It comes with many great features, some of which include:
 
 * Fully responsive & mobile ready
 * Lightweight, weighing just 16kb minified including styling
@@ -22,26 +22,26 @@ Easing Slider "Lite" is an extremely easy to use slideshow plugin for WordPress.
 * Developer friendly with built-in Javascript events
 * Lots of actions & filters for custom functionality
 
-<a href="http://easingslider.com/">Looking for more features? Get the full "Pro" version here.</a>
+<a href="http://easingslider.com/upgrade-to-pro">Need more sliders? Looking for more features? Upgrade Easing Slider "Pro" here.</a>
 
-Throughly tested on iPhone, iPad and multiple Android devices, Easing Slider "Lite" is the perfect solution for mobile slideshows. We've used CSS3 transitions to ensure ultra smooth transitions on all devices. The codebase is also extremely light (just 16kb), which is perfect for those concerned about page loading times.
+Throughly tested on iPhone, iPad and multiple Android devices, Easing Slider "Lite" is the perfect solution for mobile sliders. We've used CSS3 transitions to ensure ultra smooth transitions on all devices. The codebase is also extremely light (just 16kb), which is perfect for those concerned about page loading times.
 
-We've also integrated the new WordPress Media Library workflow to provide a better media management experience. Bulk uploading images to your slideshow is now easy, requiring just a few clicks.
+We've also integrated the new WordPress Media Library workflow to provide a better media management experience. Bulk uploading images to your slider is now easy, requiring just a few clicks.
 
 Last but not least, we've left plenty of opportunity for custom plugin modifications using the WordPress Action & Filter APIs. You can completely create your own external functionality, or modify the plugin to integrate perfectly with your current theme. Awesome!
 
 == Installation ==
 
-= Display a slideshow =
-To display the slideshow, you can use any of the following methods.
+= Display a slider =
+To display the slider, you can use any of the following methods.
 
 **In a post/page:**
-Simply insert the shortcode below into the post/page to display the slideshow:
+Simply insert the shortcode below into the post/page to display the slider:
 
 `[easingsliderlite]`
 
 **Function in template files (via php):**
-To insert the slideshow into your theme, add the following code to the appropriate theme file:
+To insert the slider into your theme, add the following code to the appropriate theme file:
 
 `<?php if ( function_exists( "easingsliderlite" ) ) { easingsliderlite(); } ?>`
 
@@ -53,29 +53,34 @@ Don't sweat! Simply navigate to the <strong>"Edit Slideshow"</strong> admin pane
 
 <a href="http://cl.ly/1V0V411I1V09">Upgrading from v1.x</a>
 
-= My slideshow continually loads. What's wrong? =
+= My slider continually loads. What's wrong? =
 
 This can often be caused by a jQuery conflict. Many plugins don't load jQuery correctly and as a result break the plugins that do.
 
 Firstly, disable all of the other plugins you have activated (or as many as you can). If the issue persists, with just Easing Slider "Lite" active, it is more than likely a conflict with the theme.
 
-If the slideshow works when it is the only plugin active, you're experiencing a plugin conflict. Carefully enable each plugin, one-by-one, checking the slideshow each time. Keep doing this until you activate the plugin that breaks the slideshow.
+If the slider works when it is the only plugin active, you're experiencing a plugin conflict. Carefully enable each plugin, one-by-one, checking the slider each time. Keep doing this until you activate the plugin that breaks the slider.
 
 After you've taken these two steps, make a support topic and we will get back to you as soon as you can. Otherwise, feel free to contact the developer(s) of the conflict plugin/theme also. They should also be able to provide you with assistance.
 
 = How do I edit a slide's settings? =
 
-This is easy. When viewing the <strong>"Edit Slideshow"</strong> Easing Slider "Lite" admin panel, you should be able to see your slideshow images. To edit the settings of an individual slide, simply click it and its settings will appear in a modal window. Simple!
+This is easy. When viewing the <strong>"Edit Slideshow"</strong> Easing Slider "Lite" admin panel, you should be able to see your slider images. To edit the settings of an individual slide, simply click it and its settings will appear in a modal window. Simple!
 
 == Screenshots ==
 
-1. The integrated Media Uploader. Use it to add images to your slideshows one at a time, or in bulk.
-2. "Edit Slideshow" panel. Set your various slideshow settings here.
+1. The integrated Media Uploader. Use it to add images to your sliders one at a time, or in bulk.
+2. "Edit Slideshow" panel. Set your various slider settings here.
 3. "Settings" panel. Options for script & style loading, and image resizing features.
-4. The slideshow, in all its glory! Nice and clean, but easy to re-style if needed.
+4. The slider, in all its glory! Nice and clean, but easy to re-style if needed.
 5. Simply click a slide to edit its individual settings. This is the panel you will see.
 
 == Changelog ==
+
+= 2.1.4.2 =
+* Fixed widget title filter bug.
+* Fixed admin menu button icon CSS margin.
+* Updated adverts to reflect site changes.
 
 = 2.1.4.1 =
 * Added dashicon to top-level menu.
@@ -108,7 +113,7 @@ This is easy. When viewing the <strong>"Edit Slideshow"</strong> Easing Slider "
 * Improved admin notices functionality: now using WordPress native hooks.
 
 = 2.1 =
-* Added "Customize" panel which allows you to make basic slideshow styling alterations using a new visual editor.
+* Added "Customize" panel which allows you to make basic slider styling alterations using a new visual editor.
 * Reconfigured preloading functionality to fix a bug.
 * Added title attribute functionality to images.
 * Re-added functionality for script and style registration, making them easier enqueue.
@@ -146,7 +151,7 @@ This is easy. When viewing the <strong>"Edit Slideshow"</strong> Easing Slider "
 
 = 1.1.9 =
 * Fixed: Plugin inconsistancies and Javascript mistakes.
-* Changed: Plugin now only deletes slideshow when uninstalled (rather than de-activated).
+* Changed: Plugin now only deletes slider when uninstalled (rather than de-activated).
 
 = 1.1.8 =
 * Fixed: IE9 issues. Slider is now fully functional in IE9.

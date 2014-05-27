@@ -1,7 +1,7 @@
 <?php if ( !apply_filters( 'easingsliderlite_hide_advert', __return_false() ) ) : ?>
 <div style="margin-bottom: 15px;">
-    <a href="http://easingslider.com/" target="_blank">
-        <img src="<?php echo plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'banner-easingsliderpro.png'; ?>" width="285" height="100" alt="<?php _e( 'Easing Slider, Go Pro!', 'easingsliderlite' ); ?>" />
+    <a href="http://easingslider.com/upgrade-to-pro" target="_blank">
+        <img src="<?php echo plugins_url( dirname( plugin_basename( EasingSliderLite::get_file() ) ) ) . DIRECTORY_SEPARATOR .'images'. DIRECTORY_SEPARATOR .'banner-easingsliderpro.png'; ?>" width="285" height="100" alt="<?php _e( 'Need more slideshow? Click here.', 'easingsliderlite' ); ?>" />
     </a>
 </div>
 
@@ -20,8 +20,8 @@
     </div>
     <div class="sidebar-content widgets-sortables clearfix">
         <div class="hide-if-no-js manage-slides-buttons wp-media-buttons" style="margin-top: 1em;">
-            <a href="#" id="add-image" class="button button-secondary add-image" data-editor="content" title="<?php _e( 'Add Images', 'easingsliderlite' ); ?>"><span class="wp-media-buttons-icon"></span> <?php _e( 'Add Images', 'easingsliderlite' ); ?></a>
-            <a href="#" id="delete-images" class="button button-secondary delete-images" title="<?php _e( 'Delete Images', 'easingsliderlite' ); ?>"><span class="wp-media-buttons-icon"></span> <?php _e( 'Delete Images', 'easingsliderlite' ); ?></a>
+            <a href="#" id="add-image" class="button button-secondary add-image" data-editor="content" title="<?php _e( 'Add Images', 'easingsliderlite' ); ?>"><span class="wp-media-buttons-icon" style="margin-top: 1px;"></span> <?php _e( 'Add Images', 'easingsliderlite' ); ?></a>
+            <a href="#" id="delete-images" class="button button-secondary delete-images" title="<?php _e( 'Delete Images', 'easingsliderlite' ); ?>"><span class="wp-media-buttons-icon" style="margin-top: 1px;"></span> <?php _e( 'Delete Images', 'easingsliderlite' ); ?></a>
             <?php do_action( 'easingsliderlite_manage_slides_buttons', $s ); ?>
         </div>
         <div class="field">
