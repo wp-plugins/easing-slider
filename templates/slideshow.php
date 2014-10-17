@@ -4,7 +4,7 @@
     $slideshow = $s = EasingSliderLite::get_instance()->validate( get_option( 'easingsliderlite_slideshow' ) );
 
     /** Get customizations */
-    $customizations = $c = json_decode( get_option( 'easingsliderlite_customizations' ) );
+    $customizations = $c = get_option( 'easingsliderlite_customizations' );
 
     /** Bail if we failed to retrieve the slideshow */
     if ( $s === false ) {

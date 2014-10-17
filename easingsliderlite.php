@@ -3,7 +3,7 @@
 /*
     Plugin Name: Easing Slider "Lite"
     Plugin URI: http://easingslider.com/
-    Version: 2.1.4.2
+    Version: 2.1.4.3
     Author: Matthew Ruddy
     Author URI: http://matthewruddy.com/
     Description: Easing Slider "Lite" is an easy to use slideshow plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get going without any fuss.
@@ -60,7 +60,7 @@ class EasingSliderLite {
      *
      * @since 2.0
      */
-    public static $version = '2.1.4.2';
+    public static $version = '2.1.4.3';
 
     /**
      * Our array of Easing Slider "Lite" admin pages. These are used to conditionally load scripts.
@@ -296,7 +296,7 @@ class EasingSliderLite {
         /** Add "wp_options" table options */
         add_option( 'easingsliderlite_version', self::$version );
         add_option( 'easingsliderlite_slideshow', $this->slideshow_defaults() );
-        add_option( 'easingsliderlite_customizations', json_encode( $this->customization_defaults() ) );
+        add_option( 'easingsliderlite_customizations', $this->customization_defaults() );
         add_option( 'easingsliderlite_settings',
             array(
                 'resizing' => false,
@@ -772,12 +772,12 @@ class EasingSliderLite {
 
             /** Save the customizations */
             update_option( 'easingsliderlite_customizations',
-                json_encode( EasingSliderLite::get_instance()->validate( (object) array(
+                EasingSliderLite::get_instance()->validate( (object) array(
                     'arrows' => (object) $_POST['arrows'],
                     'pagination' => (object) $_POST['pagination'],
                     'border' => (object) $_POST['border'],
                     'shadow' => (object) $_POST['shadow']
-                ) ) )
+                ) )
             );
 
         }

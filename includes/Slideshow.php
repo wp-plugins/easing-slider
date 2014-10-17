@@ -63,7 +63,7 @@ class ESL_Slideshow {
     public static function print_custom_styles() {
 
         /** Get the customizations & defaults */
-        $customizations = $c = json_decode( get_option( 'easingsliderlite_customizations' ) );
+        $customizations = $c = get_option( 'easingsliderlite_customizations' );
         $defaults = EasingSliderLite::get_instance()->customization_defaults();
 
         /** Bail if there are no customizations */

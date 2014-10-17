@@ -36,6 +36,10 @@ class ESL_Upgrade {
         if ( version_compare( $version, '2.1', '<' ) )
             self::do_210_upgrade();
 
+        /** Upgrade to v2.1.4.3 */
+        if ( version_compare( $version, '2.1.4.3', '<' ) )
+            self::do_2143_upgrade();
+
         /** Custom hooks */
         do_action( 'easingsliderlite_upgrades', EasingSliderLite::$version, $version );
 
@@ -101,11 +105,36 @@ class ESL_Upgrade {
         global $wp_roles;
 
         /** Add the customizations database option */
-        add_option( 'easingsliderlite_customizations', json_encode( EasingSliderLite::get_instance()->customization_defaults() ) );
+        add_option( 'easingsliderlite_customizations', EasingSliderLite::get_instance()->customization_defaults() );
         
         /** Add the customization panel capability */
         foreach ( $wp_roles->roles as $role => $info )
             EasingSliderLite::get_instance()->add_capability( 'easingsliderlite_can_customize', get_role( $role ) );
+
+    }
+
+    /**
+     * Does 2.1.4.3 plugin upgrade
+     *
+     * @since 2.1.4.3
+     */
+    public static final function do_2143_upgrade() {
+
+        /**
+         * This fixes issues with JSON encoding of customization options.
+         * We've decided not to JSON encode them anymore, so let's make ammends.
+         */
+        $customizations = get_option( 'easingsliderlite_customizations' );
+
+        $decoded_json = @json_decode( $customizations );
+
+        // Bail if the settings are already converted to an object
+        if ( ! $decoded_json && is_object( $customizations ) ) {
+            return;
+        }
+
+        // Save the decoded customizations
+        update_option( 'easingsliderlite_customizations', $decoded_json );
 
     }
 

@@ -4,7 +4,7 @@
     $slideshow = $s = EasingSliderLite::get_instance()->validate( get_option( 'easingsliderlite_slideshow' ) );
 
     /** Get current customization settings */
-    $customizations = $c = json_decode( get_option( 'easingsliderlite_customizations' ) );
+    $customizations = $c = get_option( 'easingsliderlite_customizations' );
 
     /** Load required extra scripts and styling */
     wp_enqueue_script( 'customize-controls' );
