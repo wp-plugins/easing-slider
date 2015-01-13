@@ -147,7 +147,7 @@ class ES_Welcome_Pages {
 			return;
 		}
 
-		// Delete the transient
+		// Delete the redirect transient
 		delete_transient( '_easingslider_welcome_redirect' );
 
 		// Get the previous plugin version from database
