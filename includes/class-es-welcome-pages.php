@@ -142,13 +142,13 @@ class ES_Welcome_Pages {
 			return;
 		}
 
+		// Delete the redirect transient
+		delete_transient( '_easingslider_welcome_redirect' );
+
 		// Bail if activating from network, or bulk.
 		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
 			return;
 		}
-
-		// Delete the redirect transient
-		delete_transient( '_easingslider_welcome_redirect' );
 
 		// Get the previous plugin version from database
 		$version = get_option( 'easingslider_version' );
