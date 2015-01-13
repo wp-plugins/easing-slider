@@ -24,7 +24,7 @@ Easing Slider is an extremely easy to use slider plugin for WordPress. It is bui
 
 <a href="http://easingslider.com/extensions">Easing Slider has many great extensions that can vastly enhance the plugin's functionality. Click here for more.</a>
 
-Throughly tested on iPhone, iPad and multiple Android devices, Easing Slider is the perfect solution for mobile sliders. We've used CSS3 animation to ensure ultra smooth transitions on supported devices, with graceful fallbacks for older browsers. The scripts and styling are also extremely light (just 16kb), which is perfect for those concerned about page loading times.
+Throughly tested on iPhone, iPad and multiple Android devices, Easing Slider is the perfect solution for mobile sliders. We've used CSS3 animation to ensure ultra smooth transitions on supported devices, with graceful fallbacks for older browsers.
 
 We've also integrated the new WordPress Media Library workflow to provide a better media management experience. Similar to the Media Library, the learning curve and minimal and the admin interface feels instantly recognisable. Bulk uploading images to your slider is now easy, requiring just a few clicks.
 
