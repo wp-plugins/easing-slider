@@ -3,7 +3,7 @@
 /*
 	Plugin Name: Easing Slider
 	Plugin URI: http://easingslider.com/
-	Version: 2.2.0.2
+	Version: 2.2.0.3
 	Author: Matthew Ruddy
 	Author URI: http://matthewruddy.com/
 	Description: Easing Slider is an easy to use slider plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get creating sliders without any difficulty.
@@ -53,7 +53,7 @@ class Easing_Slider {
 	 *
 	 * @var string
 	 */
-	public static $version = '2.2.0.2';
+	public static $version = '2.2.0.3';
 
 	/**
 	 * Constructor
@@ -135,8 +135,8 @@ class Easing_Slider {
 		if ( $settings->remove_data ) {
 
 			// Delete all of the sliders
-			foreach ( self::all() as $slider ) {
-				self::delete( $slider->ID );
+			foreach ( ES_Slider::all() as $slider ) {
+				ES_Slider::delete( $slider->ID );
 			}
 
 			// Delete options
@@ -381,82 +381,6 @@ class Easing_Slider {
 
 		}
 
-	}
-	
-	/**
-	 * Forwards all set variables to our "ES_Slider" class.
-	 *
-	 * This allows us to use this class as a nicely named alias for "ES_Slider", whilst
-	 * separating our concerns.
-	 *
-	 * @param  string $name  The variable name
-	 * @param  mixed  $value The variable value
-	 * @return mixed
-	 */
-	public function __set( $name, $value ) {
-
-		if ( ! isset( $this->slider ) OR ! $this->slider instanceof ES_Slider ) {
-			$this->slider = new ES_Slider();
-		}
-
-		$this->slider->$name = $value;
-
-	}
-	
-	/**
-	 * Forwards all get variables to our "ES_Slider" class.
-	 *
-	 * @param  string $name The variable name
-	 * @return mixed
-	 */
-	public function __get( $name ) {
-
-		if ( ! isset( $this->slider ) OR ! $this->slider instanceof ES_Slider ) {
-			$this->slider = new ES_Slider();
-		}
-
-		if ( isset( $this->slider->$name ) ) {
-			return $this->slider->$name;
-		}
-
-	}
-
-	/**
-	 * Forwards all other method calls to our "ES_Slider" class.
-	 *
-	 * @param  string $name      The method name
-	 * @param  array  $arguments The array of method arguments
-	 * @return mixed
-	 */
-	public function __call( $name, $arguments ) {
-
-		if ( ! isset( $this->slider ) OR ! $this->slider instanceof ES_Slider ) {
-			$this->slider = new ES_Slider();
-		}
-
-		// Check if the method exists. If so, execute it.
-		if ( method_exists( $this->slider, $name ) ) {
-			return call_user_func_array( array( $this->slider, $name ), $arguments );
-		}
-
-	}
-
-	/**
-	 * Forwards all other static method calls to our "ES_Slider" class.
-	 *
-	 * @param  string $name      The method name
-	 * @param  array  $arguments The array of method arguments
-	 * @return mixed
-	 */
-	public static function __callStatic( $name, $arguments ) {
-
-		$static = new ES_Slider();
-
-		// Check if the method exists. If so, execute it.
-		if ( method_exists( $static, $name ) ) {
-			return call_user_func_array( array( $static, $name ), $arguments );
-		}
-		
 	}
 
 }
