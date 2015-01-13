@@ -3,7 +3,7 @@
 /*
 	Plugin Name: Easing Slider
 	Plugin URI: http://easingslider.com/
-	Version: 2.2.0.1
+	Version: 2.2.0.2
 	Author: Matthew Ruddy
 	Author URI: http://matthewruddy.com/
 	Description: Easing Slider is an easy to use slider plugin for WordPress. Simple, lightweight & designed to get the job done, it allows you to get creating sliders without any difficulty.
@@ -53,7 +53,7 @@ class Easing_Slider {
 	 *
 	 * @var string
 	 */
-	public static $version = '2.2.0.1';
+	public static $version = '2.2.0.2';
 
 	/**
 	 * Constructor
@@ -282,10 +282,10 @@ class Easing_Slider {
 		add_action(    'delete_attachment',                    array( $image_resizer,     'delete_resized_attachments' ) );
 		add_filter(    'easingslider_modify_image_url',        array( $image_resizer,     'resized_image_url' ), 10, 3 );
 
-		add_action(    'init',                                 array( $legacy,            'lite_upgrade_from_100' ) );
-		add_action(    'init',                                 array( $legacy,            'lite_upgrade_from_200' ) );
-		add_action(    'init',                                 array( $legacy,            'pro_upgrade_from_100' ) );
-		add_action(    'init',                                 array( $legacy,            'pro_upgrade_from_200' ) );
+		add_action(    'init',                                 array( $legacy,            'lite_upgrade_from_200' ), 1 );
+		add_action(    'init',                                 array( $legacy,            'lite_upgrade_from_100' ), 2 );
+		add_action(    'init',                                 array( $legacy,            'pro_upgrade_from_200' ), 1 );
+		add_action(    'init',                                 array( $legacy,            'pro_upgrade_from_100' ), 2 );
 		add_action(    'easingslider_remove_data',             array( $legacy,            'remove_options' ) );
 		add_action(    'easingslider_delete_slider',           array( $legacy,            'delete_lite_slider' ) );
 		add_action(    'easingslider_delete_slider',           array( $legacy,            'delete_pro_slider' ) );
@@ -358,11 +358,11 @@ class Easing_Slider {
 			 * Define hooks
 			 */
 			add_filter( 'easingslider_metadata_defaults',     array( $customizations,    'merge_defaults' ) );
-			add_filter( 'easingslider_after_display_slider',  array( $customizations,    'drop_shadow' ),      10, 2 );
-			add_filter( 'easingslider_before_display_slider', array( $customizations,    'display_styling' ),  10, 2 );
+			add_filter( 'easingslider_after_display_slider',  array( $customizations,    'drop_shadow' ), 10, 2 );
+			add_filter( 'easingslider_before_display_slider', array( $customizations,    'display_styling' ), 10, 2 );
 
-			add_action( 'init',                               array( $customizer_legacy, 'lite_upgrade_from_100' ) );
-			add_action( 'init',                               array( $customizer_legacy, 'lite_upgrade_from_200' ) );
+			add_action( 'init',                               array( $customizer_legacy, 'lite_upgrade_from_200' ), 1 );
+			add_action( 'init',                               array( $customizer_legacy, 'lite_upgrade_from_100' ), 2 );
 			add_action( 'init',                               array( $customizer_legacy, 'pro_upgrade_from_200' ) );
 			add_action( 'easingslider_remove_data',           array( $customizer_legacy, 'remove_options' ) );
 
