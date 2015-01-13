@@ -135,8 +135,8 @@ class Easing_Slider {
 		if ( $settings->remove_data ) {
 
 			// Delete all of the sliders
-			foreach ( static::all() as $slider ) {
-				static::delete( $slider->ID );
+			foreach ( self::all() as $slider ) {
+				self::delete( $slider->ID );
 			}
 
 			// Delete options
