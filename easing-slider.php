@@ -320,6 +320,7 @@ class Easing_Slider {
 		add_filter(    'easingslider_after_display_slide',     array( $slider,            'close_link' ), 10, 3 );
 
 		add_action(    'admin_init',                           array( $welcome_pages,     'register_assets' ) );
+		add_action(    'admin_init',                           array( $welcome_pages,     'iframe_redirect' ) );
 		add_action(    'admin_init',                           array( $welcome_pages,     'redirect_to_welcome' ) );
 		add_action(    'admin_menu',                           array( $welcome_pages,     'add_dashboard_pages' ) );
 		add_action(    'admin_head',                           array( $welcome_pages,     'hide_individual_pages' ) );
