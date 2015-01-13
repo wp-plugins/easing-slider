@@ -131,63 +131,6 @@ class ES_Welcome_Pages {
 	}
 
 	/**
-	 * Handles redirecting to the welcome page after an update from within the activation iframe
-	 *
-	 * @return void
-	 */
-	public function iframe_redirect() {
-
-		global $pagenow;
-
-		// Check for an iframe request
-		if ( ! defined( 'IFRAME_REQUEST' ) ) {
-			return;
-		}
-
-		// Bail if we have no action
-		if ( ! isset( $_GET['action'] ) ) {
-			return;
-		}
-
-		// Bail if activating from network, or bulk.
-		if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
-			return;
-		}
-
-		// Redirect if we are on the update page and have activated the plugin
-		if ( 'update.php' == $pagenow && 'activate-plugin' == $_GET['action'] ) {
-
-			// Bail if we have no transient
-			if ( ! get_transient( '_easingslider_welcome_redirect' ) ) {
-				return;
-			}
-
-			// Delete the redirect transient
-			delete_transient( '_easingslider_welcome_redirect' );
-
-			// Get appropriate redirect URL
-			if ( version_compare( $version, Easing_Slider::$version, '=' ) ) {
-				$redirect_url = admin_url( 'index.php?page=easingslider-getting-started' );
-			}
-			else {
-				$redirect_url = admin_url( 'index.php?page=easingslider-about' );
-			}
-
-			// Redirect with Javascript
-			?>
-				<script type="text/javascript">
-					window.top.location.href = "<?php echo esc_attr( $url ); ?>";
-				</script>
-			<?php
-
-			// Exit
-			exit();
-
-		}
-
-	}
-
-	/**
 	 * Redirects the user to the welcome page if welcome transient exits
 	 *
 	 * @return void
