@@ -151,16 +151,15 @@ class ES_Editor_Pages {
 		) );
 
 		// Load our localizations
-		wp_localize_script( 'easingslider-editor-pages', '_easingsliderAdminL10n', array(
+		wp_localize_script( 'easingslider-editor-pages', '_easingsliderEditorL10n', array(
 			'warn'          => __( 'Are you sure you wish to do this? This cannot be reversed.', 'easingslider' ),
 			'plugin_url'    => '/wp-content/plugins/'. dirname( plugin_basename( __FILE__ ) ) .'/',
 			'delete_slide'  => __( 'Are you sure you wish to delete this slide? This cannot be reversed.', 'easingslider' ),
 			'delete_slides' => __( 'Are you sure you wish to delete all of this slider\'s images? This cannot be reversed.', 'easingslider' ),
 			'media_upload'  => array(
-				'title'           => __( 'Add Images to Slider', 'easingslider' ),
-				'button'          => __( 'Insert into slider', 'easingslider' ),
-				'change'          => __( 'Use this image', 'easingslider' ),
-				'discard_changes' => __( 'Are you sure you wish to discard changes?', 'easingslider' )
+				'title'              => __( 'Edit Slide', 'easingslider' ),
+				'image_from_media'   => __( 'Image from Media', 'easingslider' ),
+				'insert_into_slider' => __( 'Insert into Slider', 'easingslider' )
 			)
 		) );
 
@@ -296,8 +295,11 @@ class ES_Editor_Pages {
 				return;
 			}
 
+			// Get and validate the ID, protecting against XSS attacks
+			$id = esc_attr( $_GET['edit'] );
+
 			// Get our slider
-			$slider = ES_Slider::find( $_GET['edit'] );
+			$slider = ES_Slider::find( $id );
 
 			// Update attributes
 			$slider->set( $this->get_form_fields() );
@@ -368,8 +370,11 @@ class ES_Editor_Pages {
 		// Show the appropriate view
 		if ( isset( $_GET['edit'] ) ) {
 
+			// Get and validate the ID, protecting against XSS attacks
+			$id = esc_attr( $_GET['edit'] );
+
 			// Get the slider by its ID
-			$slider = ES_Slider::find( $_GET['edit'] );
+			$slider = ES_Slider::find( $id );
 
 			// Display the editor
 			require plugin_dir_path( dirname( __FILE__ ) ) . 'partials/edit-slider.php';

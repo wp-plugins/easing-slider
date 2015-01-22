@@ -1,459 +1,493 @@
 ;(function($) {
 
-    /**
-     * jQuery Slider
-     */
-    $.EasingSlider = function(el) {
+	/**
+	 * jQuery Slider
+	 */
+	$.EasingSlider = function(el) {
+
+		// Core variables
+		var base = this,
+			o;
+
+		// Establish our elements
+		base.el          = el;
+		base.$el         = $(base.el);
+		base.$slides     = base.$el.find('.easingslider-slide');
+		base.$arrows     = base.$el.find('.easingslider-arrows');
+		base.$next       = base.$el.find('.easingslider-next');
+		base.$prev       = base.$el.find('.easingslider-prev');
+		base.$pagination = base.$el.find('.easingslider-pagination');
+		base.$icons      = base.$el.find('.easingslider-icon');
+		base.$preload    = base.$el.find('.easingslider-preload');
 
-        // Core variables
-        var base = this,
-            o;
+		// Get the plugin options
+		base.options = o = $.extend({}, $.EasingSlider.defaults, $.parseJSON(base.$el.attr('data-options')));
 
-        // Establish our elements
-        base.el          = el;
-        base.$el         = $(base.el);
-        base.$slides     = base.$el.find('.easingslider-slide');
-        base.$arrows     = base.$el.find('.easingslider-arrows');
-        base.$next       = base.$el.find('.easingslider-next');
-        base.$prev       = base.$el.find('.easingslider-prev');
-        base.$pagination = base.$el.find('.easingslider-pagination');
-        base.$icons      = base.$el.find('.easingslider-icon');
-        base.$preload    = base.$el.find('.easingslider-preload');
+		// State variables
+		base.current  = 0;
+		base.previous = 0;
+		base.count    = base.$slides.length;
+		base.width    = o.dimensions.width;
+		base.height   = o.dimensions.height;
 
-        // Get the plugin options
-        base.options = o = $.extend({}, $.EasingSlider.defaults, $.parseJSON(base.$el.attr('data-options')));
+		// Store our data
+		base.$el.data('easingslider', base);
 
-        // State variables
-        base.current  = 0;
-        base.previous = 0;
-        base.count    = base.$slides.length;
-        base.width    = o.dimensions.width;
-        base.height   = o.dimensions.height;
+		/**
+		 * Constructor
+		 */
+		base.initialize = function() {
 
-        // Store our data
-        base.$el.data('easingslider', base);
+			// Determine click event
+			base._clickEvent = ( 'ontouchstart' in document.documentElement ) ? 'touchstart' : 'click';
 
-        /**
-         * Constructor
-         */
-        base.initialize = function() {
+			// Hide all slides
+			base.$slides.css({ 'display': 'none' });
 
-            // Setup everything!
-            base._setupArrows();
-            base._setupPagination();
-            base._setupPlayback();
+			// Set the current slide
+			base.$slides.eq(base.current).css({ 'display': 'block' }).addClass('active');
 
-            // Display slides
-            base.$slides.css({ 'display': 'inline' });
+			// Setup other components
+			base._setupArrows();
+			base._setupPagination();
+			base._setupPlayback();
 
-            // Set the current slide
-            base.$slides.eq(base.current).addClass('active');
+			// Preload the slider
+			base._preload();
 
-            // Preload the slider
-            base._preload();
+			// Trigger event
+			base.$el.trigger('init', base);
 
-            // Trigger event
-            base.$el.trigger('init', base);
+			return base;
 
-            return base;
+		};
+
+		/**
+		 * Sets up the "Arrow" navigation
+		 */
+		base._setupArrows = function() {
+
+			// Bail if arrows aren't enabled
+			if ( ! o.navigation.arrows ) {
+				return;
+			}
 
-        };
+			// "Next" & "Previous" arrow functionality
+			base.$next.on(base._clickEvent, base.nextSlide);
+			base.$prev.on(base._clickEvent, base.prevSlide);
 
-        /**
-         * Sets up the "Arrow" navigation
-         */
-        base._setupArrows = function() {
+			// Add hover toggle if enabled
+			if ( o.navigation.arrows_hover ) {
+				base.$arrows.addClass('has-hover');
+			}
 
-            // "Next" & "Previous" arrow functionality
-            base.$next.on('click', base.nextSlide);
-            base.$prev.on('click', base.prevSlide);
+			// Show the arrows
+			base.$arrows.css({ 'display': 'block' });
 
-            // Add hover toggle if enabled
-            if ( o.navigation.arrows_hover ) {
-                base.$arrows.addClass('has-hover');
-            }
+			return base;
 
-            // Show the arrows
-            base.$arrows.css({ 'display': 'block' });
+		};
 
-            return base;
+		/**
+		 * Sets up the "Pagination" navigation
+		 */
+		base._setupPagination = function() {
 
-        };
+			// Bail if pagination isn't enabled
+			if ( ! o.navigation.pagination ) {
+				return;
+			}
 
-        /**
-         * Sets up the "Pagination" navigation
-         */
-        base._setupPagination = function() {
+			// Bind events
+			base.$el.on('loaded', base._updatePagination);
+			base.$el.on('transition.before', base._updatePagination);
 
-            // Bind events
-            base.$el.on('load', base._updatePagination);
-            base.$el.on('transition.before', base._updatePagination);
+			// Enable click event for each icon
+			base.$icons.on(base._clickEvent, function() {
 
-            // Enable click event for each icon
-            base.$icons.on('click', function() {
+				// Get the next slide index and direction we are travelling
+				var eq        = $(this).index(),
+					direction = (eq > base.current) ? 'forward' : 'backward';
 
-                // Get the next slide index and direction we are travelling
-                var eq        = $(this).index(),
-                    direction = (eq > base.current) ? 'forward' : 'backward';
+				// Transition to the desired slide
+				base.goToSlide(eq, direction);
 
-                // Transition to the desired slide
-                base.goToSlide(eq, direction);
+			});
 
-            });
+			// Add hover toggle if enabled
+			if ( o.navigation.pagination_hover ) {
+				base.$pagination.addClass('has-hover');
+			}
 
-            // Add hover toggle if enabled
-            if ( o.navigation.pagination_hover ) {
-                base.$pagination.addClass('has-hover');
-            }
+			// Show the pagination
+			base.$pagination.css({ 'display': 'block' });
 
-            // Show the pagination
-            base.$pagination.css({ 'display': 'block' });
+			return base;
 
-            return base;
+		};
 
-        };
+		/**
+		 * Updates the active pagination icon
+		 */
+		base._updatePagination = function() {
 
-        /**
-         * Updates the active pagination icon
-         */
-        base._updatePagination = function() {
+			// Bail if we don't have any pagination
+			if ( ! o.navigation.pagination ) {
+				return base;
+			}
 
-            // Bail if we don't have any pagination
-            if ( ! o.navigation.pagination ) {
-                return base;
-            }
+			// Update the active icon
+			base.$icons.removeClass('active').eq(base.current).addClass('active');
 
-            // Update the active icon
-            base.$icons.removeClass('active').eq(base.current).addClass('active');
+			return base;
 
-            return base;
+		};
 
-        };
+		/**
+		 * Sets up the automatic playback
+		 */
+		base._setupPlayback = function() {
 
-        /**
-         * Sets up the automatic playback
-         */
-        base._setupPlayback = function() {
+			// Pause playback timer before the transition. It'll be reset after the transition has completed.
+			base.$el.on('transition.before', function() {
+				if ( o.playback.enabled ) {
+					base.pausePlayback();
+				}
+			});
 
-            // Pause playback timer before the transition. It'll be reset after the transition has completed.
-            base.$el.on('transition.before', function() {
-                if ( o.playback.enabled ) {
-                    base.pausePlayback();
-                }
-            });
+			// Once a transition has completed, restart playback, if enabled.
+			base.$el.on('transition.after', function() {
+				if ( o.playback.enabled ) {
+					base.startPlayback();
+				}
+			});
 
-            // Once a transition has completed, restart playback, if enabled.
-            base.$el.on('transition.after', function() {
-                if ( o.playback.enabled ) {
-                    base.startPlayback();
-                }
-            });
+			// Queue playback after the slider has loaded, if enabled.
+			if ( o.playback.enabled ) {
+				base.$el.on('loaded', base.startPlayback);
+			}
 
-            // Queue playback after the slider has loaded, if enabled.
-            if ( o.playback.enabled ) {
-                base.$el.on('load', base.startPlayback);
-            }
+			return base;
 
-            return base;
+		};
 
-        };
+		/**
+		 * Preloads the slider
+		 */
+		base._preload = function() {
 
-        /**
-         * Preloads the slider
-         */
-        base._preload = function() {
+			// Preloaded slide count
+			base._preloadCount = 0;
 
-            // Preloaded slide count
-            base._preloadCount = 0;
+			// Loop through and preload each image slide. Doesn't stop on failure, just continues instead.
+			base.$el.find('.easingslider-image').each(function(index, image) {
 
-            // Loop through and preload each image slide. Doesn't stop on failure, just continues instead.
-            base.$el.find('.easingslider-image').each(function(index, image) {
+				/**
+				 * Create a virtual image element. We set its src after event handler is registered.
+				 * We have to do this to prevent IE bugs (it doesn't always fire the onload event if image are loaded (from cache) before the event is bound)
+				 */
+				preloadImage = new Image();
 
-                /**
-                 * Create a virtual image element. We set its src after event handler is registered.
-                 * We have to do this to prevent IE bugs (it doesn't always fire the onload event if image are loaded (from cache) before the event is bound)
-                 */
-                preloadImage = new Image();
+				// Bind preload functions. Still continues if a preload fails
+				preloadImage.onload  = base._load;
+				preloadImage.onerror = base._load;
 
-                // Bind preload functions. Still continues if a preload fails
-                preloadImage.onload  = base._load;
-                preloadImage.onerror = base._load;
+				// Set image src attribute, thus preloading the image
+				preloadImage.src = image.src;
 
-                // Set image src attribute, thus preloading the image
-                preloadImage.src = image.src;
+			});
 
-            });
+		};
 
-        };
+		/**
+		 * Handles slide preloading
+		 */
+		base._load = function() {
 
-        /**
-         * Handles slide preloading
-         */
-        base._load = function() {
+			// Increase preloaded count
+			base._preloadCount++;
 
-            // Increase preloaded count
-            base._preloadCount++;
+			// Get the total number of images
+			var total_images = base.$slides.find('.easingslider-image').length;
 
-            // If all slides have been preloaded, hide the preloader and start the playback.
-            if ( base._preloadCount == base.count ) {
-                base.$preload.animate({ 'opacity': 0 }, {
-                    duration: 400,
-                    complete: function() {
+			// If all slides have been preloaded, hide the preloader and start the playback.
+			if ( base._preloadCount == total_images ) {
+				base.$preload.animate({ 'opacity': 0 }, {
+					duration: 400,
+					complete: function() {
 
-                        // Remove preloader
-                        $(this).remove();
+						// Remove preloader
+						$(this).remove();
 
-                        // Flag as loaded
-                        base.$el.addClass('has-loaded');
+						// Flag as loaded
+						base.$el.addClass('has-loaded');
 
-                        // Trigger events
-                        base.$el.trigger('load', base);
+						// Trigger events
+						base.$el.trigger('loaded', base);
 
-                    }
-                });
-            }
+					}
+				});
+			}
 
-        },
+		},
 
-        /**
-         * Starts automatic playback
-         */
-        base.startPlayback = function() {
+		/**
+		 * Starts automatic playback
+		 */
+		base.startPlayback = function() {
 
-            // Alter the option
-            o.playback.enabled = true;
+			// Alter the option
+			o.playback.enabled = true;
 
-            // Runtime variable
-            base._runtime = new Date();
+			// Runtime variable
+			base._runtime = new Date();
 
-            // Get pause time
-            base._pauseTime = o.playback.pause;
+			// Get pause time
+			base._pauseTime = o.playback.pause;
 
-            // Start automatic playback
-            base._playbackTimer = setTimeout(function() {
-                base.nextSlide();
-            }, base._pauseTime);
+			// Start automatic playback
+			base._playbackTimer = setTimeout(function() {
+				base.nextSlide();
+			}, base._pauseTime);
 
-            // Trigger event
-            base.$el.trigger('playback.start', base);
+			// Trigger event
+			base.$el.trigger('playback.start', base);
 
-            return base;
+			return base;
 
-        };
+		};
 
-        /**
-         * Ends automatic playback
-         */
-        base.endPlayback = function() {
+		/**
+		 * Ends automatic playback
+		 */
+		base.endPlayback = function() {
 
-            // Alter the option
-            o.playback.enabled = false;
+			// Alter the option
+			o.playback.enabled = false;
 
-            // Clear playback timer
-            clearTimeout(base._playbackTimer);
+			// Clear playback timer
+			clearTimeout(base._playbackTimer);
 
-            // Trigger event
-            base.$el.trigger('playback.end', base);
+			// Trigger event
+			base.$el.trigger('playback.end', base);
 
-            return base;
+			return base;
 
-        };
+		};
 
-        /**
-         * Pauses automatic playback
-         */
-        base.pausePlayback = function() {
+		/**
+		 * Pauses automatic playback
+		 */
+		base.pausePlayback = function() {
 
-            // Clear playback timer
-            clearTimeout(base._playbackTimer);
+			// Clear playback timer
+			clearTimeout(base._playbackTimer);
 
-            // Calculate runtime left
-            base._runtime = Math.ceil(new Date() - base._runtime);
+			// Calculate runtime left
+			base._runtime = Math.ceil(new Date() - base._runtime);
 
-            // Trigger event
-            base.$el.trigger('playback.pause', base);
+			// Trigger event
+			base.$el.trigger('playback.pause', base);
 
-            return base;
+			return base;
 
-        };
+		};
 
-        /**
-         * Resumes automatic playback
-         */
-        base.resumePlayback = function() {
+		/**
+		 * Resumes automatic playback
+		 */
+		base.resumePlayback = function() {
 
-            // Calculate playback time remaining
-            base._pauseTime = Math.ceil(base._pauseTime - base._runtime);
+			// Calculate playback time remaining
+			base._pauseTime = Math.ceil(base._pauseTime - base._runtime);
 
-            // Reset runtime
-            base._runtime = new Date();
+			// Reset runtime
+			base._runtime = new Date();
 
-            // Resume automatic playback
-            base._playbackTimer = setTimeout(function() {
-                base.nextSlide();
-            }, base._pauseTime);
+			// Resume automatic playback
+			base._playbackTimer = setTimeout(function() {
+				base.nextSlide();
+			}, base._pauseTime);
 
-            // Trigger event
-            base.$el.trigger('playback.resume', base);
+			// Trigger event
+			base.$el.trigger('playback.resume', base);
 
-            return base;
+			return base;
 
-        };
+		};
 
-        /**
-         * Executes a transition
-         */
-        base._transition = function(eq, direction) {
+		/**
+		 * Executes a transition
+		 */
+		base._transition = function(eq, direction) {
 
-            // Bail if specified slide doesn't exist
-            if ( base.$slides.eq(eq).length == 0 ) {
-                return base;
-            }
+			// Bail if specified slide doesn't exist
+			if ( base.$slides.eq(eq).length == 0 ) {
+				return base;
+			}
 
-            // Bail if animating already
-            if ( base._animating ) {
-                return base;
-            }
+			// Bail if animating already
+			if ( base._animating ) {
+				return base;
+			}
 
-            // Flag that we are transitioning
-            base._animating = true;
+			// Flag that we are transitioning
+			base._animating = true;
 
-            // Establish the next and previous slides
-            base.previous = base.current;
-            base.current  = eq;
+			// Establish the next and previous slides
+			base.previous = base.current;
+			base.current  = eq;
 
-            // Add animation classes based on direction
-            if ( 'backward' == direction ) {
-                base.$slides.eq(base.previous).addClass('next-out');
-                base.$slides.eq(base.current).addClass('prev-in');
-            }
-            else {
-                base.$slides.eq(base.previous).addClass('prev-out');
-                base.$slides.eq(base.current).addClass('next-in');
-            }
+			/**
+			 * Add animation classes based on direction.
+			 *
+			 * Timeout functions are used here to avoid a bug in Safari.
+			 * The animations won't work if we toggle the display property as we add the animation class,
+			 * instead it would intermittently show/hide the slide.
+			 *
+			 * Using a timeout seems to negate this.
+			 */
+			if ( 'backward' == direction ) {
+				base.$slides.eq(base.previous).css({ 'display': 'block' });
+				base.$slides.eq(base.current).css({ 'display': 'block' });
 
-            // After timeout, do some cleaning up.
-            clearTimeout(base._cleanup);
-            base._cleanup = setTimeout(function() {
+				setTimeout(function() {
+					base.$slides.eq(base.previous).addClass('next-out');
+					base.$slides.eq(base.current).addClass('prev-in');
+				});
+			}
+			else {
+				base.$slides.eq(base.previous).css({ 'display': 'block' });
+				base.$slides.eq(base.current).css({ 'display': 'block' });
 
-                // Toggle the active slide
-                base.$slides.eq(base.current).addClass('active');
-                base.$slides.eq(base.previous).removeClass('active');
-                
-                // Remove all animation related classes
-                base.$slides.removeClass('next-in next-out prev-in prev-out');
+				setTimeout(function() {
+					base.$slides.eq(base.previous).addClass('prev-out');
+					base.$slides.eq(base.current).addClass('next-in');
+				});
+			}
 
-                // Flag that we are no longer animating
-                base._animating = false;
+			// After timeout, do some cleaning up.
+			clearTimeout(base._cleanup);
+			base._cleanup = setTimeout(function() {
 
-                // Trigger event
-                base.$el.trigger('transition.after', base, eq, direction);
+				// Toggle the active slide
+				base.$slides.eq(base.current).css({ 'display': 'block' }).addClass('active');
+				base.$slides.eq(base.previous).css({ 'display': 'none' }).removeClass('active');
+				
+				// Remove all animation related classes
+				base.$slides.removeClass('next-in next-out prev-in prev-out');
 
-            }, o.transitions.duration);
+				// Flag that we are no longer animating
+				base._animating = false;
 
-            // Trigger event
-            base.$el.trigger('transition.before', base, eq, direction);
+				// Trigger event
+				base.$el.trigger('transition.after', base, eq, direction);
 
-            return base;
+			}, o.transitions.duration);
 
-        };
+			// Trigger event
+			base.$el.trigger('transition.before', base, eq, direction);
 
-        /**
-         * Transitions to the next slide
-         */
-        base.nextSlide = function() {
+			return base;
 
-            // Establish the next slide
-            var eq = ( base.current == (base.count - 1) ) ? 0 : (base.current + 1);
+		};
 
-            // Transition to the next slide
-            base._transition(eq, 'forward');
+		/**
+		 * Transitions to the next slide
+		 */
+		base.nextSlide = function() {
 
-            // Trigger event
-            base.$el.trigger('transition.next', base, eq, 'forward');
+			// Establish the next slide
+			var eq = ( base.current == (base.count - 1) ) ? 0 : (base.current + 1);
 
-            return base;
+			// Transition to the next slide
+			base._transition(eq, 'forward');
 
-        };
+			// Trigger event
+			base.$el.trigger('transition.next', base, eq, 'forward');
 
-        /**
-         * Transitions to the previous slide
-         */
-        base.prevSlide = function() {
+			return base;
 
-            // Establish the previous slide
-            var eq = ( base.current == 0 ) ? (base.count - 1) : (base.current - 1);
+		};
 
-            // Transition to the previous slide
-            base._transition(eq, 'backward');
+		/**
+		 * Transitions to the previous slide
+		 */
+		base.prevSlide = function() {
 
-            // Trigger event
-            base.$el.trigger('transition.prev', base, eq, 'backward');
+			// Establish the previous slide
+			var eq = ( base.current == 0 ) ? (base.count - 1) : (base.current - 1);
 
-            return base;
+			// Transition to the previous slide
+			base._transition(eq, 'backward');
 
-        };
+			// Trigger event
+			base.$el.trigger('transition.prev', base, eq, 'backward');
 
-        /**
-         * Transitions to a specified slide
-         */
-        base.goToSlide = function(eq, direction) {
+			return base;
 
-            // Transition to the specified slide
-            this._transition(eq, direction);
+		};
 
-            // Trigger event
-            base.$el.trigger('transition.to', base, eq, direction);
+		/**
+		 * Transitions to a specified slide
+		 */
+		base.goToSlide = function(eq, direction) {
 
-            return base;
+			// Transition to the specified slide
+			this._transition(eq, direction);
 
-        };
+			// Trigger event
+			base.$el.trigger('transition.to', base, eq, direction);
 
-        // Initialize the plugin
-        base.initialize();
+			return base;
 
-    };
+		};
 
-    /**
-     * Plugin defaults settings
-     */
-    $.EasingSlider.defaults = {
-        dimensions: {
-            width:               640,
-            height:              400,
-            responsive:          true
-        },
-        transitions: {
-            effect:              'fade',
-            duration:            400
-        },
-        navigation: {
-            arrows:              true,
-            arrows_hover:        true,
-            arrows_position:     'inside',
-            pagination:          true,
-            pagination_hover:    true,
-            pagination_position: 'inside',
-            pagination_location: 'bottom-center'
-        },
-        playback: {
-            enabled:             true,
-            pause:               4000
-        }
-    };
+		// Initialize the plugin
+		base.initialize();
 
-    /**
-     * Initiates slider(s)
-     */
-    $.fn.EasingSlider = function() {
-        return this.each(function() {
-            new $.EasingSlider(this);
-        });
-    };
+	};
 
-    // Let's go!
-    $(document).ready(function() {
-        $('.easingslider').EasingSlider();
-    });
+	/**
+	 * Plugin defaults settings
+	 */
+	$.EasingSlider.defaults = {
+		dimensions: {
+			width:               640,
+			height:              400,
+			responsive:          true
+		},
+		transitions: {
+			effect:              'fade',
+			duration:            400
+		},
+		navigation: {
+			arrows:              true,
+			arrows_hover:        true,
+			arrows_position:     'inside',
+			pagination:          true,
+			pagination_hover:    true,
+			pagination_position: 'inside',
+			pagination_location: 'bottom-center'
+		},
+		playback: {
+			enabled:             true,
+			pause:               4000
+		}
+	};
+
+	/**
+	 * Initiates slider(s)
+	 */
+	$.fn.EasingSlider = function() {
+		return this.each(function() {
+			new $.EasingSlider(this);
+		});
+	};
+
+	// Let's go!
+	$(document).ready(function() {
+		$('.easingslider').EasingSlider();
+	});
 
 })(jQuery);

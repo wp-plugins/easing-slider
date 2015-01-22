@@ -4,7 +4,7 @@ Contributors: MatthewRuddy
 Tags: slideshow, slider, slides, slide, gallery, images, image, responsive, mobile, jquery, javascript, featured, content
 Requires at least: 4.0
 Tested up to: 4.2
-Stable tag: 2.2.0.6
+Stable tag: 2.2.0.7
 
 Easing Slider is an easy to use slider plugin. Simple and lightweight, is makes creating beautiful WordPress sliders a breeze.
 
@@ -72,6 +72,16 @@ This is easy. When editing a slider in the "All Sliders" admin area, simply clic
 7. A preview of a slider. This is how is should appear on your WordPress site (may differ based on your settings).
 
 == Changelog ==
+
+= 2.2.0.7 =
+* General improvements to cater for alternative slide types, such as videos or URL images.
+* Fixed a bug (related to above improvement) that would prevent slider from loading when slide didn't contain an image.
+* Fixed bug causing isolated jQuery errors when attempting to setup navigation elements that were disabled.
+* Transparent PNGs now play nicely.
+* Fixed some $_GET input validation security issues.
+* Improvded support for touch devices.
+* Added post type variable to slider object, allowing future extensions more flexibility.
+* Added support for HiDPI devices.
 
 = 2.2.0.6 =
 * Fixed z-index bug with dropdown menus in multiple themes.
