@@ -158,6 +158,7 @@ class ES_Editor_Pages {
 			'delete_slides' => __( 'Are you sure you wish to delete all of this slider\'s images? This cannot be reversed.', 'easingslider' ),
 			'media_upload'  => array(
 				'title'              => __( 'Edit Slide', 'easingslider' ),
+				'update'             => __( 'Update', 'easingslider' ),
 				'image_from_media'   => __( 'Image from Media', 'easingslider' ),
 				'insert_into_slider' => __( 'Insert into Slider', 'easingslider' )
 			)
@@ -308,7 +309,7 @@ class ES_Editor_Pages {
 			$slider->save();
 
 			// Trigger actions
-			do_action( 'easingslider_save_slider_actions' );
+			do_action( 'easingslider_save_slider_actions', $slider );
 
 			// Tell the user
 			easingslider_show_notice( __( 'Slider has been saved successfully.', 'easingslider' ), 'updated' );
@@ -345,7 +346,7 @@ class ES_Editor_Pages {
 			$slider->save();
 
 			// Trigger actions
-			do_action( 'easingslider_publish_slider_actions' );
+			do_action( 'easingslider_publish_slider_actions', $slider );
 
 			// Redirect to the editor for our new slider
 			wp_redirect( "admin.php?page=easingslider_edit_sliders&edit={$slider->ID}" );

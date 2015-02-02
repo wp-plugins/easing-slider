@@ -93,8 +93,10 @@ class ES_Customizations {
 						$html .= "width: {$customizations->arrows->width}px; ";
 					}
 					if ( $defaults->arrows->height != $customizations->arrows->height ) {
+						$margin_top = ( $customizations->arrows->height / 2 );
+
 						$html .= "height: {$customizations->arrows->height}px; ";
-						$html .= "margin-top: {($customizations->arrows->height / 2)}px; ";
+						$html .= "margin-top: {$margin_top}px; ";
 					}
 				$html .= "}";
 
@@ -165,7 +167,7 @@ class ES_Customizations {
 			}
 
 			// Drop Shadow (if enabled)
-			if ( $customizations->shadow->enabled ) {
+			if ( $customizations->shadow->enabled && ! empty( $customizations->shadow->image ) ) {
 				$html .= ".easingslider-shadow-{$slider->ID} { ";
 
 					// Make responsive or fixed
@@ -197,6 +199,9 @@ class ES_Customizations {
 	 */
 	public function drop_shadow( $html, $slider ) {
 
+		// Get the customizations
+		$customizations = $slider->customizations;
+
 		/**
 		 * If we are on the "customizer" page, we always want to render the shadow.
 		 * This allow us to toggle it with our live preview. Can't be achieved as easily otherwise.
@@ -206,8 +211,8 @@ class ES_Customizations {
 		if ( isset( $_GET['page'] ) && 'easingslider_manage_customizations' == $_GET['page'] ) {
 
 			// No need for this if the shadow is already enabled
-			if ( ! $slider->customizations->shadow->enabled ) {
-				$slider->customizations->shadow->enabled = true;
+			if ( ! $customizations->shadow->enabled ) {
+				$customizations->shadow->enabled = true;
 
 				// Add the HTML
 				$html .= "<style type=\"text/css\">";
@@ -229,9 +234,9 @@ class ES_Customizations {
 		}
 		
 		// Render the shadow if enabled
-		if ( $slider->customizations->shadow->enabled ) {
+		if ( $customizations->shadow->enabled && ! empty( $customizations->shadow->image ) ) {
 			$html .= "<div class=\"easingslider-shadow easingslider-shadow-{$slider->ID}\">";
-				$html .= "<img src=\"{$slider->customizations->shadow->image}\" style=\"width: 100%;\" />";
+				$html .= "<img src=\"{$customizations->shadow->image}\" style=\"width: 100%;\" />";
 			$html .= "</div>";
 		}
 
