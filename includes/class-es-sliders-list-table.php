@@ -46,12 +46,13 @@ class ES_Sliders_List_Table extends WP_List_Table {
 
 		// Set our columns
 		$columns = array(
-			'cb'          => '<input type="checkbox" />',
-			'ID'          => __( 'ID', 'easingslider' ),
-			'post_title'  => __( 'Title', 'easingslider' ),
-			'post_author' => __( 'Author', 'easingslider' ),
-			'post_date'   => __( 'Date', 'easingslider' ),
-			'shortcode'   => __( 'Shortcode', 'easingslider' )
+			'cb'                => '<input type="checkbox" />',
+			'ID'                => __( 'ID', 'easingslider' ),
+			'post_title'        => __( 'Title', 'easingslider' ),
+			'post_author'       => __( 'Author', 'easingslider' ),
+			'post_date'         => __( 'Date', 'easingslider' ),
+			'shortcode'         => __( 'Shortcode', 'easingslider' ),
+			'template_function' => __( 'Template Function', 'easingslider' )
 		);
 
 		return apply_filters( 'easingslider_sliders_list_table_columns', $columns );
@@ -142,12 +143,12 @@ class ES_Sliders_List_Table extends WP_List_Table {
 
 		// If paginated, ammend our query
 		if ( isset( $_GET['paged'] ) ) {
-			$query_args['paged'] = $_GET['paged'];
+			$query_args['paged'] = sanitize_key( $_GET['paged'] );
 		}
 
 		// If searching, ammend our query
 		if ( isset( $_GET['s'] ) ) {
-			$query_args['s'] = $_GET['s'];
+			$query_args['s'] = sanitize_title( $_GET['s'] );
 		}
 
 		// Add sort queries
@@ -214,7 +215,7 @@ class ES_Sliders_List_Table extends WP_List_Table {
 			}
 
 			// Call the action
-			call_user_func( array( $this, $method ), $_GET['id'] );
+			call_user_func( array( $this, $method ), sanitize_key( $_GET['id'] ) );
 
 		}
 		else if ( isset( $_GET['ids'] ) ) {
@@ -223,6 +224,9 @@ class ES_Sliders_List_Table extends WP_List_Table {
 			if ( ! check_admin_referer( "bulk-{$this->_args['plural']}" ) ) {
 				return;
 			}
+
+			// Sanatize IDs
+			$ids = array_map( 'sanitize_key', $_GET['ids'] );
 
 			// Call the action for each ID
 			array_walk( $_GET['ids'], array( $this, $method ) );
@@ -286,16 +290,19 @@ class ES_Sliders_List_Table extends WP_List_Table {
 	 */
 	public function column_post_title( $item ) {
 
+		// Get & escape the page
+		$page = esc_attr( $_GET['page'] );
+
 		// Our title string
-		$title = sprintf( '<strong><a class="row-title" href="?page=%s&edit=%s">%s</a></strong>', $_GET['page'], $item->ID, $item->post_title );
+		$title = sprintf( '<strong><a class="row-title" href="?page=%s&edit=%s">%s</a></strong>', $page, $item->ID, $item->post_title );
 
 		// Add nonces to action URLs
-		$duplicate_link = wp_nonce_url( "?page={$_GET['page']}&action=duplicate&id={$item->ID}", 'duplicate' );
-		$delete_link    = wp_nonce_url( "?page={$_GET['page']}&action=delete&id={$item->ID}", 'delete' );
+		$duplicate_link = wp_nonce_url( "?page={$page}&action=duplicate&id={$item->ID}", 'duplicate' );
+		$delete_link    = wp_nonce_url( "?page={$page}&action=delete&id={$item->ID}", 'delete' );
 
 		// Our array of actions
 		$actions = array(
-			'edit'      => sprintf( '<a href="?page=%s&edit=%s">Edit</a>', $_GET['page'], $item->ID ),
+			'edit'      => sprintf( '<a href="?page=%s&edit=%s">Edit</a>', $page, $item->ID ),
 			'duplicate' => sprintf( '<a href="%s">Duplicate</a>', $duplicate_link ),
 			'delete'    => sprintf( '<a href="%s">Delete</a>', $delete_link ),
 		);
@@ -312,9 +319,12 @@ class ES_Sliders_List_Table extends WP_List_Table {
 	 */
 	public function column_post_author( $item ) {
 
+		// Get & escape the page
+		$page = esc_attr( $_GET['page'] );
+
 		$author = sprintf(
 			'<a href="%s">%s</a>', 
-			esc_url( add_query_arg( array( 'page' => $_GET['page'], 'author' => get_the_author_meta( 'ID', $item->post_author ) ) ) ),
+			esc_url( add_query_arg( array( 'page' => $page, 'author' => get_the_author_meta( 'ID', $item->post_author ) ) ) ),
 			get_the_author_meta( 'display_name', $item->post_author )
 		);
 
@@ -363,7 +373,23 @@ class ES_Sliders_List_Table extends WP_List_Table {
 	 */
 	public function column_shortcode( $item ) {
 
-		return sprintf( '<code>[easingslider id="%s"]</code>', $item->ID );
+		$shortcode = sprintf( esc_html( '[easingslider id="%d"]' ), $item->ID );
+
+		return sprintf( '<input type="text" readonly="readonly" value="%s" />', $shortcode );
+
+	}
+
+	/**
+	 * Our template function column method
+	 *
+	 * @param  object $item Our column item
+	 * @return string
+	 */
+	public function column_template_function( $item ) {
+
+		$template_function = sprintf( esc_html( '<?php if ( function_exists( \'easingslider\' ) ) { easingslider( %d ); } ?>' ), $item->ID );
+
+		return sprintf( '<input type="text" readonly="readonly" value="%s" />', $template_function );
 
 	}
 

@@ -12,6 +12,7 @@
 		// Establish our elements
 		base.el          = el;
 		base.$el         = $(base.el);
+		base.$viewport   = base.$el.find('.easingslider-viewport');
 		base.$slides     = base.$el.find('.easingslider-slide');
 		base.$arrows     = base.$el.find('.easingslider-arrows');
 		base.$next       = base.$el.find('.easingslider-next');
@@ -47,10 +48,12 @@
 			// Set the current slide
 			base.$slides.eq(base.current).css({ 'display': 'block' }).addClass('active');
 
-			// Setup other components
+			// Setup components
 			base._setupArrows();
 			base._setupPagination();
 			base._setupPlayback();
+			base._setupResizing();
+			base._setupBackgrounds();
 
 			// Preload the slider
 			base._preload();
@@ -67,22 +70,22 @@
 		 */
 		base._setupArrows = function() {
 
-			// Bail if arrows aren't enabled
-			if ( ! o.navigation.arrows ) {
-				return;
+			// Continue if arrows are enabled
+			if ( o.navigation.arrows ) {
+
+				// "Next" & "Previous" arrow functionality
+				base.$next.bind(base._clickEvent, base.nextSlide);
+				base.$prev.bind(base._clickEvent, base.prevSlide);
+
+				// Add hover toggle if enabled
+				if ( o.navigation.arrows_hover ) {
+					base.$arrows.addClass('has-hover');
+				}
+
+				// Show the arrows
+				base.$arrows.css({ 'display': 'block' });
+
 			}
-
-			// "Next" & "Previous" arrow functionality
-			base.$next.on(base._clickEvent, base.nextSlide);
-			base.$prev.on(base._clickEvent, base.prevSlide);
-
-			// Add hover toggle if enabled
-			if ( o.navigation.arrows_hover ) {
-				base.$arrows.addClass('has-hover');
-			}
-
-			// Show the arrows
-			base.$arrows.css({ 'display': 'block' });
 
 			return base;
 
@@ -93,34 +96,34 @@
 		 */
 		base._setupPagination = function() {
 
-			// Bail if pagination isn't enabled
-			if ( ! o.navigation.pagination ) {
-				return;
+			// Continue if pagination is enabled
+			if ( o.navigation.pagination ) {
+
+				// Bind events
+				base.$el.bind('loaded', base._updatePagination);
+				base.$el.bind('transition.before', base._updatePagination);
+
+				// Enable click event for each icon
+				base.$icons.bind(base._clickEvent, function() {
+
+					// Get the next slide index and direction we are travelling
+					var eq        = $(this).index(),
+						direction = (eq > base.current) ? 'forward' : 'backward';
+
+					// Transition to the desired slide
+					base.goToSlide(eq, direction);
+
+				});
+
+				// Add hover toggle if enabled
+				if ( o.navigation.pagination_hover ) {
+					base.$pagination.addClass('has-hover');
+				}
+
+				// Show the pagination
+				base.$pagination.css({ 'display': 'block' });
+
 			}
-
-			// Bind events
-			base.$el.on('loaded', base._updatePagination);
-			base.$el.on('transition.before', base._updatePagination);
-
-			// Enable click event for each icon
-			base.$icons.on(base._clickEvent, function() {
-
-				// Get the next slide index and direction we are travelling
-				var eq        = $(this).index(),
-					direction = (eq > base.current) ? 'forward' : 'backward';
-
-				// Transition to the desired slide
-				base.goToSlide(eq, direction);
-
-			});
-
-			// Add hover toggle if enabled
-			if ( o.navigation.pagination_hover ) {
-				base.$pagination.addClass('has-hover');
-			}
-
-			// Show the pagination
-			base.$pagination.css({ 'display': 'block' });
 
 			return base;
 
@@ -131,13 +134,13 @@
 		 */
 		base._updatePagination = function() {
 
-			// Bail if we don't have any pagination
-			if ( ! o.navigation.pagination ) {
-				return base;
-			}
+			// Continue if pagination is enabled
+			if ( o.navigation.pagination ) {
 
-			// Update the active icon
-			base.$icons.removeClass('active').eq(base.current).addClass('active');
+				// Update the active icon
+				base.$icons.removeClass('active').eq(base.current).addClass('active');
+
+			}
 
 			return base;
 
@@ -149,25 +152,95 @@
 		base._setupPlayback = function() {
 
 			// Clear playback timer before the transition. It'll be reset after the transition has completed.
-			base.$el.on('transition.before', function() {
+			base.$el.bind('transition.before', function() {
 				if ( base._playbackTimer ) {
 					clearTimeout(base._playbackTimer);
 				}
 			});
 
 			// Once a transition has completed, continue playback if we have an active timer.
-			base.$el.on('transition.after', function() {
+			base.$el.bind('transition.after', function() {
 				if ( base._playbackTimer ) {
 					base.startPlayback();
 				}
 			});
 
 			// Queue playback after the slider has loaded, if enabled.
-			if ( o.playback.enabled ) {
-				base.$el.on('loaded', base.startPlayback);
+			if ( o.playback.enabled && base.count > 1 ) {
+				base.$el.bind('loaded', base.startPlayback);
 			}
 
 			return base;
+
+		};
+
+		/**
+		 * Sets up the responsive support
+		 */
+		base._setupResizing = function() {
+
+			// Continue if responsive is enabled
+			if ( o.dimensions.responsive ) {
+
+				// Update the size
+				base._updateSize();
+
+				// Handle window resizing
+				$(window).bind('resize', base._updateSize);
+			
+			}
+
+			return base;
+
+		};
+
+		/**
+		 * Updates the slider's size
+		 */
+		base._updateSize = function() {
+
+			// Get the container width
+			var width = base.$el.outerWidth();
+
+			// If it has changed, resize the height to match.
+			if ( width <= base.width && o.dimensions.keep_ratio ) {
+
+				// Using the default slider width, let's calculate the percentage change and thus calculate the new height.
+				var height = Math.floor((width / base.width) * base.height);
+
+				// Set the viewport height
+				base.$viewport.css({ 'height': height +'px' });
+
+				// Trigger event
+				base.$el.trigger('resize', [base, width, height]);
+
+			}
+
+			return base;
+
+		};
+
+		/**
+		 * Sets up the background slides, if enabled
+		 */
+		base._setupBackgrounds = function() {
+
+			// Handle background images, if enabled
+			if ( o.dimensions.background_images ) {
+				base.$slides.each(function() {
+
+					// Establish variables
+					var $slide = $(this),
+						$image = $slide.find('.easingslider-image');
+
+					// Set background
+					$slide.addClass('easingslider-background-slide').css({ 'background-image': 'url('+ $image.attr('src') +')' });
+
+					// Hide slide image
+					$image.css({ 'display': 'none' });
+
+				});
+			}
 
 		};
 
@@ -250,7 +323,7 @@
 				});
 			}
 
-		},
+		};
 
 		/**
 		 * Starts automatic playback
@@ -338,6 +411,11 @@
 		 * Executes a transition
 		 */
 		base._transition = function(eq, direction) {
+
+			// Bail if we only have one slide
+			if ( base.count <= 1 ) {
+				return base;
+			}
 
 			// Bail if specified slide doesn't exist
 			if ( base.$slides.eq(eq).length == 0 ) {
@@ -473,7 +551,11 @@
 		dimensions: {
 			width:               640,
 			height:              400,
-			responsive:          true
+			responsive:          true,
+			full_width:          false,
+			image_resizing:      false,
+			keep_ratio:          true,
+			background_images:   false
 		},
 		transitions: {
 			effect:              'fade',
@@ -481,10 +563,10 @@
 		},
 		navigation: {
 			arrows:              true,
-			arrows_hover:        true,
+			arrows_hover:        false,
 			arrows_position:     'inside',
 			pagination:          true,
-			pagination_hover:    true,
+			pagination_hover:    false,
 			pagination_position: 'inside',
 			pagination_location: 'bottom-center'
 		},

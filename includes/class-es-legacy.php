@@ -185,6 +185,8 @@ class ES_Legacy {
 	 */
 	public function pro_upgrade_from_100() {
 
+		global $wpdb;
+
 		// Bail if this has already been carried out
 		if ( get_option( 'easingslider_upgraded_from_pro' ) ) {
 			return;
@@ -358,7 +360,7 @@ class ES_Legacy {
 		$legacy_settings = get_option( "easingsliderpro_settings" );
 
 		// Transfer the settings
-		$settings->load_assets         = $legacy_settings['load_scripts'];
+		$settings->load_assets    = $legacy_settings['load_scripts'];
 		$settings->image_resizing = $legacy_settings['resizing'];
 
 		// Save the settings
